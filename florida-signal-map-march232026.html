@@ -1,0 +1,1066 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.3">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
+    p.p2 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p2"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p2"><span class="s1">&lt;head&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;The Florida Signal — Intelligence Map | Week of March 16–20, 2026&lt;/title&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"&gt;&lt;/script&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;style&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>* { margin: 0; padding: 0; box-sizing: border-box; }</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>body {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-family: 'Georgia', serif;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: #0a0a0a;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #e8e0d0;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>height: 100vh;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>overflow: hidden;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>/* ── HEADER ── */</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#header {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>position: fixed;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>top: 0; left: 0; right: 0;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>height: 58px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: #0a0a0a;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border-bottom: 1px solid #2a2a2a;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>align-items: center;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>justify-content: space-between;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0 22px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>z-index: 1000;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#header .logo {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 17px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: bold;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #c9a84c;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 3px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#header .issue-label {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 13px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #666;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 1.5px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>/* ── SUMMARY BADGE ── */</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#summary-badge {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>position: fixed;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>top: 68px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>left: 10px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: rgba(10,10,10,0.94);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border: 1px solid #2a2a2a;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border-left: 3px solid #c9a84c;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>padding: 13px 17px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>z-index: 900;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>min-width: 235px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#summary-badge .week {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 12px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #c9a84c;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 1.5px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#summary-badge .stat-row {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>justify-content: space-between;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 13px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #888;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>padding: 3px 0;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#summary-badge .stat-row span {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #fff;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: bold;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>/* ── LAYER CONTROLS ── */</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#layer-controls {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>position: fixed;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>top: 213px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>left: 10px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: rgba(10,10,10,0.94);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border: 1px solid #2a2a2a;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>padding: 13px 17px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>z-index: 900;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>min-width: 235px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#layer-controls .layer-title {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 12px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #c9a84c;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 1.5px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>margin-bottom: 12px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.layer-toggle {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>align-items: center;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>gap: 10px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>margin-bottom: 11px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.toggle-switch {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>width: 34px; height: 18px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 9px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: #333;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>position: relative;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>transition: background 0.25s;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>flex-shrink: 0;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.toggle-switch.on { background: #c9a84c; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.toggle-switch::after {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>content: '';</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>position: absolute;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>width: 14px; height: 14px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 50%;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: white;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>top: 2px; left: 2px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>transition: transform 0.25s;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.toggle-switch.on::after { transform: translateX(16px); }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.layer-dot { width: 13px; height: 13px; border-radius: 50%; flex-shrink: 0; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.agenda-diamond { width: 11px; height: 11px; transform: rotate(45deg); flex-shrink: 0; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.layer-label { font-size: 13px; color: #aaa; }</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>/* ── MAP ── */</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#map {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>position: fixed;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>top: 58px; left: 0; right: 0; bottom: 0;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>z-index: 1;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>/* ── SIDEBAR ── */</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#sidebar {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>position: fixed;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>top: 58px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>right: -430px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>width: 410px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>bottom: 0;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: #0d0d0d;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border-left: 1px solid #2a2a2a;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>z-index: 800;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>transition: right 0.3s ease;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>overflow-y: auto;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#sidebar.open { right: 0; }</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#sidebar-header {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>padding: 18px 20px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border-bottom: 1px solid #1e1e1e;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>position: sticky;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>top: 0;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: #0d0d0d;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>justify-content: space-between;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>align-items: flex-start;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>z-index: 10;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#sidebar-close {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: none;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border: 1px solid #2a2a2a;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #666;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 16px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>padding: 4px 11px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>flex-shrink: 0;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>margin-top: 2px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#sidebar-close:hover { border-color: #c9a84c; color: #c9a84c; }</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.s-tier {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 12px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 1.5px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>margin-bottom: 5px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.s-name {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 18px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #fff;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: bold;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>line-height: 1.3;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>margin-bottom: 5px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.s-address { font-size: 13px; color: #666; }</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>/* coord approximate warning */</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.coord-flag {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>display: inline-flex;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>align-items: center;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>gap: 5px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>margin-top: 6px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>padding: 3px 8px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: #1a1500;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border: 1px solid #3a3000;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 11px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #c9a84c;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 0.5px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>/* parcel pin note */</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.parcel-flag {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>display: inline-flex;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>align-items: center;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>gap: 5px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>margin-top: 6px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>padding: 3px 8px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: #001a12;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border: 1px solid #003a28;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 11px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #55cc99;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 0.5px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.tier-lead <span class="Apple-converted-space">    </span>{ color: #e05555; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.tier-below<span class="Apple-converted-space">    </span>{ color: #888; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.tier-agenda <span class="Apple-converted-space">  </span>{ color: #5599cc; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.tier-pipeline { color: #55aa77; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.tier-watch<span class="Apple-converted-space">    </span>{ color: #c9a84c; }</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#sidebar-body { padding: 18px 20px 34px; }</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.permit-table {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border-collapse: collapse;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>margin-bottom: 16px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.permit-table td {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>padding: 8px 0;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 13px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border-bottom: 1px solid #181818;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>vertical-align: top;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.permit-table td:first-child {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #666;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>width: 38%;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>padding-right: 10px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.permit-table td:last-child { color: #d8d0c0; }</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.status-badge {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>display: inline-block;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>padding: 3px 9px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 11px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 0.5px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.s-submitted { background: #2e1212; color: #e05555; border: 1px solid #4a2020; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.s-issued<span class="Apple-converted-space">    </span>{ background: #122e14; color: #55cc77; border: 1px solid #205a22; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.s-complete<span class="Apple-converted-space">  </span>{ background: #12122e; color: #5599cc; border: 1px solid #20205a; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.s-watch <span class="Apple-converted-space">    </span>{ background: #2e220a; color: #c9a84c; border: 1px solid #5a4412; }</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.section-label {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 11px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #c9a84c;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 1.5px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>margin: 16px 0 8px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.inset-box {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 13px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #bbb;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>line-height: 1.7;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: #111;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>padding: 11px 13px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border-left: 2px solid #c9a84c;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.inset-blue<span class="Apple-converted-space">  </span>{ border-left-color: #5599cc; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.inset-green { border-left-color: #55cc77; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.inset-teal<span class="Apple-converted-space">  </span>{ border-left-color: #55cc99; }</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.signal-pill {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>display: inline-block;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>padding: 4px 12px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 11px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 1px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>margin-top: 16px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.pill-advance { background: #122e14; color: #55cc77; border: 1px solid #205a22; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.pill-watch <span class="Apple-converted-space">  </span>{ background: #2e220a; color: #c9a84c; border: 1px solid #5a4412; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.pill-note<span class="Apple-converted-space">    </span>{ background: #12122e; color: #5599cc; border: 1px solid #20205a; }</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>/* ── SOURCE LINKS ── */</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.source-links { margin-top: 12px; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.record-link {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>display: block;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>margin-top: 8px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>padding: 9px 13px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: #111;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border: 1px solid #2a2a2a;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #666;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 12px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>text-decoration: none;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>text-align: center;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 0.3px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>transition: border-color 0.2s, color 0.2s;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.record-link:hover { border-color: #c9a84c; color: #c9a84c; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.record-link.disabled {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>opacity: 0.35;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>cursor: default;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>pointer-events: none;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>/* ── LEGEND ── */</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#legend {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>position: fixed;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>bottom: 22px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>left: 10px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: rgba(10,10,10,0.94);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border: 1px solid #2a2a2a;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>padding: 13px 16px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>z-index: 900;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#legend .leg-title {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 12px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #c9a84c;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 1.5px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.leg-item {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>align-items: center;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>gap: 9px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>margin-bottom: 7px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 13px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #888;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.leg-dot<span class="Apple-converted-space">    </span>{ width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.leg-diamond { width: 11px; height: 11px; transform: rotate(45deg); flex-shrink: 0; }</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>/* ── SCROLLBAR ── */</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#sidebar::-webkit-scrollbar { width: 3px; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#sidebar::-webkit-scrollbar-track { background: #0a0a0a; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>#sidebar::-webkit-scrollbar-thumb { background: #2a2a2a; }</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>/* ── LEAFLET OVERRIDES ── */</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.leaflet-control-attribution {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: rgba(0,0,0,0.75) !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #444 !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 10px !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.leaflet-control-attribution a { color: #444 !important; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.leaflet-control-zoom a {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: #0d0d0d !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #666 !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border-color: #2a2a2a !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 16px !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>width: 30px !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>height: 30px !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>line-height: 30px !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.leaflet-control-zoom a:hover {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: #141414 !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #c9a84c !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.leaflet-tooltip {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background: #0d0d0d !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border: 1px solid #333 !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>color: #e8e0d0 !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-family: Georgia, serif !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 13px !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 0 !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>padding: 7px 12px !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>box-shadow: 0 2px 12px rgba(0,0,0,0.6) !important;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.leaflet-tooltip::before { border-top-color: #333 !important; }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</span></p>
+<p class="p2"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p2"><span class="s1">&lt;body&gt;</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">&lt;div id="header"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="logo"&gt;⬡ &amp;nbsp;The Florida Signal&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="issue-label"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>Intelligence Map &amp;nbsp;·&amp;nbsp; Week of March 16–20, 2026 &amp;nbsp;·&amp;nbsp; Broward County</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">&lt;div id="summary-badge"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="week"&gt;Week of March 16–20, 2026&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="stat-row"&gt;Permits Filed <span class="Apple-converted-space">  </span>&lt;span&gt;651&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="stat-row"&gt;Declared Value<span class="Apple-converted-space">  </span>&lt;span&gt;$16.97M&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="stat-row"&gt;Lead Signals<span class="Apple-converted-space">    </span>&lt;span&gt;5&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="stat-row"&gt;Pull Window <span class="Apple-converted-space">    </span>&lt;span&gt;Mar 16 – 20&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">&lt;div id="layer-controls"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="layer-title"&gt;Map Layers&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="layer-toggle" onclick="toggleLayer('lead')"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="toggle-switch on" id="toggle-lead"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="layer-dot" style="background:#e05555;"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="layer-label"&gt;Lead Signals&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="layer-toggle" onclick="toggleLayer('below')"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="toggle-switch on" id="toggle-below"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="layer-dot" style="background:#888;"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="layer-label"&gt;Below Threshold&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="layer-toggle" onclick="toggleLayer('agenda')"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="toggle-switch on" id="toggle-agenda"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="agenda-diamond" style="background:#5599cc;"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="layer-label"&gt;Agenda Items&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="layer-toggle" onclick="toggleLayer('pipeline')"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="toggle-switch on" id="toggle-pipeline"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="layer-dot" style="background:#55aa77;"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="layer-label"&gt;Pipeline Watch&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">&lt;div id="sidebar"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="sidebar-header"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="sidebar-header-content"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="s-tier"<span class="Apple-converted-space">  </span>id="s-tier"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="s-name"<span class="Apple-converted-space">  </span>id="s-name"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="s-address" id="s-address"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div id="s-flags"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button id="sidebar-close" onclick="closeSidebar()"&gt;✕&lt;/button&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="sidebar-body"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">&lt;div id="legend"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="leg-title"&gt;Key&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="leg-item"&gt;&lt;div class="leg-dot" style="background:#e05555;"&gt;&lt;/div&gt;Plan Set Submitted&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="leg-item"&gt;&lt;div class="leg-dot" style="background:#55cc77;"&gt;&lt;/div&gt;Issued / Active&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="leg-item"&gt;&lt;div class="leg-dot" style="background:#c9a84c;"&gt;&lt;/div&gt;Watch / Mobilizing&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="leg-item"&gt;&lt;div class="leg-diamond" style="background:#5599cc;"&gt;&lt;/div&gt;Agenda Item&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="leg-item"&gt;&lt;div class="leg-dot" style="background:#55aa77;"&gt;&lt;/div&gt;Pipeline&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="leg-item"&gt;&lt;div class="leg-dot" style="background:#888;"&gt;&lt;/div&gt;Below Threshold&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">&lt;div id="map"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">// ═══════════════════════════════════════════</span></p>
+<p class="p2"><span class="s1">// SIGNAL DATA<span class="Apple-converted-space">  </span>—<span class="Apple-converted-space">  </span>v1.2</span></p>
+<p class="p2"><span class="s1">// Changes:</span></p>
+<p class="p2"><span class="s1">// <span class="Apple-converted-space">  </span>• bcpaUrl<span class="Apple-converted-space">  </span>→ real BCPA search links</span></p>
+<p class="p2"><span class="s1">// <span class="Apple-converted-space">  </span>• portalUrl → real permit portal links</span></p>
+<p class="p2"><span class="s1">// <span class="Apple-converted-space">  </span>• FATVillage parcelNote + coordApprox flags</span></p>
+<p class="p2"><span class="s1">// <span class="Apple-converted-space">  </span>• Hollywood items flagged coordApprox</span></p>
+<p class="p2"><span class="s1">// ═══════════════════════════════════════════</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">const signals = [</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// LEAD SIGNALS</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>layer: 'lead',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>name: "Gore Building — Demolition",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>address: "201 W Broward Blvd, Fort Lauderdale",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>lat: 26.1221, lng: -80.1450,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierLabel: "LEAD SIGNAL",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierClass: "tier-lead",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>color: "#e05555",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>shape: "circle",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>coordApprox: false,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>parcelNote: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>rows: [</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Permit",<span class="Apple-converted-space">        </span>"BLD-GEN-26030461"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Opened",<span class="Apple-converted-space">        </span>"03/20/2026"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Status",<span class="Apple-converted-space">        </span>'&lt;span class="status-badge s-submitted"&gt;Plan Set Submitted&lt;/span&gt;'],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Declared Cost", "$2,000,000"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Applicant", <span class="Apple-converted-space">    </span>"Sheffey Devier III"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Contractor",<span class="Apple-converted-space">    </span>"TBD001 / To Be Determined"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Note",<span class="Apple-converted-space">          </span>'&lt;em style="color:#c9a84c;"&gt;Demolition — Broward County Gore Building&lt;/em&gt;']</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>extra: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>watch: "Contractor assignment and any issuance movement on the demolition file.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>signal: "ADVANCE", signalClass: "pill-advance",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>// BCPA: address search pre-filled</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>bcpaUrl: "https://web.bcpa.net/BcpaClient/#/Record-Search",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>// LauderBuild: Fort Lauderdale permit portal</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalUrl: "https://aca3.accela.com/FTLAUDERDALE/Default.aspx",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalLabel: "Search LauderBuild Permit Portal →"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>layer: 'lead',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>name: "Barry's Bootcamp FTL",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>address: "401 E Las Olas Blvd, Fort Lauderdale",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>lat: 26.1194, lng: -80.1327,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierLabel: "LEAD SIGNAL",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierClass: "tier-lead",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>color: "#e05555",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>shape: "circle",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>coordApprox: false,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>parcelNote: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>rows: [</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Permit",<span class="Apple-converted-space">        </span>"BLD-GEN-26030331"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Opened",<span class="Apple-converted-space">        </span>"03/16/2026"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Status",<span class="Apple-converted-space">        </span>'&lt;span class="status-badge s-submitted"&gt;Plan Set Submitted&lt;/span&gt;'],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Declared Cost", "$1,200,000"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Contractor",<span class="Apple-converted-space">    </span>"TBD001 / To Be Determined"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Note",<span class="Apple-converted-space">          </span>'&lt;em style="color:#c9a84c;"&gt;Barrys FTL — Unit #GYM, Bank of America Plaza&lt;/em&gt;']</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>extra: "Six trade permits active alongside the structural file. Low-voltage permit ELE-LV-26030084 issued 03/18/2026. LOCC designation appears in note fields on trade permits. No operator named in permit record.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>watch: "Issuance on the structural permit and any Certificate of Occupancy movement.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>signal: "ADVANCE", signalClass: "pill-advance",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>bcpaUrl: "https://web.bcpa.net/BcpaClient/#/Record-Search",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalUrl: "https://aca3.accela.com/FTLAUDERDALE/Default.aspx",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalLabel: "Search LauderBuild Permit Portal →"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>layer: 'lead',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>name: "1400 Progresso Dr — Self-Storage",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>address: "1400 Progresso Dr, Fort Lauderdale",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>lat: 26.1380, lng: -80.1305,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierLabel: "LEAD SIGNAL",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierClass: "tier-lead",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>color: "#55cc77",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>shape: "circle",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>coordApprox: false,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>parcelNote: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>rows: [</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Permits",<span class="Apple-converted-space">        </span>"6 issued — ELE (×4), PLB, MEC"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Issued", <span class="Apple-converted-space">        </span>"All 03/16/2026"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Status", <span class="Apple-converted-space">        </span>'&lt;span class="status-badge s-issued"&gt;Issued — 6 Permits&lt;/span&gt;'],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Aggregate Fees", "$11,279.17"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Applicant",<span class="Apple-converted-space">      </span>"Bram Allen (ballen@arcodb.com)"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Project",<span class="Apple-converted-space">        </span>"147K SF self-storage — ARCO / 4 Rivers / Crow Holdings"]</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>extra: "Simultaneous issuance across four electrical, one plumbing, and one mechanical permit on a single date indicates the project has cleared a meaningful execution milestone.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>watch: "First inspection requests under the issued permits. Field progress toward reported November 2026 target.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>signal: "ADVANCE", signalClass: "pill-advance",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>bcpaUrl: "https://web.bcpa.net/BcpaClient/#/Record-Search",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalUrl: "https://aca3.accela.com/FTLAUDERDALE/Default.aspx",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalLabel: "Search LauderBuild Permit Portal →"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>layer: 'lead',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>name: "Stranahan House — New Museum File",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>address: "335 SE 6 Ave, Fort Lauderdale",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>lat: 26.1186, lng: -80.1375,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierLabel: "LEAD SIGNAL",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierClass: "tier-lead",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>color: "#e05555",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>shape: "circle",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>coordApprox: false,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>parcelNote: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>rows: [</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Permit",<span class="Apple-converted-space">        </span>"BLD-GEN-26030335"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Opened",<span class="Apple-converted-space">        </span>"03/16/2026"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Status",<span class="Apple-converted-space">        </span>'&lt;span class="status-badge s-submitted"&gt;Plan Set Submitted&lt;/span&gt;'],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Declared Cost", "$290,500"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Applicant", <span class="Apple-converted-space">    </span>"Tabitha Poche"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Contractor",<span class="Apple-converted-space">    </span>"TBD001 / To Be Determined"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Note",<span class="Apple-converted-space">          </span>'&lt;em style="color:#c9a84c;"&gt;STRANAHAN HOUSE — NEW MUSEUM&lt;/em&gt;']</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>extra: "Three revision permits (BLD-ACC-24040265.R001, BLD-CADD-23080005.R001, BLD-CNC-24040255.R001) filed same day. Miller Construction Company (CGC1526147) named on revision records — not on BLD-GEN-26030335. Records are distinct.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>watch: "Contractor assignment and permit issuance on the new museum file.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>signal: "ADVANCE", signalClass: "pill-advance",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>bcpaUrl: "https://web.bcpa.net/BcpaClient/#/Record-Search",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalUrl: "https://aca3.accela.com/FTLAUDERDALE/Default.aspx",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalLabel: "Search LauderBuild Permit Portal →"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>layer: 'lead',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>name: "Broward Health — South Andrews Corridor",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>address: "1611 S Andrews Ave, Fort Lauderdale",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>lat: 26.1055, lng: -80.1491,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierLabel: "LEAD SIGNAL — WATCH",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierClass: "tier-watch",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>color: "#c9a84c",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>shape: "circle",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>coordApprox: false,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>parcelNote: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>rows: [</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["ROW Permit",<span class="Apple-converted-space">    </span>"ROW-SITE-26030004"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Issued",<span class="Apple-converted-space">        </span>"03/17/2026"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Status",<span class="Apple-converted-space">        </span>'&lt;span class="status-badge s-issued"&gt;Issued&lt;/span&gt;'],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Declared Cost", "$10,000"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Contractor",<span class="Apple-converted-space">    </span>"Robins &amp; Morton Group, Birmingham, AL"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Note",<span class="Apple-converted-space">          </span>'&lt;em style="color:#c9a84c;"&gt;Broward Health – Demolition&lt;/em&gt;']</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>extra: "1600 S Andrews: ELE-GEN-26030228 (Pre &amp;amp; Post Reno, $66,353) and ELE-GEN-26030229 (Cath Lab #4, $36,471) — both Plan Set Submitted. Active RFQ: Bid #2026-0002, Architectural Services, 6th Floor South Renovation, responses due March 30, 2026.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>watch: "Building demolition permit at 1611. Issuance on electrical filings at 1600. RFQ responses due March 30.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>signal: "WATCH — MOBILIZING", signalClass: "pill-watch",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>bcpaUrl: "https://web.bcpa.net/BcpaClient/#/Record-Search",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalUrl: "https://aca3.accela.com/FTLAUDERDALE/Default.aspx",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalLabel: "Search LauderBuild Permit Portal →"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// BELOW THRESHOLD</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>layer: 'below',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>name: "110 EAST — Multi-Suite Office",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>address: "110 E Broward Blvd, Fort Lauderdale",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>lat: 26.1223, lng: -80.1428,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierLabel: "BELOW THRESHOLD",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierClass: "tier-below",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>color: "#888888",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>shape: "circle",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>coordApprox: false,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>parcelNote: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>rows: [</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Permit",<span class="Apple-converted-space">        </span>"BLD-GEN-26030326 + 5 CALT permits"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Issued",<span class="Apple-converted-space">        </span>"03/17/2026"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Status",<span class="Apple-converted-space">        </span>'&lt;span class="status-badge s-issued"&gt;Issued&lt;/span&gt;'],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Cost (Ste 630)", "$35,374"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Contractor",<span class="Apple-converted-space">    </span>"Max Effort Builders Inc. (Suite 630)"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Permit Agent",<span class="Apple-converted-space">  </span>"Dara Nunez"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Suites",<span class="Apple-converted-space">        </span>"620, 630, 650"]</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>extra: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>watch: "Tenant identity for active suites. Additional trade permit filings.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>signal: "NOTE", signalClass: "pill-note",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>bcpaUrl: "https://web.bcpa.net/BcpaClient/#/Record-Search",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalUrl: "https://aca3.accela.com/FTLAUDERDALE/Default.aspx",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalLabel: "Search LauderBuild Permit Portal →"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>layer: 'below',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>name: "Next Health — N Federal Hwy",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>address: "1902 N Federal Hwy, Fort Lauderdale",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>lat: 26.1490, lng: -80.1243,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierLabel: "BELOW THRESHOLD",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierClass: "tier-below",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>color: "#888888",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>shape: "circle",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>coordApprox: false,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>parcelNote: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>rows: [</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Permit",<span class="Apple-converted-space">        </span>"ELE-GEN-26030194"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Opened",<span class="Apple-converted-space">        </span>"03/17/2026"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Status",<span class="Apple-converted-space">        </span>'&lt;span class="status-badge s-submitted"&gt;Plan Set Submitted&lt;/span&gt;'],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Declared Cost", "$3,600"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Contractor",<span class="Apple-converted-space">    </span>"Fuse Electric Inc."],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Applicant", <span class="Apple-converted-space">    </span>"Liron Gozlan"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Note",<span class="Apple-converted-space">          </span>'&lt;em style="color:#c9a84c;"&gt;Next Health — Opening Weekend March 26–29&lt;/em&gt;']</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>extra: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>watch: "Full project scope and CO movement.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>signal: "NOTE", signalClass: "pill-note",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>bcpaUrl: "https://web.bcpa.net/BcpaClient/#/Record-Search",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalUrl: "https://aca3.accela.com/FTLAUDERDALE/Default.aspx",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalLabel: "Search LauderBuild Permit Portal →"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// AGENDA ITEMS</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>layer: 'agenda',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>name: "Hollywood Rezoning — PS-3 to FH-2",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>// Tightened: Jackson St between 18th &amp; 19th Ave, Hollywood</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>address: "1841–1857 Jackson St &amp; 1856 Van Buren St, Hollywood",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>lat: 26.01742, lng: -80.17218,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierLabel: "AGENDA SIGNAL",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierClass: "tier-agenda",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>color: "#5599cc",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>shape: "diamond",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>// Flag: street-level but not parcel-corner-exact until folio geometry confirmed</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>coordApprox: true,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>parcelNote: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>rows: [</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Item",<span class="Apple-converted-space">      </span>"PO-2026-004 — Second Reading (Item 17)"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Meeting", <span class="Apple-converted-space">  </span>"Hollywood Commission — March 25, 2026, 1:00 PM"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Rezoning",<span class="Apple-converted-space">  </span>"PS-3 → FH-2 on ~1.11 acres"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Folios",<span class="Apple-converted-space">    </span>"5142-15-01-7550 / 5142-15-01-7540"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Legal Ad",<span class="Apple-converted-space">  </span>"Sun Sentinel, March 12, 2026"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Status",<span class="Apple-converted-space">    </span>'&lt;span class="status-badge s-complete"&gt;Commission Vote&lt;/span&gt;']</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>extra: "Strongest entitlement signal on the Hollywood agenda this week. Second Reading. Folio coordinates will be tightened to exact parcel corners once BCPA boundary geometry is confirmed.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>watch: "Commission vote outcome March 25. Watch for any continuance or amendment filed before the meeting.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>signal: "ADVANCE", signalClass: "pill-advance",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>// Direct BCPA folio lookup — first folio (format: no dashes)</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>bcpaUrl: "https://bcpa.net/RecordDetail.asp?url_qfpn=514215017550",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalUrl: "https://www.hollywoodfl.org/170/City-Clerk",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalLabel: "Hollywood City Clerk — Agenda Portal →"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>layer: 'agenda',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>name: "Hollywood Beach Hotel — Items 19 &amp; 20",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>// Tightened: actual address 101 N Ocean Dr, Hollywood Beach</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>address: "101 N Ocean Dr, Hollywood",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>lat: 26.02241, lng: -80.10958,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierLabel: "AGENDA SIGNAL",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierClass: "tier-agenda",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>color: "#5599cc",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>shape: "diamond",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>coordApprox: true,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>parcelNote: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>rows: [</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Items",<span class="Apple-converted-space">    </span>"19 (Presentation) &amp; 20 (Feasibility / Zoning Analysis)"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Meeting",<span class="Apple-converted-space">  </span>"Hollywood Commission — March 25, 2026, 3:30 PM"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Property", "Hollywood Beach Hotel, 101 N Ocean Drive"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Status", <span class="Apple-converted-space">  </span>'&lt;span class="status-badge s-complete"&gt;Time-Certain Item&lt;/span&gt;']</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>extra: "Items 19 and 20 together signal active review of the Hollywood Beach Hotel site. Coordinates placed at recorded street address; parcel boundary geometry to be confirmed against BCPA folio.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>watch: "Commission direction on feasibility study and zoning analysis at 3:30 PM time-certain.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>signal: "ADVANCE", signalClass: "pill-advance",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>bcpaUrl: "https://web.bcpa.net/BcpaClient/#/Record-Search",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalUrl: "https://www.hollywoodfl.org/170/City-Clerk",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalLabel: "Hollywood City Clerk — Agenda Portal →"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>layer: 'agenda',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>name: "600 Knights Road — $5.25M Acquisition",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>address: "600 Knights Road, Hollywood",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>lat: 26.00489, lng: -80.17644,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierLabel: "AGENDA SIGNAL",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierClass: "tier-agenda",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>color: "#5599cc",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>shape: "diamond",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>coordApprox: true,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>parcelNote: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>rows: [</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Item",<span class="Apple-converted-space">    </span>"Item 23"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Meeting", "Hollywood Commission — March 25, 2026, 1:00 PM"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Action",<span class="Apple-converted-space">  </span>"Property acquisition by City of Hollywood"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Amount",<span class="Apple-converted-space">  </span>"$5,250,000"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Status",<span class="Apple-converted-space">  </span>'&lt;span class="status-badge s-complete"&gt;Commission Vote&lt;/span&gt;']</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>extra: "Material municipal land acquisition. Coordinates placed at street address. Exact parcel corners and folio TBD pending confirmation in BCPA records. Watch for approved use and any follow-on development planning.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>watch: "Commission vote approval and stated intended use for the acquired parcel.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>signal: "ADVANCE", signalClass: "pill-advance",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>bcpaUrl: "https://web.bcpa.net/BcpaClient/#/Record-Search",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalUrl: "https://www.hollywoodfl.org/170/City-Clerk",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalLabel: "Hollywood City Clerk — Agenda Portal →"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>layer: 'agenda',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>name: "FATVillage — County License Agreement",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>// ── AREA PIN — no specific parcel named in agenda item as of 03/20/2026 ──</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>// Pin placed at NW 7th St / NW 1st Ave — geographic centroid of FATVillage</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>// Arts District. Will be updated to exact parcel corner when the executed</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>// license agreement or a plat amendment names a specific Block or folio.</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>address: "FATVillage Arts District — NW 7th St corridor, Fort Lauderdale",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>lat: 26.12891, lng: -80.14461,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierLabel: "AGENDA SIGNAL",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierClass: "tier-agenda",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>color: "#5599cc",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>shape: "diamond",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>coordApprox: true,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>// This flag triggers the special parcel-precision note in the sidebar</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>parcelNote: "No specific parcel, Block, or folio was named in the Broward County Commission agenda item as of March 20, 2026. Pin is placed at the geographic centroid of the FATVillage Arts District (NW 7th St / NW 1st Ave). When the executed license agreement or any accompanying plat amendment names a specific Block number or folio (e.g., \"Block 4, Plat of Himmarshee Village\"), this pin will be updated to that exact corner.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>rows: [</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Agenda",<span class="Apple-converted-space">  </span>"Broward County Commission — March 26, 2026"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Item",<span class="Apple-converted-space">    </span>"License Agreement — Related FATVillage, LLC"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Status",<span class="Apple-converted-space">  </span>'&lt;span class="status-badge s-complete"&gt;County Agenda Item&lt;/span&gt;'],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Pin", <span class="Apple-converted-space">    </span>'&lt;em style="color:#c9a84c;"&gt;District centroid — no parcel named yet&lt;/em&gt;']</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>extra: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>watch: "License terms and county board action on March 26. Monitor for any recorded instrument that names a specific parcel or Block — that is the trigger to reprecision this pin.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>signal: "NOTE", signalClass: "pill-note",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>bcpaUrl: "https://web.bcpa.net/BcpaClient/#/Record-Search",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalUrl: "https://www.broward.org/Commission/Pages/Default.aspx",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalLabel: "Broward County Commission Agenda →"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// PIPELINE WATCH</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// ─────────────────────────────────────</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>layer: 'pipeline',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>name: "El Car Wash — West Pompano",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>address: "2690 W Sample Rd, Pompano Beach",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>lat: 26.2714, lng: -80.1876,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierLabel: "PIPELINE WATCH",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierClass: "tier-pipeline",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>color: "#55aa77",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>shape: "circle",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>coordApprox: false,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>parcelNote: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>rows: [</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Address", "2690 W Sample Rd, Pompano Beach"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Status",<span class="Apple-converted-space">  </span>'&lt;span class="status-badge s-watch"&gt;Pipeline Watch&lt;/span&gt;']</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>extra: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>watch: "First permit filings at this address.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>signal: "WATCH — MOBILIZING", signalClass: "pill-watch",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>bcpaUrl: "https://web.bcpa.net/BcpaClient/#/Record-Search",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalUrl: "https://www.pompanobeachfl.gov/departments/building",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalLabel: "Pompano Beach Building Dept →"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>layer: 'pipeline',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>name: "Modera — S Federal Hwy, Pompano",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>address: "855 S Federal Hwy, Pompano Beach",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>lat: 26.2274, lng: -80.1236,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierLabel: "PIPELINE WATCH",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierClass: "tier-pipeline",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>color: "#55aa77",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>shape: "circle",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>coordApprox: false,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>parcelNote: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>rows: [</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Address", "855 S Federal Hwy, Pompano Beach"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Status",<span class="Apple-converted-space">  </span>'&lt;span class="status-badge s-watch"&gt;Pipeline Watch&lt;/span&gt;']</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>extra: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>watch: "Permit filings and entitlement actions at this address.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>signal: "WATCH — MOBILIZING", signalClass: "pill-watch",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>bcpaUrl: "https://web.bcpa.net/BcpaClient/#/Record-Search",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalUrl: "https://www.pompanobeachfl.gov/departments/building",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalLabel: "Pompano Beach Building Dept →"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>layer: 'pipeline',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>name: "Pompano Beach Marine Center",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>address: "701 S Federal Hwy, Pompano Beach",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>lat: 26.2330, lng: -80.1230,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierLabel: "PIPELINE WATCH",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>tierClass: "tier-pipeline",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>color: "#55aa77",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>shape: "circle",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>coordApprox: false,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>parcelNote: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>rows: [</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Address", "701 S Federal Hwy, Pompano Beach"],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>["Status",<span class="Apple-converted-space">  </span>'&lt;span class="status-badge s-watch"&gt;Pipeline Watch&lt;/span&gt;']</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>extra: null,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>watch: "Permit filings and commission action.",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>signal: "WATCH — MOBILIZING", signalClass: "pill-watch",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>bcpaUrl: "https://web.bcpa.net/BcpaClient/#/Record-Search",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalUrl: "https://www.pompanobeachfl.gov/departments/building",</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>portalLabel: "Pompano Beach Building Dept →"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">]; // end signals[]</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">// ═══════════════════════════════════════════</span></p>
+<p class="p2"><span class="s1">// MAP INIT</span></p>
+<p class="p2"><span class="s1">// ═══════════════════════════════════════════</span></p>
+<p class="p2"><span class="s1">const map = L.map('map', {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>center: [26.1400, -80.1400],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>zoom: 12,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>zoomControl: true</span></p>
+<p class="p2"><span class="s1">});</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>attribution: '© &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; © &lt;a href="https://carto.com/"&gt;CARTO&lt;/a&gt;',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>subdomains: 'abcd',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>maxZoom: 19</span></p>
+<p class="p2"><span class="s1">}).addTo(map);</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">// ═══════════════════════════════════════════</span></p>
+<p class="p2"><span class="s1">// LAYER GROUPS</span></p>
+<p class="p2"><span class="s1">// ═══════════════════════════════════════════</span></p>
+<p class="p2"><span class="s1">const layerGroups = {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>lead: <span class="Apple-converted-space">    </span>L.layerGroup().addTo(map),</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>below:<span class="Apple-converted-space">    </span>L.layerGroup().addTo(map),</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>agenda: <span class="Apple-converted-space">  </span>L.layerGroup().addTo(map),</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>pipeline: L.layerGroup().addTo(map)</span></p>
+<p class="p2"><span class="s1">};</span></p>
+<p class="p2"><span class="s1">const layerState = { lead: true, below: true, agenda: true, pipeline: true };</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">// ═══════════════════════════════════════════</span></p>
+<p class="p2"><span class="s1">// ICON FACTORY</span></p>
+<p class="p2"><span class="s1">// ═══════════════════════════════════════════</span></p>
+<p class="p2"><span class="s1">function makeCircleIcon(color, size = 16) {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>return L.divIcon({</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>className: '',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>html: `&lt;div style="</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>width:${size}px;height:${size}px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background:${color};border-radius:50%;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border:2px solid rgba(255,255,255,0.18);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>box-shadow:0 0 10px ${color}99,0 0 22px ${color}44;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>cursor:pointer;transition:transform 0.15s;"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>onmouseover="this.style.transform='scale(1.6)'"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>onmouseout="this.style.transform='scale(1)'"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;`,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>iconSize: [size, size],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>iconAnchor: [size / 2, size / 2]</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>});</span></p>
+<p class="p2"><span class="s1">}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">function makeDiamondIcon(color, size = 16) {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>return L.divIcon({</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>className: '',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>html: `&lt;div style="</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>width:${size}px;height:${size}px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background:${color};transform:rotate(45deg);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border:2px solid rgba(255,255,255,0.18);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>box-shadow:0 0 10px ${color}99,0 0 22px ${color}44;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>cursor:pointer;transition:transform 0.15s;"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>onmouseover="this.style.transform='rotate(45deg) scale(1.6)'"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>onmouseout="this.style.transform='rotate(45deg) scale(1)'"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;`,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>iconSize: [size, size],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>iconAnchor: [size / 2, size / 2]</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>});</span></p>
+<p class="p2"><span class="s1">}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">// Area-pin variant: dashed border to signal approximate placement</span></p>
+<p class="p2"><span class="s1">function makeAreaDiamondIcon(color, size = 16) {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>return L.divIcon({</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>className: '',</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>html: `&lt;div style="</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>width:${size}px;height:${size}px;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>background:${color}88;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>transform:rotate(45deg);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>border:2px dashed ${color};</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>box-shadow:0 0 10px ${color}66,0 0 22px ${color}33;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>cursor:pointer;transition:transform 0.15s;"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>onmouseover="this.style.transform='rotate(45deg) scale(1.6)'"</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>onmouseout="this.style.transform='rotate(45deg) scale(1)'"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;`,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>iconSize: [size, size],</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>iconAnchor: [size / 2, size / 2]</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>});</span></p>
+<p class="p2"><span class="s1">}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">// ═══════════════════════════════════════════</span></p>
+<p class="p2"><span class="s1">// PLACE MARKERS</span></p>
+<p class="p2"><span class="s1">// ═══════════════════════════════════════════</span></p>
+<p class="p2"><span class="s1">signals.forEach(sig =&gt; {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>let icon;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>if (sig.shape === 'diamond') {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>// Dashed border for area/approx pins, solid for exact</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>icon = (sig.parcelNote)</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>? makeAreaDiamondIcon(sig.color)</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>: makeDiamondIcon(sig.color);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>} else {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>icon = makeCircleIcon(sig.color);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>const marker = L.marker([sig.lat, sig.lng], { icon })</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.addTo(layerGroups[sig.layer])</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>.on('click', () =&gt; openSidebar(sig));</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// Tooltip: add ⊙ flag for approximate coords</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>const approxFlag = sig.coordApprox</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>? `&lt;br&gt;&lt;span style="color:#c9a84c;font-size:11px;"&gt;⊙ coordinates approximate&lt;/span&gt;`</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>: '';</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>const parcelFlag = sig.parcelNote</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>? `&lt;br&gt;&lt;span style="color:#55cc99;font-size:11px;"&gt;◎ no parcel named yet — area pin&lt;/span&gt;`</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>: '';</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>marker.bindTooltip(</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>`&lt;strong&gt;${sig.name}&lt;/strong&gt;&lt;br&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">         </span>&lt;span style="color:#888;font-size:12px;"&gt;${sig.address}&lt;/span&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">         </span>${approxFlag}${parcelFlag}`,</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>{ direction: 'top', offset: [0, -12], permanent: false }</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>);</span></p>
+<p class="p2"><span class="s1">});</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">// ═══════════════════════════════════════════</span></p>
+<p class="p2"><span class="s1">// SIDEBAR</span></p>
+<p class="p2"><span class="s1">// ═══════════════════════════════════════════</span></p>
+<p class="p2"><span class="s1">function openSidebar(sig) {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('s-tier').textContent<span class="Apple-converted-space">    </span>= sig.tierLabel;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('s-tier').className<span class="Apple-converted-space">      </span>= `s-tier ${sig.tierClass}`;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('s-name').textContent<span class="Apple-converted-space">    </span>= sig.name;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('s-address').textContent = sig.address;</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// Build flags under the address</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>let flagHTML = '';</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>if (sig.coordApprox &amp;&amp; !sig.parcelNote) {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>flagHTML += `&lt;div class="coord-flag"&gt;⊙ Coordinates approximate — street-level placement, not parcel-corner-exact&lt;/div&gt;`;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>if (sig.parcelNote) {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>flagHTML += `&lt;div class="coord-flag"&gt;⊙ Area pin — no specific parcel named in source document&lt;/div&gt;`;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('s-flags').innerHTML = flagHTML;</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// Permit data table</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>let rowsHTML = sig.rows.map(r =&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>`&lt;tr&gt;&lt;td&gt;${r[0]}&lt;/td&gt;&lt;td&gt;${r[1]}&lt;/td&gt;&lt;/tr&gt;`</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>).join('');</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>let html = `&lt;table class="permit-table"&gt;${rowsHTML}&lt;/table&gt;`;</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// Parcel precision note (FATVillage etc.)</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>if (sig.parcelNote) {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>html += `</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="section-label"&gt;Parcel Precision Note&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="inset-box inset-teal"&gt;${sig.parcelNote}&lt;/div&gt;`;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// Extra detail</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>if (sig.extra) {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>html += `</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="section-label"&gt;Additional Record Detail&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="inset-box"&gt;${sig.extra}&lt;/div&gt;`;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// What to Watch</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>html += `</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="section-label"&gt;What to Watch&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="inset-box inset-blue"&gt;${sig.watch}&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>&lt;span class="signal-pill ${sig.signalClass}"&gt;${sig.signal}&lt;/span&gt;`;</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>// Source links</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>html += `&lt;div class="source-links"&gt;`;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>html += `&lt;a href="${sig.bcpaUrl}" target="_blank" class="record-link"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>🔗 &amp;nbsp;BCPA Property Search →</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/a&gt;`;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>html += `&lt;a href="${sig.portalUrl}" target="_blank" class="record-link"&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>🔗 &amp;nbsp;${sig.portalLabel}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/a&gt;`;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>html += `&lt;/div&gt;`;</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('sidebar-body').innerHTML = html;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('sidebar').classList.add('open');</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>map.panTo([sig.lat, sig.lng], { animate: true, duration: 0.4 });</span></p>
+<p class="p2"><span class="s1">}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">function closeSidebar() {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('sidebar').classList.remove('open');</span></p>
+<p class="p2"><span class="s1">}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">// ═══════════════════════════════════════════</span></p>
+<p class="p2"><span class="s1">// LAYER TOGGLES</span></p>
+<p class="p2"><span class="s1">// ═══════════════════════════════════════════</span></p>
+<p class="p2"><span class="s1">function toggleLayer(name) {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>layerState[name] = !layerState[name];</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>const toggle = document.getElementById(`toggle-${name}`);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>if (layerState[name]) {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>map.addLayer(layerGroups[name]);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>toggle.classList.add('on');</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>} else {</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>map.removeLayer(layerGroups[name]);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span>toggle.classList.remove('on');</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1">}</span></p>
+<p class="p1"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">&lt;/script&gt;</span></p>
+<p class="p2"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p2"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
