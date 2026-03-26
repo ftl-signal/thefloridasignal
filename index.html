@@ -16,15 +16,16 @@
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
     :root{
-        --bg:#0a1220;
-        --bg-card:#111c30;
-        --bg-card-h:#152240;
-        --bdr:rgba(255,255,255,.08);
-        --bdr-m:rgba(255,255,255,.12);
+        --bg:#0e1829;
+        --bg-card:#152238;
+        --bg-card-h:#1a2a46;
+        --bdr:rgba(255,255,255,.09);
+        --bdr-m:rgba(255,255,255,.14);
         --gold:#c9a227;
         --gold-b:#e5c04b;
         --gold-d:rgba(201,162,39,.15);
         --cyan:#22d3ee;
+        --cyan-b:#38d6ef;
         --cyan-d:rgba(34,211,238,.12);
         --green:#34d399;
         --green-d:rgba(52,211,153,.12);
@@ -33,12 +34,12 @@
         --purple:#a78bfa;
         --purple-d:rgba(167,139,250,.12);
         --t1:#f0f4f8;
-        --t2:#8e9cb0;
-        --t3:#556575;
+        --t2:#94a3b8;
+        --t3:#5e7086;
         --sans:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
         --mono:'JetBrains Mono','Fira Code','SF Mono',monospace;
         --r-s:6px;--r-m:10px;--r-l:14px;--r-xl:20px;
-        --shadow:0 4px 24px rgba(0,0,0,.3);
+        --shadow:0 4px 24px rgba(0,0,0,.28);
         --glow-g:0 0 30px rgba(201,162,39,.15);
     }
 
@@ -57,7 +58,7 @@
         min-height:40px;padding:9px 44px 9px 16px;
         background:linear-gradient(90deg,
             rgba(201,162,39,.04) 0%,
-            rgba(201,162,39,.08) 50%,
+            rgba(201,162,39,.09) 50%,
             rgba(201,162,39,.04) 100%);
         position:relative;overflow:hidden;cursor:pointer;
         font-size:13px;text-align:center;line-height:1.4;color:var(--t1);
@@ -94,12 +95,12 @@
         position:sticky;top:0;z-index:1000;
         height:84px;display:flex;align-items:center;justify-content:space-between;
         padding:0 32px;
-        background:rgba(10,18,32,.84);
+        background:rgba(14,24,41,.84);
         backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
         border-bottom:1px solid transparent;
         transition:background .3s,border-color .3s;
     }
-    .hdr.scrolled{background:rgba(10,18,32,.96);border-bottom-color:var(--bdr)}
+    .hdr.scrolled{background:rgba(14,24,41,.96);border-bottom-color:var(--bdr)}
     .hdr-logo{display:flex;align-items:center}
     .hdr-logo img{height:76px;width:auto;display:block;object-fit:contain}
     .hdr-nav{display:flex;align-items:center;gap:24px}
@@ -131,19 +132,19 @@
         padding:13px 22px;border-radius:var(--r-m);border:1px solid var(--bdr-m);
         cursor:pointer;transition:all .25s;font-family:var(--sans);white-space:nowrap;
     }
-    .btn-out:hover{color:var(--t1);border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.03)}
+    .btn-out:hover{color:var(--t1);border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.04)}
 
     .btn-cyan{
         display:inline-flex;align-items:center;gap:6px;
-        background:rgba(34,211,238,.05);color:var(--cyan);
-        font-weight:500;font-size:13.5px;
+        background:rgba(34,211,238,.06);color:var(--cyan);
+        font-weight:600;font-size:13.5px;
         padding:12px 22px;border-radius:var(--r-m);
-        border:1px solid rgba(34,211,238,.15);
+        border:1px solid rgba(34,211,238,.18);
         cursor:pointer;transition:all .25s;font-family:var(--sans);white-space:nowrap;
     }
     .btn-cyan:hover{
-        color:#fff;border-color:rgba(34,211,238,.32);
-        background:rgba(34,211,238,.10);
+        color:#fff;border-color:rgba(34,211,238,.35);
+        background:rgba(34,211,238,.12);
     }
 
     /* ═══════════════════════════════════════════════════════
@@ -176,7 +177,7 @@
 
     .hero-ctas{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 
-    /* ── Hero grid: map + metrics + featured ─────────────── */
+    /* ── Hero grid ────────────────────────────────────────── */
     .hero-grid{
         display:grid;
         grid-template-columns:1fr;
@@ -192,64 +193,87 @@
     .map-block{
         grid-area:map;
         position:relative;border-radius:var(--r-l);overflow:hidden;
-        background:radial-gradient(ellipse at 60% 40%,#132240,#0b1222 70%);
-        border:1px solid rgba(34,211,238,.12);
-        box-shadow:0 0 0 1px rgba(34,211,238,.04),0 3px 18px rgba(0,0,0,.25);
-        min-height:240px;transition:border-color .4s,box-shadow .4s;
+        background:radial-gradient(ellipse at 60% 40%,#1a3050,#0e1829 70%);
+        border:1px solid rgba(34,211,238,.14);
+        box-shadow:0 0 0 1px rgba(34,211,238,.05),0 3px 18px rgba(0,0,0,.2);
+        min-height:240px;transition:border-color .4s,box-shadow .4s;cursor:pointer;
     }
     .map-block:hover{
-        border-color:rgba(34,211,238,.22);
-        box-shadow:0 0 0 1px rgba(34,211,238,.08),0 4px 24px rgba(0,0,0,.35);
+        border-color:rgba(34,211,238,.28);
+        box-shadow:0 0 0 1px rgba(34,211,238,.1),0 4px 28px rgba(0,0,0,.3);
     }
 
     .map-block iframe{
         position:absolute;inset:0;width:100%;height:100%;border:none;
         pointer-events:none;
-        filter:brightness(.88) saturate(1.25);
+        filter:brightness(.94) saturate(1.15);
     }
 
     .map-ov{
         position:absolute;inset:0;
         background:linear-gradient(180deg,
-            rgba(10,18,32,.02) 0%,
-            rgba(10,18,32,.06) 50%,
-            rgba(10,18,32,.50) 100%);
+            rgba(14,24,41,.0) 0%,
+            rgba(14,24,41,.02) 55%,
+            rgba(14,24,41,.32) 100%);
         display:flex;flex-direction:column;
         justify-content:space-between;
-        padding:14px 16px 16px;
+        align-items:flex-start;
+        padding:14px 16px 12px;
         transition:background .3s;
+        text-decoration:none;color:var(--t1);
     }
     .map-block:hover .map-ov{
         background:linear-gradient(180deg,
-            rgba(10,18,32,.0) 0%,
-            rgba(10,18,32,.03) 50%,
-            rgba(10,18,32,.38) 100%);
+            rgba(14,24,41,.0) 0%,
+            rgba(14,24,41,.0) 55%,
+            rgba(14,24,41,.22) 100%);
     }
 
     .map-badge{
         display:inline-flex;align-items:center;gap:6px;
-        background:rgba(10,18,32,.62);backdrop-filter:blur(12px);
+        background:rgba(14,24,41,.50);backdrop-filter:blur(12px);
         -webkit-backdrop-filter:blur(12px);
         border:1px solid rgba(255,255,255,.10);border-radius:6px;
         padding:5px 10px;
-        font-family:var(--mono);font-size:9.5px;font-weight:600;
-        color:rgba(255,255,255,.7);letter-spacing:.8px;
+        font-family:var(--mono);font-size:8.5px;font-weight:600;
+        color:rgba(255,255,255,.6);letter-spacing:.8px;
         text-transform:uppercase;width:fit-content;
     }
-    .map-badge .live-dot{width:6px;height:6px}
+    .map-badge .live-dot{width:5px;height:5px}
 
-    .map-cta{
-        display:inline-flex;align-items:center;gap:8px;
-        background:rgba(10,18,32,.55);backdrop-filter:blur(14px);
-        -webkit-backdrop-filter:blur(14px);
-        border:1px solid rgba(255,255,255,.16);color:var(--t1);
-        font-weight:600;font-size:13px;padding:11px 20px;
-        border-radius:var(--r-m);transition:all .25s;width:fit-content;
+    .map-cue{
+        align-self:center;
+        font-family:var(--mono);font-size:11px;font-weight:600;
+        letter-spacing:2.5px;text-transform:uppercase;
+        color:rgba(255,255,255,.88);
+        padding:11px 28px;
+        border:1px solid rgba(255,255,255,.18);
+        border-radius:100px;
+        backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+        background:rgba(14,24,41,.32);
+        animation:border-pulse 3.5s ease-in-out infinite;
+        transition:background .3s,color .3s;
     }
-    .map-cta:hover{background:rgba(10,18,32,.65);border-color:rgba(255,255,255,.28)}
-    .map-cta svg{width:16px;height:16px;flex-shrink:0}
+    .map-block:hover .map-cue{
+        background:rgba(14,24,41,.42);color:#fff;
+    }
 
-    /* ── Metrics strip — 3 items, inside hero-grid ─────── */
+    .map-handle{
+        align-self:center;display:flex;flex-direction:column;align-items:center;gap:3px;
+    }
+    .map-handle-bar{
+        width:28px;height:3px;background:rgba(255,255,255,.18);border-radius:2px;
+    }
+    .map-handle-label{
+        font-size:9.5px;color:rgba(255,255,255,.32);font-weight:500;letter-spacing:.3px;
+    }
+
+    @keyframes border-pulse{
+        0%,100%{border-color:rgba(255,255,255,.18);box-shadow:none}
+        50%{border-color:rgba(34,211,238,.45);box-shadow:0 0 18px rgba(34,211,238,.06)}
+    }
+
+    /* ── Metrics strip ────────────────────────────────────── */
     .hero-metrics{
         grid-area:metrics;
         display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
@@ -262,7 +286,7 @@
     .hm-v.gold{color:var(--gold)}
     .hm-l{font-size:10px;color:var(--t3);letter-spacing:.4px;text-transform:uppercase;font-weight:500;margin-top:2px}
 
-    /* ── Featured brief column ─────────────────────────── */
+    /* ── Featured brief ───────────────────────────────────── */
     .hero-feat{
         grid-area:feat;
         display:flex;flex-direction:column;gap:12px;
@@ -273,8 +297,8 @@
        ═══════════════════════════════════════════════════════ */
     .sec{max-width:1200px;margin:0 auto;padding:64px 24px}
     .sec-lbl{
-        font-family:var(--mono);font-size:10px;color:var(--cyan);
-        letter-spacing:2px;text-transform:uppercase;font-weight:500;margin-bottom:6px;
+        font-family:var(--mono);font-size:11.5px;color:var(--cyan-b);
+        letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:6px;
     }
     .sec-t{font-size:clamp(20px,3vw,28px);font-weight:700;letter-spacing:-.5px;margin-bottom:8px}
     .sec-sub{font-size:14px;color:var(--t2);max-width:520px;line-height:1.6;margin-bottom:36px}
@@ -286,7 +310,7 @@
     .bc{
         background:var(--bg-card);
         border:1px solid var(--bdr);
-        box-shadow:0 1px 4px rgba(0,0,0,.15);
+        box-shadow:0 1px 4px rgba(0,0,0,.12);
         border-radius:var(--r-l);overflow:hidden;
         transition:all .3s;display:flex;flex-direction:column;position:relative;
     }
@@ -318,8 +342,6 @@
         border-radius:4px;flex-shrink:0;
     }
     .acc-open{background:var(--green-d);color:var(--green)}
-    .acc-prev{background:var(--cyan-d);color:var(--cyan)}
-    .acc-mem{background:var(--gold-d);color:var(--gold)}
 
     .bc-title{font-size:15px;font-weight:600;line-height:1.4;margin-bottom:8px}
     .bc-ex{
@@ -333,7 +355,7 @@
     .bc-date{font-family:var(--mono);font-size:10.5px;color:var(--t3)}
     .bc-link{font-size:12px;color:var(--gold);font-weight:600;display:inline-flex;align-items:center;gap:4px;transition:opacity .2s}
     .bc-link:hover{opacity:.75}
-    .bc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+    .bc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
 
     /* ═══════════════════════════════════════════════════════
        PIPELINE WATCH
@@ -349,7 +371,7 @@
     .pip{
         min-width:280px;max-width:340px;
         background:var(--bg-card);border:1px solid var(--bdr);
-        box-shadow:0 1px 4px rgba(0,0,0,.15);
+        box-shadow:0 1px 4px rgba(0,0,0,.12);
         border-radius:var(--r-m);padding:18px;flex-shrink:0;
         scroll-snap-align:start;transition:border-color .3s;
     }
@@ -367,7 +389,7 @@
     .pip-p{font-size:12.5px;color:var(--t2);line-height:1.55}
 
     /* ═══════════════════════════════════════════════════════
-       METHOD — clean, editorial, left-border accent cards
+       METHOD — editorial left-border accent cards
        ═══════════════════════════════════════════════════════ */
     .me-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
     .me{
@@ -386,7 +408,7 @@
     .me-p{font-size:12.5px;color:var(--t2);line-height:1.6}
 
     /* ═══════════════════════════════════════════════════════
-       SUBSCRIBE CTA — two-column layout
+       SUBSCRIBE CTA
        ═══════════════════════════════════════════════════════ */
     .cta-box{
         background:var(--bg-card);
@@ -403,7 +425,7 @@
     .cta-copy{flex:1;min-width:0}
     .cta-copy .sec-lbl{margin-bottom:4px}
     .cta-copy .sec-t{margin-bottom:8px}
-    .cta-desc{font-size:13.5px;color:var(--t2);line-height:1.6;margin-bottom:0}
+    .cta-desc{font-size:13.5px;color:var(--t2);line-height:1.6}
     .cta-actions{
         display:flex;flex-direction:column;gap:10px;flex-shrink:0;
     }
@@ -427,12 +449,12 @@
     .sk-pad{padding:20px}
     .sk-img{
         height:180px;
-        background:linear-gradient(90deg,#141e34 25%,#1c2c4a 50%,#141e34 75%);
+        background:linear-gradient(90deg,#172438 25%,#1e3050 50%,#172438 75%);
         background-size:200% 100%;animation:shimmer 1.8s ease-in-out infinite;
     }
     .sk-l{
         height:10px;border-radius:5px;
-        background:linear-gradient(90deg,#141e34 25%,#1c2c4a 50%,#141e34 75%);
+        background:linear-gradient(90deg,#172438 25%,#1e3050 50%,#172438 75%);
         background-size:200% 100%;animation:shimmer 1.8s ease-in-out infinite;
         margin-bottom:10px;
     }
@@ -478,10 +500,11 @@
         .hdr-nav{gap:16px}
         .hdr-nav a:not(.cta-nav){display:none}
         .hero{padding:28px 18px 40px}
-        .hero-grid{gap:14px;margin-top:26px}
+        .hero-grid{gap:16px;margin-top:26px}
         .hero-ctas{flex-direction:column;align-items:stretch;gap:10px}
         .btn-gold,.btn-out,.btn-cyan{justify-content:center;text-align:center}
         .map-block{min-height:220px;max-height:260px}
+        .map-cue{font-size:10px;padding:9px 22px;letter-spacing:2px}
         .hm-v{font-size:16px}
         .bc-grid{grid-template-columns:1fr}
         .bc-img{height:160px}
@@ -531,7 +554,7 @@
     </a>
     <nav class="hdr-nav">
         <a href="#briefs">Intel Briefs</a>
-        <a href="#pipeline">Pipeline Watch</a>
+        <a href="#pipeline">Your Meetings</a>
         <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="cta-nav">Get Free Signals</a>
     </nav>
 </header>
@@ -557,19 +580,20 @@
     <!-- Hero grid: map + metrics + featured brief -->
     <div class="hero-grid">
 
-        <!-- Map Preview -->
-        <div class="map-block">
+        <!-- Map Preview — simplified -->
+        <div class="map-block" id="mapBlock">
             <iframe src="https://ftl-signal.github.io/broward-intelligence-map/" loading="lazy" title="Broward Development Signal Map" aria-hidden="true"></iframe>
-            <div class="map-ov">
+            <a href="https://ftl-signal.github.io/broward-intelligence-map/" target="_blank" rel="noopener" class="map-ov">
                 <div class="map-badge">
                     <span class="live-dot"></span>
-                    Live Intelligence Map
+                    The Florida Signal
                 </div>
-                <a href="https://ftl-signal.github.io/broward-intelligence-map/" target="_blank" rel="noopener" class="map-cta">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
-                    Explore Live Map
-                </a>
-            </div>
+                <div class="map-cue">Explore Live Signals</div>
+                <div class="map-handle">
+                    <div class="map-handle-bar"></div>
+                    <span class="map-handle-label">Open signal list</span>
+                </div>
+            </a>
         </div>
 
         <!-- Metrics Strip — 3 items -->
@@ -599,7 +623,7 @@
 <hr class="sec-div">
 
 <!-- ═══════════════════════════════════════════════════════════
-     GHOST INTELLIGENCE BRIEFS
+     GHOST INTELLIGENCE BRIEFS — 3 cards, position-based labels
      ═══════════════════════════════════════════════════════════ -->
 <section class="sec fade-in" id="briefs">
     <div class="sec-lbl">Intelligence Briefs</div>
@@ -609,7 +633,6 @@
     <div class="bc-grid" id="ghostBriefs">
         <div class="sk" data-sk><div class="sk-img"></div><div class="sk-pad"><div class="sk-l w40"></div><div class="sk-l w100 mt12 h16"></div><div class="sk-l w80 mt8"></div></div></div>
         <div class="sk" data-sk><div class="sk-img"></div><div class="sk-pad"><div class="sk-l w40"></div><div class="sk-l w100 mt12 h16"></div><div class="sk-l w80 mt8"></div></div></div>
-        <div class="sk" data-sk><div class="sk-pad"><div class="sk-l w40"></div><div class="sk-l w100 mt12 h16"></div><div class="sk-l w80 mt8"></div><div class="sk-l w100 mt12"></div><div class="sk-l w60 mt8"></div></div></div>
         <div class="sk" data-sk><div class="sk-pad"><div class="sk-l w40"></div><div class="sk-l w100 mt12 h16"></div><div class="sk-l w80 mt8"></div><div class="sk-l w100 mt12"></div><div class="sk-l w60 mt8"></div></div></div>
     </div>
 </section>
@@ -648,29 +671,29 @@
 <hr class="sec-div">
 
 <!-- ═══════════════════════════════════════════════════════════
-     METHOD — clean editorial cards, left-border accents
+     METHOD — editorial left-border accent cards
      ═══════════════════════════════════════════════════════════ -->
 <section class="sec fade-in" id="method">
     <div class="sec-lbl">Method</div>
     <h2 class="sec-t">How Signals Are Detected</h2>
-    <p class="sec-sub">Every signal passes four verification filters before publication. No speculation, no tips — only patterns extracted from verified public records.</p>
+    <p class="sec-sub">Every signal passes four verification filters before publication. No speculation, no tips — only patterns from verified public records.</p>
 
     <div class="me-grid">
         <div class="me">
             <h3 class="me-t">Permit Clustering</h3>
-            <p class="me-p">Multiple filings targeting a single property can indicate movement beyond routine maintenance — particularly when permit types escalate.</p>
+            <p class="me-p">Multiple filings targeting a single property indicate movement beyond routine maintenance — particularly when permit types escalate in scope and value.</p>
         </div>
         <div class="me me-gold">
             <h3 class="me-t">Declared Value</h3>
-            <p class="me-p">Construction value thresholds help separate minor repairs from significant capital deployment worth tracking.</p>
+            <p class="me-p">Construction value thresholds separate minor repairs from significant capital deployment. We flag activity that crosses meaningful dollar thresholds.</p>
         </div>
         <div class="me me-green">
             <h3 class="me-t">Entity Movement</h3>
-            <p class="me-p">Developer, owner, and contractor names surface patterns early — especially when entities converge on the same corridor.</p>
+            <p class="me-p">Developer, owner, and contractor names surface patterns early — especially when the same entities converge on a single corridor or submarket.</p>
         </div>
         <div class="me me-muted">
             <h3 class="me-t">Execution Shift</h3>
-            <p class="me-p">The critical filter: do records suggest genuine movement from planning to delivery, or just early-stage positioning?</p>
+            <p class="me-p">The critical filter: do records show genuine movement from planning to delivery, or just early-stage positioning? We separate intent from execution.</p>
         </div>
     </div>
 </section>
@@ -686,11 +709,11 @@
             <div class="cta-copy">
                 <div class="sec-lbl">Weekly Intelligence</div>
                 <h2 class="sec-t" style="margin-bottom:8px">Signals Before They're News</h2>
-                <p class="cta-desc">Verified permits, entity filings, and capital movement — distilled into weekly briefs for Broward County's sharpest operators.</p>
+                <p class="cta-desc">Verified permits, entity filings, and capital movement — distilled weekly for Broward's sharpest operators.</p>
             </div>
             <div class="cta-actions">
                 <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-gold">Get Free Weekly Signals</a>
-                <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-out">Founding Member — $49/year →</a>
+                <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-out">Become a Founding Member — $49/year →</a>
             </div>
         </div>
         <p class="su-note">No spam. Public records only. Cancel anytime.</p>
@@ -711,7 +734,7 @@
      JAVASCRIPT
      ═══════════════════════════════════════════════════════════ -->
 <script>
-/* ── Announcement bar: click → signup, × → dismiss ────────── */
+/* ── Announcement bar ─────────────────────────────────────── */
 (function(){
     var bar = document.getElementById('annBar');
     var btn = document.getElementById('annClose');
@@ -759,24 +782,38 @@ function esc(s) { var d = document.createElement('div'); d.textContent = s || ''
     var heroEl   = document.getElementById('heroFeat');
     var briefsEl = document.getElementById('ghostBriefs');
 
-    function badge(vis) {
-        if (vis === 'paid')    return '<span class="acc acc-mem">Members</span>';
-        if (vis === 'members') return '<span class="acc acc-prev">Preview</span>';
-        return '<span class="acc acc-open">Open</span>';
-    }
+    /* Fixed position-based labels for the 3 grid cards */
+    var GRID_LABELS = ['THE LATEST SIGNAL', 'DEVELOPING NOW', 'NEW INTEL'];
 
-    function buildCard(p, showImg) {
-        var tag = (p.tags && p.tags.length) ? p.tags[0].name : 'Signal Brief';
+    /* Build the hero featured card — always text-only */
+    function buildFeatCard(p) {
         var dt  = new Date(p.published_at).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
         var ex  = p.custom_excerpt || p.excerpt || '';
         var url = p.url || (GH + '/' + p.slug + '/');
-        var vis = p.visibility || 'public';
-        var hasImg = showImg && p.feature_image;
 
-        var imgHTML = '';
-        if (hasImg) {
-            imgHTML = '<div class="bc-img"><img src="' + esc(p.feature_image) + '" alt="" loading="lazy"></div>';
-        }
+        var a = document.createElement('a');
+        a.href = url;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.className = 'bc';
+        a.style.padding = '20px';
+
+        a.innerHTML =
+            '<div class="bc-hd"><span class="bc-tag">FEATURED BRIEF</span><span class="acc acc-open">Open</span></div>' +
+            '<h3 class="bc-title">' + esc(p.title) + '</h3>' +
+            '<p class="bc-ex">' + esc(ex) + '</p>' +
+            '<div class="bc-ft"><span class="bc-date">' + dt + '</span><span class="bc-link">Read brief →</span></div>';
+
+        return a;
+    }
+
+    /* Build a grid card — image shown only if post has one */
+    function buildGridCard(p, idx) {
+        var label  = GRID_LABELS[idx] || 'SIGNAL';
+        var hasImg = !!p.feature_image;
+        var dt  = new Date(p.published_at).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+        var ex  = p.custom_excerpt || p.excerpt || '';
+        var url = p.url || (GH + '/' + p.slug + '/');
 
         var a = document.createElement('a');
         a.href = url;
@@ -784,12 +821,17 @@ function esc(s) { var d = document.createElement('div'); d.textContent = s || ''
         a.rel = 'noopener';
         a.className = 'bc' + (hasImg ? ' bc-has-img' : '');
 
+        var imgHTML = '';
+        if (hasImg) {
+            imgHTML = '<div class="bc-img"><img src="' + esc(p.feature_image) + '" alt="" loading="lazy"></div>';
+        }
+
         var bOpen  = hasImg ? '<div class="bc-body">' : '';
         var bClose = hasImg ? '</div>' : '';
 
         a.innerHTML =
             imgHTML + bOpen +
-            '<div class="bc-hd"><span class="bc-tag">' + esc(tag) + '</span>' + badge(vis) + '</div>' +
+            '<div class="bc-hd"><span class="bc-tag">' + esc(label) + '</span><span class="acc acc-open">Open</span></div>' +
             '<h3 class="bc-title">' + esc(p.title) + '</h3>' +
             '<p class="bc-ex">' + esc(ex) + '</p>' +
             '<div class="bc-ft"><span class="bc-date">' + dt + '</span><span class="bc-link">Read brief →</span></div>' +
@@ -799,22 +841,22 @@ function esc(s) { var d = document.createElement('div'); d.textContent = s || ''
     }
 
     try {
-        var r = await fetch(GH + '/ghost/api/content/posts/?key=' + GK + '&limit=5&include=tags&fields=title,slug,excerpt,published_at,custom_excerpt,url,visibility,feature_image');
+        var r = await fetch(GH + '/ghost/api/content/posts/?key=' + GK + '&limit=4&include=tags&fields=title,slug,excerpt,published_at,custom_excerpt,url,visibility,feature_image');
         if (!r.ok) throw new Error('Ghost ' + r.status);
         var d = await r.json();
         var posts = d.posts || [];
         if (!posts.length) throw new Error('empty');
 
-        /* Hero featured card (post 1 — text-only) */
+        /* Hero featured card — post 1 */
         heroEl.innerHTML = '';
-        heroEl.appendChild(buildCard(posts[0], false));
+        heroEl.appendChild(buildFeatCard(posts[0]));
 
-        /* Briefs grid (posts 2–5 — first 2 with images) */
-        briefsEl.querySelectorAll('[data-sk]').forEach(function(s){ s.remove(); });
-        var rest = posts.slice(1);
-        if (rest.length) {
-            rest.forEach(function(p, i) {
-                briefsEl.appendChild(buildCard(p, i < 2));
+        /* Briefs grid — posts 2–4, position-based labels */
+        briefsEl.innerHTML = '';
+        var gridPosts = posts.slice(1, 4);
+        if (gridPosts.length) {
+            gridPosts.forEach(function(p, i) {
+                briefsEl.appendChild(buildGridCard(p, i));
             });
         } else {
             briefsEl.innerHTML =
@@ -827,7 +869,7 @@ function esc(s) { var d = document.createElement('div'); d.textContent = s || ''
 
         heroEl.innerHTML =
             '<a href="' + GH + '" target="_blank" rel="noopener" class="bc" style="padding:20px">' +
-                '<div class="bc-hd"><span class="bc-tag">Latest Brief</span>' + badge('public') + '</div>' +
+                '<div class="bc-hd"><span class="bc-tag">FEATURED BRIEF</span><span class="acc acc-open">Open</span></div>' +
                 '<h3 class="bc-title">Read the latest intelligence brief</h3>' +
                 '<p class="bc-ex">Visit The Florida Signal for the latest development signals from Fort Lauderdale and Broward County.</p>' +
                 '<div class="bc-ft"><span class="bc-link">Read on Ghost →</span></div>' +
