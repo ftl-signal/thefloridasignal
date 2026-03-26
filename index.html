@@ -39,8 +39,7 @@
     a{color:inherit;text-decoration:none}
 
     /* ═══════════════════════════════════════════════════════
-       ANNOUNCEMENT BAR — premium, clickable, dismissible
-       Swap .ann-text innerHTML for sponsor / publisher notes
+       ANNOUNCEMENT BAR
        ═══════════════════════════════════════════════════════ */
     .ann{
         display:flex;align-items:center;justify-content:center;gap:9px;
@@ -53,8 +52,6 @@
         font-size:13px;text-align:center;line-height:1.4;color:var(--t1);
     }
     .ann.hidden{display:none}
-
-    /* Gold baseline accent */
     .ann::after{
         content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
         background:linear-gradient(90deg,
@@ -62,7 +59,6 @@
             rgba(201,162,39,.4) 50%,
             rgba(201,162,39,.18) 80%,transparent 100%);
     }
-
     .ann-badge{
         background:linear-gradient(135deg,var(--gold),#d4aa30);
         color:#000;font-size:9px;font-weight:700;
@@ -71,10 +67,7 @@
     }
     .ann-text{color:rgba(255,255,255,.82);font-size:12.5px}
     .ann-text strong{color:#fff;font-weight:700}
-    .ann-arr{
-        color:var(--gold);font-size:14px;flex-shrink:0;
-        transition:transform .2s;
-    }
+    .ann-arr{color:var(--gold);font-size:14px;flex-shrink:0;transition:transform .2s}
     .ann:hover .ann-arr{transform:translateX(3px)}
     .ann-x{
         position:absolute;right:10px;top:50%;transform:translateY(-50%);
@@ -96,10 +89,8 @@
         transition:background .3s,border-color .3s;
     }
     .hdr.scrolled{background:rgba(5,10,21,.96);border-bottom-color:var(--bdr)}
-
     .hdr-logo{display:flex;align-items:center}
     .hdr-logo img{height:42px;width:auto;display:block;object-fit:contain}
-
     .hdr-nav{display:flex;align-items:center;gap:22px}
     .hdr-nav a{font-size:12.5px;font-weight:500;color:var(--t2);transition:color .2s}
     .hdr-nav a:hover{color:var(--t1)}
@@ -130,6 +121,20 @@
         cursor:pointer;transition:all .25s;font-family:var(--sans);white-space:nowrap;
     }
     .btn-out:hover{color:var(--t1);border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.03)}
+
+    /* Cyan outline button — for intel brief CTA */
+    .btn-cyan{
+        display:inline-flex;align-items:center;gap:6px;
+        background:rgba(34,211,238,.06);color:var(--cyan);
+        font-weight:600;font-size:13.5px;
+        padding:13px 22px;border-radius:var(--r-m);
+        border:1px solid rgba(34,211,238,.2);
+        cursor:pointer;transition:all .25s;font-family:var(--sans);white-space:nowrap;
+    }
+    .btn-cyan:hover{
+        color:#fff;border-color:rgba(34,211,238,.38);
+        background:rgba(34,211,238,.12);
+    }
 
     /* ═══════════════════════════════════════════════════════
        HERO
@@ -166,7 +171,7 @@
         display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px;
     }
 
-    /* Map preview — framed with subtle cyan border */
+    /* ── Map preview — brightened, framed ──────────────── */
     .map-block{
         position:relative;border-radius:var(--r-l);overflow:hidden;
         background:radial-gradient(ellipse at 60% 40%,#0f1d35,#080d18 70%);
@@ -178,38 +183,49 @@
         border-color:rgba(34,211,238,.22);
         box-shadow:0 0 0 1px rgba(34,211,238,.08),0 4px 24px rgba(0,0,0,.35);
     }
+
+    /* Brightened: .82 brightness + 1.3 saturation — pins pop, roads readable */
     .map-block iframe{
         position:absolute;inset:0;width:100%;height:100%;border:none;
-        pointer-events:none;filter:brightness(.58) saturate(1.15);
+        pointer-events:none;
+        filter:brightness(.82) saturate(1.3);
     }
+
+    /* Lighter overlay — mostly transparent, gradient only at bottom for CTA legibility */
     .map-ov{
         position:absolute;inset:0;
         background:linear-gradient(180deg,
-            rgba(5,10,21,.1) 0%,rgba(5,10,21,.48) 60%,rgba(5,10,21,.78) 100%);
+            rgba(5,10,21,.03) 0%,
+            rgba(5,10,21,.12) 55%,
+            rgba(5,10,21,.58) 100%);
         display:flex;align-items:flex-end;justify-content:flex-start;
         padding:20px;transition:background .3s;
     }
     .map-block:hover .map-ov{
         background:linear-gradient(180deg,
-            rgba(5,10,21,.04) 0%,rgba(5,10,21,.35) 60%,rgba(5,10,21,.68) 100%);
+            rgba(5,10,21,.01) 0%,
+            rgba(5,10,21,.06) 55%,
+            rgba(5,10,21,.45) 100%);
     }
+
+    /* Map CTA pill — slightly stronger bg for legibility on brighter map */
     .map-cta{
         display:inline-flex;align-items:center;gap:8px;
-        background:rgba(255,255,255,.08);backdrop-filter:blur(14px);
+        background:rgba(5,10,21,.55);backdrop-filter:blur(14px);
         -webkit-backdrop-filter:blur(14px);
-        border:1px solid rgba(255,255,255,.14);color:var(--t1);
+        border:1px solid rgba(255,255,255,.16);color:var(--t1);
         font-weight:600;font-size:13px;padding:11px 20px;
         border-radius:var(--r-m);transition:all .25s;
     }
-    .map-cta:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.24)}
+    .map-cta:hover{background:rgba(5,10,21,.65);border-color:rgba(255,255,255,.28)}
     .map-cta svg{width:16px;height:16px;flex-shrink:0}
 
     /* Hero featured column */
     .hero-feat{display:flex;flex-direction:column;gap:12px}
 
-    /* Metrics strip */
+    /* ── Metrics strip — 3 items ───────────────────────── */
     .hero-metrics{
-        display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px;
+        display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px;
     }
     .hm{
         padding:14px 16px;background:var(--bg-card);
@@ -246,11 +262,7 @@
         transform:translateY(-2px);
         box-shadow:var(--shadow);
     }
-
-    /* Text-only cards */
     .bc:not(.bc-has-img){padding:20px}
-
-    /* Image cards */
     .bc-img{
         height:180px;overflow:hidden;flex-shrink:0;
         background:var(--bg-card-h);
@@ -288,7 +300,6 @@
     .bc-date{font-family:var(--mono);font-size:10.5px;color:var(--t3)}
     .bc-link{font-size:12px;color:var(--gold);font-weight:600;display:inline-flex;align-items:center;gap:4px;transition:opacity .2s}
     .bc-link:hover{opacity:.75}
-
     .bc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
 
     /* ═══════════════════════════════════════════════════════
@@ -323,11 +334,10 @@
     .pip-p{font-size:12.5px;color:var(--t2);line-height:1.55}
 
     /* ═══════════════════════════════════════════════════════
-       METHOD — reduced prominence, below pipeline
+       METHOD — reduced prominence
        ═══════════════════════════════════════════════════════ */
     .sec-quiet .sec-t{font-size:clamp(18px,2.5vw,24px);color:var(--t2)}
     .sec-quiet .sec-sub{font-size:13px}
-
     .me-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
     .me{
         background:var(--bg-card);border:1px solid var(--bdr);
@@ -402,16 +412,11 @@
         .hero{padding:46px 32px 56px}
         .hero-grid{grid-template-columns:3fr 2fr;gap:20px}
         .map-block{min-height:280px}
-
-        /* Featured card stretches to match map */
         .hero-feat .bc,.hero-feat .sk{flex:1}
         .hero-feat .bc .bc-ex{flex:1}
-
-        /* Metrics inline strip */
         .hero-metrics{display:flex;gap:0}
-        .hm{border:none;background:none;padding:0 22px;border-left:1px solid var(--bdr);border-radius:0}
+        .hm{border:none;background:none;padding:0 28px;border-left:1px solid var(--bdr);border-radius:0}
         .hm:first-child{padding-left:0;border-left:none}
-
         .sec{padding:72px 32px}
     }
 
@@ -423,27 +428,19 @@
         .hdr-logo img{height:36px}
         .hdr-nav{gap:16px}
         .hdr-nav a:not(.cta-nav){display:none}
-
         .hero{padding:26px 18px 38px}
         .hero-ctas{flex-direction:column;align-items:stretch}
-        .btn-gold,.btn-out{justify-content:center;text-align:center}
-
+        .btn-gold,.btn-out,.btn-cyan{justify-content:center;text-align:center}
         .map-block{min-height:220px;max-height:260px}
-
-        .hero-metrics{grid-template-columns:1fr 1fr;gap:10px}
+        .hero-metrics{grid-template-columns:repeat(3,1fr);gap:10px}
         .hm-v{font-size:16px}
-
         .bc-grid{grid-template-columns:1fr}
         .bc-img{height:160px}
-
         .me-grid{grid-template-columns:1fr 1fr}
-
         .cta-box{padding:32px 20px}
         .su-ctas{align-items:stretch}
-        .su-ctas .btn-gold,.su-ctas .btn-out{justify-content:center;text-align:center}
-
+        .su-ctas .btn-gold,.su-ctas .btn-out,.su-ctas .btn-cyan{justify-content:center;text-align:center}
         .pip{min-width:268px}
-
         .sec{padding:52px 18px}
     }
 
@@ -453,13 +450,10 @@
     @media(max-width:480px){
         .ann{font-size:11.5px;padding:8px 38px 8px 12px;gap:6px}
         .ann-badge{font-size:8px;padding:2px 7px}
-
         .hero{padding:22px 14px 32px}
         .hero h1{letter-spacing:-.8px}
-
         .sec{padding:44px 14px}
         .me-grid{grid-template-columns:1fr}
-
         .hm{padding:10px 12px}
         .hm-v{font-size:15px}
     }
@@ -469,7 +463,6 @@
 
 <!-- ═══════════════════════════════════════════════════════════
      ANNOUNCEMENT BAR
-     Click → Ghost signup. × → dismiss. Swap .ann-text for sponsor/publisher notes.
      ═══════════════════════════════════════════════════════════ -->
 <div class="ann" id="annBar" role="link" tabindex="0" aria-label="Founding member signup">
     <span class="ann-badge">Founding Rate</span>
@@ -507,12 +500,12 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
             Open the Signal Map
         </a>
-        <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-out">Get the Free Brief →</a>
+        <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-cyan">Get the Free Intel Brief →</a>
     </div>
 
     <!-- Map + Featured Story Grid -->
     <div class="hero-grid">
-        <!-- Map Preview — framed -->
+        <!-- Map Preview — brightened embed -->
         <div class="map-block">
             <iframe src="https://ftl-signal.github.io/broward-intelligence-map/" loading="lazy" title="Broward Development Signal Map" aria-hidden="true"></iframe>
             <div class="map-ov">
@@ -538,12 +531,11 @@
         </div>
     </div>
 
-    <!-- Metrics Strip -->
+    <!-- Metrics Strip — 3 items -->
     <div class="hero-metrics">
-        <div class="hm"><div class="hm-v">31</div><div class="hm-l">Active Signals</div></div>
-        <div class="hm"><div class="hm-v gold">$100.5M</div><div class="hm-l">Capital Tracked</div></div>
+        <div class="hm"><div class="hm-v">44</div><div class="hm-l">Signals</div></div>
+        <div class="hm"><div class="hm-v gold">$359.6M</div><div class="hm-l">Capital Tracked</div></div>
         <div class="hm"><div class="hm-v">1,982</div><div class="hm-l">Permits Reviewed</div></div>
-        <div class="hm"><div class="hm-v">3</div><div class="hm-l">Markets</div></div>
     </div>
 </section>
 
@@ -551,7 +543,6 @@
 
 <!-- ═══════════════════════════════════════════════════════════
      GHOST INTELLIGENCE BRIEFS
-     Posts 2–5 from Ghost; first 2 show featured images.
      ═══════════════════════════════════════════════════════════ -->
 <section class="sec fade-in" id="briefs">
     <div class="sec-lbl">Intelligence Briefs</div>
@@ -559,7 +550,6 @@
     <p class="sec-sub">Entity and corridor intelligence from verified public records — updated weekly.</p>
 
     <div class="bc-grid" id="ghostBriefs">
-        <!-- Skeletons: first 2 with image placeholders, last 2 text-only -->
         <div class="sk" data-sk><div class="sk-img"></div><div class="sk-pad"><div class="sk-l w40"></div><div class="sk-l w100 mt12 h16"></div><div class="sk-l w80 mt8"></div></div></div>
         <div class="sk" data-sk><div class="sk-img"></div><div class="sk-pad"><div class="sk-l w40"></div><div class="sk-l w100 mt12 h16"></div><div class="sk-l w80 mt8"></div></div></div>
         <div class="sk" data-sk><div class="sk-pad"><div class="sk-l w40"></div><div class="sk-l w100 mt12 h16"></div><div class="sk-l w80 mt8"></div><div class="sk-l w100 mt12"></div><div class="sk-l w60 mt8"></div></div></div>
@@ -600,7 +590,7 @@
 <hr class="sec-div">
 
 <!-- ═══════════════════════════════════════════════════════════
-     METHOD — reduced prominence, clean SVG icons
+     METHOD — reduced prominence, SVG icons
      ═══════════════════════════════════════════════════════════ -->
 <section class="sec sec-quiet fade-in" id="method">
     <div class="sec-lbl">Method</div>
@@ -642,7 +632,7 @@
 <hr class="sec-div">
 
 <!-- ═══════════════════════════════════════════════════════════
-     SUBSCRIBE CTA — clean link buttons, no fake form
+     SUBSCRIBE CTA
      ═══════════════════════════════════════════════════════════ -->
 <section class="sec fade-in" id="subscribe">
     <div class="cta-box">
@@ -720,14 +710,12 @@ function esc(s) { var d = document.createElement('div'); d.textContent = s || ''
     var heroEl   = document.getElementById('heroFeat');
     var briefsEl = document.getElementById('ghostBriefs');
 
-    /* Access badge based on post.visibility */
     function badge(vis) {
         if (vis === 'paid')    return '<span class="acc acc-mem">Members</span>';
         if (vis === 'members') return '<span class="acc acc-prev">Preview</span>';
         return '<span class="acc acc-open">Open</span>';
     }
 
-    /* Build a brief card. showImg = true → render feature_image if present */
     function buildCard(p, showImg) {
         var tag = (p.tags && p.tags.length) ? p.tags[0].name : 'Signal Brief';
         var dt  = new Date(p.published_at).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
@@ -768,7 +756,7 @@ function esc(s) { var d = document.createElement('div'); d.textContent = s || ''
         var posts = d.posts || [];
         if (!posts.length) throw new Error('empty');
 
-        /* Hero featured card (post 1 — text-only for clean hero balance) */
+        /* Hero featured card (post 1 — text-only) */
         heroEl.innerHTML = '';
         heroEl.appendChild(buildCard(posts[0], false));
 
@@ -788,7 +776,6 @@ function esc(s) { var d = document.createElement('div'); d.textContent = s || ''
     } catch(err) {
         console.warn('Ghost fetch error:', err);
 
-        /* Fallback hero card */
         heroEl.innerHTML =
             '<a href="' + GH + '" target="_blank" rel="noopener" class="bc" style="padding:20px">' +
                 '<div class="bc-hd"><span class="bc-tag">Latest Brief</span>' + badge('public') + '</div>' +
@@ -797,7 +784,6 @@ function esc(s) { var d = document.createElement('div'); d.textContent = s || ''
                 '<div class="bc-ft"><span class="bc-link">Read on Ghost →</span></div>' +
             '</a>';
 
-        /* Fallback briefs */
         briefsEl.innerHTML =
             '<div style="grid-column:1/-1;text-align:center;padding:48px 20px">' +
                 '<p style="color:var(--t3);font-size:13px;line-height:1.6">' +
