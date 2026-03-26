@@ -10,9 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-    /* ════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════
        RESET & DESIGN TOKENS
-       ════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════ */
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
     :root{
@@ -27,7 +27,7 @@
         --sans:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
         --mono:'JetBrains Mono','Fira Code','SF Mono',monospace;
         --r-s:6px;--r-m:10px;--r-l:14px;--r-xl:20px;
-        --shadow:0 4px 24px rgba(0,0,0,.35);
+        --shadow:0 4px 24px rgba(0,0,0,.3);
         --glow-g:0 0 30px rgba(201,162,39,.15);
     }
 
@@ -38,13 +38,13 @@
     }
     a{color:inherit;text-decoration:none}
 
-    /* ════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════
        ANNOUNCEMENT BAR — premium, clickable, dismissible
        Swap .ann-text innerHTML for sponsor / publisher notes
-       ════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════ */
     .ann{
-        display:flex;align-items:center;justify-content:center;gap:10px;
-        min-height:42px;padding:10px 44px 10px 16px;
+        display:flex;align-items:center;justify-content:center;gap:9px;
+        min-height:40px;padding:9px 44px 9px 16px;
         background:linear-gradient(90deg,
             rgba(201,162,39,.04) 0%,
             rgba(201,162,39,.07) 50%,
@@ -54,41 +54,22 @@
     }
     .ann.hidden{display:none}
 
-    /* Subtle gold bottom border */
+    /* Gold baseline accent */
     .ann::after{
         content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
         background:linear-gradient(90deg,
-            transparent 0%,
-            rgba(201,162,39,.2) 20%,
-            rgba(201,162,39,.45) 50%,
-            rgba(201,162,39,.2) 80%,
-            transparent 100%);
-    }
-
-    /* Traveling shimmer light across the bar */
-    .ann::before{
-        content:'';position:absolute;top:0;left:-100px;
-        width:100px;height:100%;
-        background:linear-gradient(90deg,transparent,rgba(201,162,39,.1),transparent);
-        animation:ann-shimmer 5s ease-in-out infinite;
-        pointer-events:none;
-    }
-    @keyframes ann-shimmer{
-        0%{left:-100px;opacity:0}
-        5%{opacity:1}
-        60%{left:100%;opacity:1}
-        65%{opacity:0}
-        100%{left:100%;opacity:0}
+            transparent 0%,rgba(201,162,39,.18) 20%,
+            rgba(201,162,39,.4) 50%,
+            rgba(201,162,39,.18) 80%,transparent 100%);
     }
 
     .ann-badge{
         background:linear-gradient(135deg,var(--gold),#d4aa30);
         color:#000;font-size:9px;font-weight:700;
         padding:3px 9px;border-radius:3px;text-transform:uppercase;
-        letter-spacing:.7px;white-space:nowrap;flex-shrink:0;
-        box-shadow:0 0 12px rgba(201,162,39,.2);
+        letter-spacing:.6px;white-space:nowrap;flex-shrink:0;
     }
-    .ann-text{color:rgba(255,255,255,.85);font-size:12.5px}
+    .ann-text{color:rgba(255,255,255,.82);font-size:12.5px}
     .ann-text strong{color:#fff;font-weight:700}
     .ann-arr{
         color:var(--gold);font-size:14px;flex-shrink:0;
@@ -96,21 +77,20 @@
     }
     .ann:hover .ann-arr{transform:translateX(3px)}
     .ann-x{
-        position:absolute;right:12px;top:50%;transform:translateY(-50%);
+        position:absolute;right:10px;top:50%;transform:translateY(-50%);
         background:none;border:none;color:var(--t3);font-size:18px;
-        cursor:pointer;padding:4px 6px;line-height:1;transition:color .2s;
-        z-index:2;
+        cursor:pointer;padding:4px 8px;line-height:1;transition:color .2s;z-index:2;
     }
     .ann-x:hover{color:var(--t2)}
 
-    /* ════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════
        HEADER
-       ════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════ */
     .hdr{
         position:sticky;top:0;z-index:1000;
         height:60px;display:flex;align-items:center;justify-content:space-between;
         padding:0 28px;
-        background:rgba(5,10,21,.82);
+        background:rgba(5,10,21,.84);
         backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
         border-bottom:1px solid transparent;
         transition:background .3s,border-color .3s;
@@ -118,24 +98,21 @@
     .hdr.scrolled{background:rgba(5,10,21,.96);border-bottom-color:var(--bdr)}
 
     .hdr-logo{display:flex;align-items:center}
-    .hdr-logo img{
-        height:44px;width:auto;display:block;object-fit:contain;
-    }
+    .hdr-logo img{height:42px;width:auto;display:block;object-fit:contain}
 
     .hdr-nav{display:flex;align-items:center;gap:22px}
     .hdr-nav a{font-size:12.5px;font-weight:500;color:var(--t2);transition:color .2s}
     .hdr-nav a:hover{color:var(--t1)}
-    .cta-nav{
-        background:var(--gold)!important;color:#000!important;
-        padding:8px 18px;border-radius:var(--r-s);
-        font-weight:700!important;font-size:12px!important;
-        transition:all .2s;box-shadow:0 0 16px rgba(201,162,39,.12);
+    .hdr-nav .cta-nav{
+        background:var(--gold);color:#000;padding:8px 18px;border-radius:var(--r-s);
+        font-weight:700;font-size:12px;transition:all .2s;
+        box-shadow:0 0 14px rgba(201,162,39,.1);
     }
-    .cta-nav:hover{background:var(--gold-b)!important;transform:translateY(-1px)}
+    .hdr-nav .cta-nav:hover{background:var(--gold-b);transform:translateY(-1px)}
 
-    /* ════════════════════════════════════════════════════════
-       BUTTONS
-       ════════════════════════════════════════════════════════ */
+    /* ═══════════════════════════════════════════════════════
+       SHARED BUTTONS
+       ═══════════════════════════════════════════════════════ */
     .btn-gold{
         display:inline-flex;align-items:center;gap:8px;
         background:var(--gold);color:#000;font-weight:700;font-size:14px;
@@ -154,15 +131,15 @@
     }
     .btn-out:hover{color:var(--t1);border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.03)}
 
-    /* ════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════
        HERO
-       ════════════════════════════════════════════════════════ */
-    .hero{max-width:1200px;margin:0 auto;padding:40px 28px 52px}
+       ═══════════════════════════════════════════════════════ */
+    .hero{max-width:1200px;margin:0 auto;padding:38px 24px 48px}
 
     .hero-badge{
         display:inline-flex;align-items:center;gap:8px;
         background:rgba(34,211,238,.07);border:1px solid rgba(34,211,238,.18);
-        border-radius:100px;padding:5px 14px;margin-bottom:16px;
+        border-radius:100px;padding:5px 14px;margin-bottom:14px;
         font-family:var(--mono);font-size:10px;font-weight:500;
         color:var(--cyan);letter-spacing:1.6px;text-transform:uppercase;
     }
@@ -172,49 +149,49 @@
     }
 
     .hero h1{
-        font-size:clamp(28px,4.8vw,46px);font-weight:800;
-        line-height:1.06;letter-spacing:-1.2px;margin-bottom:14px;max-width:640px;
+        font-size:clamp(27px,4.6vw,46px);font-weight:800;
+        line-height:1.08;letter-spacing:-1.1px;margin-bottom:12px;max-width:640px;
     }
     .hero h1 .hl{color:var(--gold)}
 
     .hero-sub{
-        font-size:clamp(14px,1.6vw,16.5px);color:var(--t2);
-        max-width:520px;line-height:1.5;margin-bottom:26px;
+        font-size:clamp(14px,1.6vw,16px);color:var(--t2);
+        max-width:520px;line-height:1.55;margin-bottom:24px;
     }
 
     .hero-ctas{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 
-    /* ── Hero grid: map + featured story ───────────────── */
+    /* ── Hero grid: map + featured ─────────────────────── */
     .hero-grid{
-        display:grid;grid-template-columns:1fr;gap:18px;margin-top:34px;
+        display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px;
     }
 
-    /* Map preview block */
+    /* Map preview — framed with subtle cyan border */
     .map-block{
         position:relative;border-radius:var(--r-l);overflow:hidden;
         background:radial-gradient(ellipse at 60% 40%,#0f1d35,#080d18 70%);
-        border:1px solid var(--bdr);min-height:240px;
-        transition:border-color .4s;
+        border:1px solid rgba(34,211,238,.12);
+        box-shadow:0 0 0 1px rgba(34,211,238,.04),0 3px 18px rgba(0,0,0,.25);
+        min-height:220px;transition:border-color .4s,box-shadow .4s;
     }
-    .map-block:hover{border-color:rgba(34,211,238,.18)}
+    .map-block:hover{
+        border-color:rgba(34,211,238,.22);
+        box-shadow:0 0 0 1px rgba(34,211,238,.08),0 4px 24px rgba(0,0,0,.35);
+    }
     .map-block iframe{
         position:absolute;inset:0;width:100%;height:100%;border:none;
-        pointer-events:none;filter:brightness(.55) saturate(1.2);
+        pointer-events:none;filter:brightness(.58) saturate(1.15);
     }
     .map-ov{
         position:absolute;inset:0;
         background:linear-gradient(180deg,
-            rgba(5,10,21,.08) 0%,
-            rgba(5,10,21,.45) 55%,
-            rgba(5,10,21,.8) 100%);
+            rgba(5,10,21,.1) 0%,rgba(5,10,21,.48) 60%,rgba(5,10,21,.78) 100%);
         display:flex;align-items:flex-end;justify-content:flex-start;
-        padding:22px;transition:background .3s;
+        padding:20px;transition:background .3s;
     }
     .map-block:hover .map-ov{
         background:linear-gradient(180deg,
-            rgba(5,10,21,.02) 0%,
-            rgba(5,10,21,.32) 55%,
-            rgba(5,10,21,.7) 100%);
+            rgba(5,10,21,.04) 0%,rgba(5,10,21,.35) 60%,rgba(5,10,21,.68) 100%);
     }
     .map-cta{
         display:inline-flex;align-items:center;gap:8px;
@@ -227,12 +204,12 @@
     .map-cta:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.24)}
     .map-cta svg{width:16px;height:16px;flex-shrink:0}
 
-    /* Hero featured story column */
-    .hero-feat{display:flex;flex-direction:column;gap:14px}
+    /* Hero featured column */
+    .hero-feat{display:flex;flex-direction:column;gap:12px}
 
     /* Metrics strip */
     .hero-metrics{
-        display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px;
+        display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px;
     }
     .hm{
         padding:14px 16px;background:var(--bg-card);
@@ -240,12 +217,12 @@
     }
     .hm-v{font-family:var(--mono);font-size:18px;font-weight:700;line-height:1.2}
     .hm-v.gold{color:var(--gold)}
-    .hm-l{font-size:10px;color:var(--t3);letter-spacing:.4px;text-transform:uppercase;font-weight:500;margin-top:3px}
+    .hm-l{font-size:10px;color:var(--t3);letter-spacing:.4px;text-transform:uppercase;font-weight:500;margin-top:2px}
 
-    /* ════════════════════════════════════════════════════════
-       SECTION SHARED STYLES
-       ════════════════════════════════════════════════════════ */
-    .sec{max-width:1200px;margin:0 auto;padding:64px 28px}
+    /* ═══════════════════════════════════════════════════════
+       SECTIONS — SHARED
+       ═══════════════════════════════════════════════════════ */
+    .sec{max-width:1200px;margin:0 auto;padding:64px 24px}
     .sec-lbl{
         font-family:var(--mono);font-size:10px;color:var(--cyan);
         letter-spacing:2px;text-transform:uppercase;font-weight:500;margin-bottom:6px;
@@ -254,33 +231,36 @@
     .sec-sub{font-size:14px;color:var(--t2);max-width:520px;line-height:1.6;margin-bottom:36px}
     .sec-div{border:0;border-top:1px solid var(--bdr);margin:0;max-width:1200px;margin-left:auto;margin-right:auto}
 
-    /* ════════════════════════════════════════════════════════
-       BRIEF / STORY CARDS
-       ════════════════════════════════════════════════════════ */
+    /* ═══════════════════════════════════════════════════════
+       BRIEF / STORY CARDS — with optional featured image
+       ═══════════════════════════════════════════════════════ */
     .bc{
-        background:var(--bg-card);border:1px solid var(--bdr);
+        background:var(--bg-card);
+        border:1px solid rgba(255,255,255,.08);
+        box-shadow:0 1px 4px rgba(0,0,0,.15);
         border-radius:var(--r-l);overflow:hidden;
         transition:all .3s;display:flex;flex-direction:column;position:relative;
     }
-    .bc:hover{border-color:var(--bdr-m);transform:translateY(-2px);box-shadow:var(--shadow)}
+    .bc:hover{
+        border-color:rgba(255,255,255,.14);
+        transform:translateY(-2px);
+        box-shadow:var(--shadow);
+    }
 
-    /* Card with featured image */
-    .bc-has-img .bc-img{
+    /* Text-only cards */
+    .bc:not(.bc-has-img){padding:20px}
+
+    /* Image cards */
+    .bc-img{
         height:180px;overflow:hidden;flex-shrink:0;
         background:var(--bg-card-h);
     }
-    .bc-has-img .bc-img img{
+    .bc-img img{
         width:100%;height:100%;object-fit:cover;display:block;
         transition:transform .4s ease;
     }
     .bc-has-img:hover .bc-img img{transform:scale(1.03)}
-
-    /* Card without image gets padding on the whole card */
-    .bc:not(.bc-has-img){padding:22px}
-    /* Card with image has padding only in the body */
-    .bc-has-img .bc-body{padding:20px}
-
-    .bc-body{display:flex;flex-direction:column;flex:1}
+    .bc-body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
 
     .bc-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:8px}
     .bc-tag{
@@ -309,30 +289,13 @@
     .bc-link{font-size:12px;color:var(--gold);font-weight:600;display:inline-flex;align-items:center;gap:4px;transition:opacity .2s}
     .bc-link:hover{opacity:.75}
 
-    .bc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+    .bc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
 
-    /* ════════════════════════════════════════════════════════
-       METHOD
-       ════════════════════════════════════════════════════════ */
-    .me-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
-    .me{
-        background:var(--bg-card);border:1px solid var(--bdr);
-        border-radius:var(--r-m);padding:20px;transition:border-color .3s;
-    }
-    .me:hover{border-color:var(--bdr-m)}
-    .me-ico{
-        width:36px;height:36px;border-radius:8px;
-        display:flex;align-items:center;justify-content:center;
-        margin-bottom:12px;font-size:16px;
-    }
-    .me-t{font-size:13.5px;font-weight:600;margin-bottom:4px}
-    .me-p{font-size:12.5px;color:var(--t2);line-height:1.55}
-
-    /* ════════════════════════════════════════════════════════
-       PIPELINE
-       ════════════════════════════════════════════════════════ */
+    /* ═══════════════════════════════════════════════════════
+       PIPELINE WATCH
+       ═══════════════════════════════════════════════════════ */
     .pip-track{
-        display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;
+        display:flex;gap:14px;overflow-x:auto;padding-bottom:10px;
         scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
         scrollbar-width:thin;scrollbar-color:var(--bdr-m) transparent;
     }
@@ -340,68 +303,76 @@
     .pip-track::-webkit-scrollbar-track{background:transparent}
     .pip-track::-webkit-scrollbar-thumb{background:var(--bdr-m);border-radius:2px}
     .pip{
-        min-width:290px;max-width:340px;
-        background:var(--bg-card);border:1px solid var(--bdr);
-        border-radius:var(--r-m);padding:20px;flex-shrink:0;
+        min-width:280px;max-width:340px;
+        background:var(--bg-card);border:1px solid rgba(255,255,255,.08);
+        box-shadow:0 1px 4px rgba(0,0,0,.15);
+        border-radius:var(--r-m);padding:18px;flex-shrink:0;
         scroll-snap-align:start;transition:border-color .3s;
     }
-    .pip:hover{border-color:var(--bdr-m)}
-    .pip-date{font-family:var(--mono);font-size:10.5px;color:var(--cyan);margin-bottom:8px;font-weight:500}
+    .pip:hover{border-color:rgba(255,255,255,.14)}
+    .pip-date{
+        font-family:var(--mono);font-size:10.5px;color:var(--cyan);
+        font-weight:500;margin-bottom:2px;
+    }
+    .pip-board{
+        font-family:var(--mono);font-size:9.5px;color:var(--t3);
+        letter-spacing:1px;text-transform:uppercase;font-weight:500;
+        margin-bottom:10px;
+    }
     .pip-t{font-size:14px;font-weight:600;margin-bottom:6px;line-height:1.4}
-    .pip-p{font-size:12.5px;color:var(--t2);line-height:1.55;margin-bottom:10px}
-    .pip-tag{font-family:var(--mono);font-size:9.5px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;font-weight:500}
+    .pip-p{font-size:12.5px;color:var(--t2);line-height:1.55}
 
-    /* ════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════
+       METHOD — reduced prominence, below pipeline
+       ═══════════════════════════════════════════════════════ */
+    .sec-quiet .sec-t{font-size:clamp(18px,2.5vw,24px);color:var(--t2)}
+    .sec-quiet .sec-sub{font-size:13px}
+
+    .me-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+    .me{
+        background:var(--bg-card);border:1px solid var(--bdr);
+        border-radius:var(--r-m);padding:18px;transition:border-color .3s;
+    }
+    .me:hover{border-color:var(--bdr-m)}
+    .me-ico{
+        width:34px;height:34px;border-radius:8px;
+        display:flex;align-items:center;justify-content:center;
+        margin-bottom:10px;
+    }
+    .me-ico svg{width:16px;height:16px}
+    .me-t{font-size:13px;font-weight:600;margin-bottom:4px}
+    .me-p{font-size:12px;color:var(--t2);line-height:1.55}
+
+    /* ═══════════════════════════════════════════════════════
        SUBSCRIBE CTA
-       ════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════ */
     .cta-box{
         background:var(--bg-card);border:1px solid var(--bdr);
-        border-radius:var(--r-xl);padding:48px 36px;text-align:center;
-        max-width:640px;margin:0 auto;
+        border-radius:var(--r-xl);padding:44px 32px;text-align:center;
+        max-width:620px;margin:0 auto;
     }
-    .su-row{display:flex;gap:10px;max-width:420px;margin:0 auto}
-    .su-in{
-        flex:1;padding:12px 14px;background:var(--bg);
-        border:1px solid var(--bdr-m);border-radius:var(--r-m);
-        color:var(--t1);font-family:var(--sans);font-size:14px;
-        outline:0;transition:border-color .2s;min-width:0;
+    .su-ctas{
+        display:flex;flex-direction:column;align-items:center;gap:12px;
+        margin-bottom:16px;
     }
-    .su-in::placeholder{color:var(--t3)}
-    .su-in:focus{border-color:var(--gold)}
-    .su-btn{
-        padding:12px 22px;background:var(--gold);color:#000;
-        font-weight:700;font-size:14px;border:none;border-radius:var(--r-m);
-        cursor:pointer;white-space:nowrap;transition:all .25s;font-family:var(--sans);
-    }
-    .su-btn:hover{background:var(--gold-b)}
-    .su-note{font-size:11.5px;color:var(--t3);margin-top:12px}
-    .su-ok{color:var(--green);font-size:14px;font-weight:600;margin-top:12px;display:none}
+    .su-note{font-size:11.5px;color:var(--t3);margin-top:0}
 
-    .su-sep{
-        width:60px;height:1px;background:var(--bdr);
-        margin:24px auto;
-    }
-    .su-founding{
-        display:inline-flex;align-items:center;justify-content:center;
-        font-size:13.5px;padding:12px 28px;
-    }
-
-    /* ════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════
        FOOTER
-       ════════════════════════════════════════════════════════ */
-    .ftr{text-align:center;padding:40px 24px;border-top:1px solid var(--bdr)}
+       ═══════════════════════════════════════════════════════ */
+    .ftr{text-align:center;padding:36px 24px;border-top:1px solid var(--bdr)}
     .ftr p{font-size:11.5px;color:var(--t3);line-height:1.8}
     .ftr a{color:var(--t2);transition:color .2s}
     .ftr a:hover{color:var(--t1)}
 
-    /* ════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════
        SKELETONS
-       ════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════ */
     .sk{
-        background:var(--bg-card);border:1px solid var(--bdr);
+        background:var(--bg-card);border:1px solid rgba(255,255,255,.08);
         border-radius:var(--r-l);overflow:hidden;
     }
-    .sk-pad{padding:22px}
+    .sk-pad{padding:20px}
     .sk-img{
         height:180px;
         background:linear-gradient(90deg,#111827 25%,#1a2744 50%,#111827 75%);
@@ -416,45 +387,44 @@
     .sk-l.w40{width:40%}.sk-l.w60{width:60%}.sk-l.w80{width:80%}.sk-l.w100{width:100%}
     .sk-l.h16{height:16px}.sk-l.mt8{margin-top:8px}.sk-l.mt12{margin-top:12px}
 
-    /* ════════════════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════
        UTILITIES & ANIMATIONS
-       ════════════════════════════════════════════════════════ */
+       ═══════════════════════════════════════════════════════ */
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
     @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
     .fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
     .fade-in.vis{opacity:1;transform:translateY(0)}
 
-    /* ════════════════════════════════════════════════════════
-       RESPONSIVE — DESKTOP  (≥ 768px)
-       ════════════════════════════════════════════════════════ */
+    /* ═══════════════════════════════════════════════════════
+       RESPONSIVE — DESKTOP (≥768px)
+       ═══════════════════════════════════════════════════════ */
     @media(min-width:768px){
-        .hero{padding:48px 32px 56px}
-        .hero-grid{grid-template-columns:3fr 2fr;gap:22px}
-        .map-block{min-height:100%}
+        .hero{padding:46px 32px 56px}
+        .hero-grid{grid-template-columns:3fr 2fr;gap:20px}
+        .map-block{min-height:280px}
 
-        /* Metrics: inline strip */
+        /* Featured card stretches to match map */
+        .hero-feat .bc,.hero-feat .sk{flex:1}
+        .hero-feat .bc .bc-ex{flex:1}
+
+        /* Metrics inline strip */
         .hero-metrics{display:flex;gap:0}
         .hm{border:none;background:none;padding:0 22px;border-left:1px solid var(--bdr);border-radius:0}
         .hm:first-child{padding-left:0;border-left:none}
 
         .sec{padding:72px 32px}
-
-        /* Featured card in hero stretches to match map */
-        .hero-feat .bc{flex:1}
-        .hero-feat .bc .bc-body{flex:1;display:flex;flex-direction:column}
-        .hero-feat .bc .bc-ex{flex:1}
     }
 
-    /* ════════════════════════════════════════════════════════
-       RESPONSIVE — MOBILE  (≤ 767px)
-       ════════════════════════════════════════════════════════ */
+    /* ═══════════════════════════════════════════════════════
+       RESPONSIVE — MOBILE (≤767px)
+       ═══════════════════════════════════════════════════════ */
     @media(max-width:767px){
         .hdr{padding:0 16px;height:56px}
-        .hdr-logo img{height:34px}
+        .hdr-logo img{height:36px}
         .hdr-nav{gap:16px}
         .hdr-nav a:not(.cta-nav){display:none}
 
-        .hero{padding:28px 18px 40px}
+        .hero{padding:26px 18px 38px}
         .hero-ctas{flex-direction:column;align-items:stretch}
         .btn-gold,.btn-out{justify-content:center;text-align:center}
 
@@ -464,21 +434,24 @@
         .hm-v{font-size:16px}
 
         .bc-grid{grid-template-columns:1fr}
-        .bc-has-img .bc-img{height:160px}
+        .bc-img{height:160px}
+
         .me-grid{grid-template-columns:1fr 1fr}
 
         .cta-box{padding:32px 20px}
-        .su-row{flex-direction:column}
-        .pip{min-width:270px}
+        .su-ctas{align-items:stretch}
+        .su-ctas .btn-gold,.su-ctas .btn-out{justify-content:center;text-align:center}
+
+        .pip{min-width:268px}
 
         .sec{padding:52px 18px}
     }
 
-    /* ════════════════════════════════════════════════════════
-       RESPONSIVE — SMALL MOBILE  (≤ 480px)
-       ════════════════════════════════════════════════════════ */
+    /* ═══════════════════════════════════════════════════════
+       RESPONSIVE — SMALL MOBILE (≤480px)
+       ═══════════════════════════════════════════════════════ */
     @media(max-width:480px){
-        .ann{font-size:11.5px;padding:9px 38px 9px 12px;gap:7px}
+        .ann{font-size:11.5px;padding:8px 38px 8px 12px;gap:6px}
         .ann-badge{font-size:8px;padding:2px 7px}
 
         .hero{padding:22px 14px 32px}
@@ -494,56 +467,52 @@
 </head>
 <body>
 
-<!-- ════════════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════
      ANNOUNCEMENT BAR
-     Clicking anywhere (except ×) opens Ghost signup.
-     Swap .ann-text content for sponsor / publisher notes.
-     ════════════════════════════════════════════════════════════ -->
+     Click → Ghost signup. × → dismiss. Swap .ann-text for sponsor/publisher notes.
+     ═══════════════════════════════════════════════════════════ -->
 <div class="ann" id="annBar" role="link" tabindex="0" aria-label="Founding member signup">
     <span class="ann-badge">Founding Rate</span>
-    <span class="ann-text">Founding Member Rate: <strong>$49/year</strong> for the first 100 subscribers.</span>
+    <span class="ann-text">First 100 Founding Members: <strong>$49/year</strong> — full signal access</span>
     <span class="ann-arr">→</span>
     <button class="ann-x" id="annClose" aria-label="Dismiss announcement">&times;</button>
 </div>
 
-<!-- ════════════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════
      HEADER
-     ════════════════════════════════════════════════════════════ -->
+     ═══════════════════════════════════════════════════════════ -->
 <header class="hdr" id="hdr">
     <a href="/" class="hdr-logo">
         <img src="logo.png" alt="The Florida Signal">
     </a>
     <nav class="hdr-nav">
-        <a href="#briefs">Briefs</a>
-        <a href="#pipeline">Pipeline</a>
-        <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="cta-nav">Subscribe</a>
+        <a href="#briefs">Intel Briefs</a>
+        <a href="#pipeline">Your Meetings</a>
+        <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="cta-nav">Get Free Signals</a>
     </nav>
 </header>
 
-<!-- ════════════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════
      HERO
-     ════════════════════════════════════════════════════════════ -->
+     ═══════════════════════════════════════════════════════════ -->
 <section class="hero">
-    <div class="hero-badge">
-        <span class="live-dot"></span>
-        Live Intelligence — Broward County
-    </div>
+    <div class="hero-badge"><span class="live-dot"></span> Live Intelligence — Broward County</div>
 
-    <h1>Development Signals<br><span class="hl">Before They're News</span></h1>
+    <h1>Development Signals<br><span class="hl">Before They Hit the Market</span></h1>
 
-    <p class="hero-sub">Track permits, capital movement, and entity activity across Fort Lauderdale and Broward County — sourced from public records.</p>
+    <p class="hero-sub">Permits, entity filings, and capital movement across Fort Lauderdale and Broward — direct from public records.</p>
 
     <div class="hero-ctas">
         <a href="https://ftl-signal.github.io/broward-intelligence-map/" target="_blank" rel="noopener" class="btn-gold">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-            Open Signal Map
+            Open the Signal Map
         </a>
-        <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-out">Get Weekly Briefs →</a>
+        <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-out">Get the Free Brief →</a>
     </div>
 
     <!-- Map + Featured Story Grid -->
     <div class="hero-grid">
-        <!-- Map Preview -->
+        <!-- Map Preview — framed -->
         <div class="map-block">
             <iframe src="https://ftl-signal.github.io/broward-intelligence-map/" loading="lazy" title="Broward Development Signal Map" aria-hidden="true"></iframe>
             <div class="map-ov">
@@ -554,7 +523,7 @@
             </div>
         </div>
 
-        <!-- Featured Story — populated by Ghost -->
+        <!-- Featured Story — populated by Ghost fetch -->
         <div class="hero-feat" id="heroFeat">
             <div class="sk" data-sk>
                 <div class="sk-pad">
@@ -580,63 +549,90 @@
 
 <hr class="sec-div">
 
-<!-- ════════════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════
      GHOST INTELLIGENCE BRIEFS
-     Fetches up to 5 posts; post 1 fills hero; posts 2–5 fill grid.
-     First 2 grid cards display featured images if available.
-     ════════════════════════════════════════════════════════════ -->
+     Posts 2–5 from Ghost; first 2 show featured images.
+     ═══════════════════════════════════════════════════════════ -->
 <section class="sec fade-in" id="briefs">
     <div class="sec-lbl">Intelligence Briefs</div>
-    <h2 class="sec-t">Latest development analysis</h2>
-    <p class="sec-sub">Entity context and corridor breakdown from verified public records — updated weekly.</p>
+    <h2 class="sec-t">Signals We're Tracking Now</h2>
+    <p class="sec-sub">Entity and corridor intelligence from verified public records — updated weekly.</p>
 
     <div class="bc-grid" id="ghostBriefs">
-        <!-- Skeletons: first 2 mimic image cards, last 2 text-only -->
-        <div class="sk" data-sk>
-            <div class="sk-img"></div>
-            <div class="sk-pad"><div class="sk-l w40"></div><div class="sk-l w100 mt12 h16"></div><div class="sk-l w80 mt8"></div><div class="sk-l w100 mt12"></div><div class="sk-l w60 mt8"></div></div>
+        <!-- Skeletons: first 2 with image placeholders, last 2 text-only -->
+        <div class="sk" data-sk><div class="sk-img"></div><div class="sk-pad"><div class="sk-l w40"></div><div class="sk-l w100 mt12 h16"></div><div class="sk-l w80 mt8"></div></div></div>
+        <div class="sk" data-sk><div class="sk-img"></div><div class="sk-pad"><div class="sk-l w40"></div><div class="sk-l w100 mt12 h16"></div><div class="sk-l w80 mt8"></div></div></div>
+        <div class="sk" data-sk><div class="sk-pad"><div class="sk-l w40"></div><div class="sk-l w100 mt12 h16"></div><div class="sk-l w80 mt8"></div><div class="sk-l w100 mt12"></div><div class="sk-l w60 mt8"></div></div></div>
+        <div class="sk" data-sk><div class="sk-pad"><div class="sk-l w40"></div><div class="sk-l w100 mt12 h16"></div><div class="sk-l w80 mt8"></div><div class="sk-l w100 mt12"></div><div class="sk-l w60 mt8"></div></div></div>
+    </div>
+</section>
+
+<hr class="sec-div">
+
+<!-- ═══════════════════════════════════════════════════════════
+     PIPELINE WATCH
+     ═══════════════════════════════════════════════════════════ -->
+<section class="sec fade-in" id="pipeline">
+    <h2 class="sec-t" style="margin-bottom:20px">Pipeline Watch</h2>
+
+    <div class="pip-track">
+        <div class="pip">
+            <div class="pip-date">Wed Mar 25 · 1:00 PM</div>
+            <div class="pip-board">Hollywood City Commission</div>
+            <h3 class="pip-t">Hollywood Beach hotel site returns to the board</h3>
+            <p class="pip-p">High-visibility hospitality positioning could re-enter the entitlement pipeline if movement resumes.</p>
         </div>
-        <div class="sk" data-sk>
-            <div class="sk-img"></div>
-            <div class="sk-pad"><div class="sk-l w40"></div><div class="sk-l w100 mt12 h16"></div><div class="sk-l w80 mt8"></div><div class="sk-l w100 mt12"></div><div class="sk-l w60 mt8"></div></div>
+        <div class="pip">
+            <div class="pip-date">Tue Mar 24 · 6:00 PM</div>
+            <div class="pip-board">Pompano Beach Commission</div>
+            <h3 class="pip-t">Pompano oceanfront maintenance supports luxury corridor</h3>
+            <p class="pip-p">A1A upkeep supports the broader oceanfront upgrade story around new residential product.</p>
         </div>
-        <div class="sk" data-sk>
-            <div class="sk-pad"><div class="sk-l w40"></div><div class="sk-l w100 mt12 h16"></div><div class="sk-l w80 mt8"></div><div class="sk-l w100 mt12"></div><div class="sk-l w60 mt8"></div></div>
-        </div>
-        <div class="sk" data-sk>
-            <div class="sk-pad"><div class="sk-l w40"></div><div class="sk-l w100 mt12 h16"></div><div class="sk-l w80 mt8"></div><div class="sk-l w100 mt12"></div><div class="sk-l w60 mt8"></div></div>
+        <div class="pip">
+            <div class="pip-date">Thu Mar 26 · 10:00 AM</div>
+            <div class="pip-board">Broward County Commission</div>
+            <h3 class="pip-t">Broward agenda crossover: civic &amp; hospitality movement</h3>
+            <p class="pip-p">When county process, procurement timing, and permit activity overlap, the odds of a meaningful execution signal rise fast.</p>
         </div>
     </div>
 </section>
 
 <hr class="sec-div">
 
-<!-- ════════════════════════════════════════════════════════════
-     METHOD — how signals are selected
-     ════════════════════════════════════════════════════════════ -->
-<section class="sec fade-in" id="method">
+<!-- ═══════════════════════════════════════════════════════════
+     METHOD — reduced prominence, clean SVG icons
+     ═══════════════════════════════════════════════════════════ -->
+<section class="sec sec-quiet fade-in" id="method">
     <div class="sec-lbl">Method</div>
-    <h2 class="sec-t">How signals are selected</h2>
-    <p class="sec-sub">Every signal is sourced from public records and evaluated against four filters before reaching this page.</p>
+    <h2 class="sec-t">How Signals Are Detected</h2>
+    <p class="sec-sub">Every signal is sourced from public records and evaluated against four filters before it reaches this page.</p>
 
     <div class="me-grid">
         <div class="me">
-            <div class="me-ico" style="background:var(--cyan-d)">📄</div>
+            <div class="me-ico" style="background:var(--cyan-d);color:var(--cyan)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
             <h3 class="me-t">Permit Clustering</h3>
             <p class="me-p">Multiple filings at one property can suggest movement beyond routine maintenance.</p>
         </div>
         <div class="me">
-            <div class="me-ico" style="background:var(--gold-d)">💰</div>
+            <div class="me-ico" style="background:var(--gold-d);color:var(--gold)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
             <h3 class="me-t">Declared Value</h3>
             <p class="me-p">Job-cost filings help separate minor work from meaningful capital activity.</p>
         </div>
         <div class="me">
-            <div class="me-ico" style="background:var(--green-d)">🏢</div>
+            <div class="me-ico" style="background:var(--green-d);color:var(--green)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
             <h3 class="me-t">Entity Movement</h3>
             <p class="me-p">Developer, owner, and contractor names often reveal patterns early.</p>
         </div>
         <div class="me">
-            <div class="me-ico" style="background:var(--red-d)">🔄</div>
+            <div class="me-ico" style="background:var(--red-d);color:var(--red)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
             <h3 class="me-t">Execution Shift</h3>
             <p class="me-p">The real question is whether records suggest movement from planning to delivery.</p>
         </div>
@@ -645,65 +641,26 @@
 
 <hr class="sec-div">
 
-<!-- ════════════════════════════════════════════════════════════
-     PIPELINE WATCH
-     ════════════════════════════════════════════════════════════ -->
-<section class="sec fade-in" id="pipeline">
-    <div class="sec-lbl">Pipeline Watch</div>
-    <h2 class="sec-t">Upcoming public decisions</h2>
-    <p class="sec-sub">Agenda items and near-term actions that may feed future signals.</p>
-
-    <div class="pip-track">
-        <div class="pip">
-            <div class="pip-date">Wed Mar 25 · 1:00 PM</div>
-            <h3 class="pip-t">Hollywood Beach hotel site returns to the board</h3>
-            <p class="pip-p">High-visibility hospitality positioning could re-enter the entitlement pipeline if movement resumes.</p>
-            <span class="pip-tag">Hollywood City Commission</span>
-        </div>
-        <div class="pip">
-            <div class="pip-date">Tue Mar 24 · 6:00 PM</div>
-            <h3 class="pip-t">Pompano oceanfront maintenance supports luxury corridor</h3>
-            <p class="pip-p">A1A upkeep supports the broader oceanfront upgrade story around new residential product.</p>
-            <span class="pip-tag">Pompano Beach Commission</span>
-        </div>
-        <div class="pip">
-            <div class="pip-date">Thu Mar 26 · 10:00 AM</div>
-            <h3 class="pip-t">Broward agenda crossover: civic &amp; hospitality movement</h3>
-            <p class="pip-p">When county process, procurement timing, and permit activity overlap, the odds of a meaningful execution signal rise fast.</p>
-            <span class="pip-tag">Broward County Commission</span>
-        </div>
-    </div>
-</section>
-
-<hr class="sec-div">
-
-<!-- ════════════════════════════════════════════════════════════
-     SUBSCRIBE CTA
-     ════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════
+     SUBSCRIBE CTA — clean link buttons, no fake form
+     ═══════════════════════════════════════════════════════════ -->
 <section class="sec fade-in" id="subscribe">
     <div class="cta-box">
-        <div class="sec-lbl" style="text-align:center">Weekly Intelligence Brief</div>
-        <h2 class="sec-t" style="text-align:center">Get development signals first.</h2>
-        <p class="sec-sub" style="text-align:center;margin-left:auto;margin-right:auto">Verified public records delivered every week for developers, brokers, investors, attorneys, and serious local operators.</p>
+        <div class="sec-lbl" style="text-align:center">Weekly Intelligence</div>
+        <h2 class="sec-t" style="text-align:center">Get Signals Before They're News</h2>
+        <p class="sec-sub" style="text-align:center;margin-left:auto;margin-right:auto">Verified public records. Weekly intelligence briefs. Built for developers, brokers, investors, and attorneys across Broward County.</p>
 
-        <form class="su-row" id="suForm">
-            <input type="email" class="su-in" id="suEmail" placeholder="you@email.com" required aria-label="Email address">
-            <button type="submit" class="su-btn" id="suBtn">Get Briefs Free</button>
-        </form>
-        <p class="su-note">No spam. Verified records only. Unsubscribe anytime.</p>
-        <p class="su-ok" id="suOk">✓ You're on the list. First brief ships this week.</p>
-
-        <div class="su-sep"></div>
-
-        <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-gold su-founding">
-            Become a Founding Member — $49/year
-        </a>
+        <div class="su-ctas">
+            <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-gold">Get Free Weekly Signals</a>
+            <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-out">Founding Member — $49/year →</a>
+        </div>
+        <p class="su-note">No spam. Public records only. Cancel anytime.</p>
     </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════
      FOOTER
-     ════════════════════════════════════════════════════════════ -->
+     ═══════════════════════════════════════════════════════════ -->
 <footer class="ftr">
     <p>© 2026 The Florida Signal · Data sourced from public records<br>
     <a href="https://ftl-signal.github.io/broward-intelligence-map/" target="_blank" rel="noopener">Open Signal Map</a> ·
@@ -711,11 +668,11 @@
     <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener">Subscribe</a></p>
 </footer>
 
-<!-- ════════════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════
      JAVASCRIPT
-     ════════════════════════════════════════════════════════════ -->
+     ═══════════════════════════════════════════════════════════ -->
 <script>
-/* ── Announcement bar: click to navigate, × to dismiss ────── */
+/* ── Announcement bar: click → signup, × → dismiss ────────── */
 (function(){
     var bar = document.getElementById('annBar');
     var btn = document.getElementById('annClose');
@@ -740,7 +697,7 @@
     var h = document.getElementById('hdr');
     window.addEventListener('scroll', function(){
         h.classList.toggle('scrolled', window.scrollY > 10);
-    }, {passive:true});
+    }, {passive: true});
 })();
 
 /* ── Fade-in intersection observer ─────────────────────────── */
@@ -749,7 +706,7 @@
         entries.forEach(function(e){
             if (e.isIntersecting) { e.target.classList.add('vis'); o.unobserve(e.target); }
         });
-    }, {threshold:0.08});
+    }, {threshold: 0.08});
     document.querySelectorAll('.fade-in').forEach(function(el){ o.observe(el); });
 })();
 
@@ -763,15 +720,14 @@ function esc(s) { var d = document.createElement('div'); d.textContent = s || ''
     var heroEl   = document.getElementById('heroFeat');
     var briefsEl = document.getElementById('ghostBriefs');
 
-    /* Badge helper based on post.visibility */
+    /* Access badge based on post.visibility */
     function badge(vis) {
         if (vis === 'paid')    return '<span class="acc acc-mem">Members</span>';
         if (vis === 'members') return '<span class="acc acc-prev">Preview</span>';
         return '<span class="acc acc-open">Open</span>';
     }
 
-    /* Build a brief card
-       showImg = true → display feature_image if available */
+    /* Build a brief card. showImg = true → render feature_image if present */
     function buildCard(p, showImg) {
         var tag = (p.tags && p.tags.length) ? p.tags[0].name : 'Signal Brief';
         var dt  = new Date(p.published_at).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
@@ -791,44 +747,36 @@ function esc(s) { var d = document.createElement('div'); d.textContent = s || ''
         a.rel = 'noopener';
         a.className = 'bc' + (hasImg ? ' bc-has-img' : '');
 
-        var bodyOpen = hasImg ? '<div class="bc-body">' : '';
-        var bodyClose = hasImg ? '</div>' : '';
+        var bOpen  = hasImg ? '<div class="bc-body">' : '';
+        var bClose = hasImg ? '</div>' : '';
 
         a.innerHTML =
-            imgHTML +
-            bodyOpen +
-                '<div class="bc-hd">' +
-                    '<span class="bc-tag">' + esc(tag) + '</span>' +
-                    badge(vis) +
-                '</div>' +
-                '<h3 class="bc-title">' + esc(p.title) + '</h3>' +
-                '<p class="bc-ex">' + esc(ex) + '</p>' +
-                '<div class="bc-ft">' +
-                    '<span class="bc-date">' + dt + '</span>' +
-                    '<span class="bc-link">Read brief →</span>' +
-                '</div>' +
-            bodyClose;
+            imgHTML + bOpen +
+            '<div class="bc-hd"><span class="bc-tag">' + esc(tag) + '</span>' + badge(vis) + '</div>' +
+            '<h3 class="bc-title">' + esc(p.title) + '</h3>' +
+            '<p class="bc-ex">' + esc(ex) + '</p>' +
+            '<div class="bc-ft"><span class="bc-date">' + dt + '</span><span class="bc-link">Read brief →</span></div>' +
+            bClose;
 
         return a;
     }
 
     try {
-        var r = await fetch(GH + '/ghost/api/content/posts/?key=' + GK + '&limit=5&include=tags');
+        var r = await fetch(GH + '/ghost/api/content/posts/?key=' + GK + '&limit=5&include=tags&fields=title,slug,excerpt,published_at,custom_excerpt,url,visibility,feature_image');
         if (!r.ok) throw new Error('Ghost ' + r.status);
         var d = await r.json();
         var posts = d.posts || [];
         if (!posts.length) throw new Error('empty');
 
-        /* ── Hero featured card (first post, with image) ── */
+        /* Hero featured card (post 1 — text-only for clean hero balance) */
         heroEl.innerHTML = '';
-        heroEl.appendChild(buildCard(posts[0], true));
+        heroEl.appendChild(buildCard(posts[0], false));
 
-        /* ── Briefs grid (posts 2–5) ─────────────────────── */
+        /* Briefs grid (posts 2–5 — first 2 with images) */
         briefsEl.querySelectorAll('[data-sk]').forEach(function(s){ s.remove(); });
         var rest = posts.slice(1);
         if (rest.length) {
             rest.forEach(function(p, i) {
-                /* First 2 in the grid get featured images */
                 briefsEl.appendChild(buildCard(p, i < 2));
             });
         } else {
@@ -842,7 +790,7 @@ function esc(s) { var d = document.createElement('div'); d.textContent = s || ''
 
         /* Fallback hero card */
         heroEl.innerHTML =
-            '<a href="' + GH + '" target="_blank" rel="noopener" class="bc" style="padding:22px">' +
+            '<a href="' + GH + '" target="_blank" rel="noopener" class="bc" style="padding:20px">' +
                 '<div class="bc-hd"><span class="bc-tag">Latest Brief</span>' + badge('public') + '</div>' +
                 '<h3 class="bc-title">Read the latest intelligence brief</h3>' +
                 '<p class="bc-ex">Visit The Florida Signal for the latest development signals from Fort Lauderdale and Broward County.</p>' +
@@ -858,23 +806,6 @@ function esc(s) { var d = document.createElement('div'); d.textContent = s || ''
             '</div>';
     }
 })();
-
-/* ── Subscribe form ────────────────────────────────────────── */
-document.getElementById('suForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var btn = document.getElementById('suBtn');
-    var ok  = document.getElementById('suOk');
-    var em  = document.getElementById('suEmail');
-    btn.textContent = 'Subscribed ✓';
-    btn.style.background = 'var(--green)';
-    ok.style.display = 'block';
-    setTimeout(function(){
-        btn.textContent = 'Get Briefs Free';
-        btn.style.background = '';
-        ok.style.display = 'none';
-        em.value = '';
-    }, 4000);
-});
 </script>
 
 </body>
