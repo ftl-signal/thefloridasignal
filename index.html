@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Florida Signal | Fort Lauderdale &amp; Broward Development Intelligence</title>
-    <meta name="description" content="Live development signals for Fort Lauderdale and Broward County. Track permits, capital movement, and entity activity from public records.">
+    <meta name="description" content="Public-record intelligence on development signals across Fort Lauderdale and Broward County.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -20,8 +20,7 @@
         --sans:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
         --mono:'JetBrains Mono','Fira Code','SF Mono',monospace;
         --r-s:6px;--r-m:10px;--r-l:14px;--r-xl:20px;
-        --shadow:0 4px 24px rgba(0,0,0,.28);
-        --glow-g:0 0 30px rgba(201,162,39,.15)
+        --shadow:0 4px 24px rgba(0,0,0,.28)
     }
     html{scroll-behavior:smooth}
     body{font-family:var(--sans);background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -33,7 +32,7 @@
     .ann-text{color:#fff;font-size:14.5px}
     .ann-text strong{color:#fff;font-weight:700;font-size:16.5px}
     .ann-arr{color:var(--gold);font-size:16px;flex-shrink:0;transition:transform .2s}
-    .ann:hover .ann-arr{transform:translateX(4px)}
+    .ann:hover .ann-arr{transform:translateX(3px)}
     .ann-x{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--t3);font-size:21px;cursor:pointer;padding:4px 8px;line-height:1;transition:color .2s;z-index:2}
     .ann-x:hover{color:var(--t2)}
     /* Header */
@@ -44,11 +43,11 @@
     .hdr-nav{display:flex;align-items:center;gap:28px}
     .hdr-nav a{font-size:13.8px;font-weight:500;color:var(--t2);transition:color .2s}
     .hdr-nav a:hover{color:var(--t1)}
-    .hdr-nav .cta-nav{background:var(--gold);color:#000;padding:11px 24px;border-radius:var(--r-s);font-weight:700;font-size:13.2px;transition:all .2s;box-shadow:0 0 14px rgba(201,162,39,.1)}
+    .hdr-nav .cta-nav{background:var(--gold);color:#000;padding:11px 24px;border-radius:var(--r-s);font-weight:700;font-size:13.2px;transition:all .2s}
     .hdr-nav .cta-nav:hover{background:var(--gold-b);transform:translateY(-1px)}
     /* Buttons */
-    .btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#000;font-weight:700;font-size:14px;padding:13px 26px;border-radius:var(--r-m);border:none;cursor:pointer;transition:all .25s;box-shadow:var(--glow-g);font-family:var(--sans);white-space:nowrap}
-    .btn-gold:hover{background:var(--gold-b);transform:translateY(-2px);box-shadow:0 0 40px rgba(201,162,39,.25)}
+    .btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#000;font-weight:700;font-size:14px;padding:13px 26px;border-radius:var(--r-m);border:none;cursor:pointer;transition:all .25s;font-family:var(--sans);white-space:nowrap}
+    .btn-gold:hover{background:var(--gold-b);transform:translateY(-1px)}
     .btn-gold svg{width:16px;height:16px;flex-shrink:0}
     .btn-out{display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--t2);font-weight:500;font-size:13.5px;padding:13px 24px;border-radius:var(--r-m);border:1px solid var(--bdr-m);cursor:pointer;transition:all .25s;font-family:var(--sans);white-space:nowrap}
     .btn-out:hover{color:var(--t1);border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.06)}
@@ -64,19 +63,17 @@
     .hero-ctas{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
     /* Map */
     .map-wrap{margin-top:24px;max-width:920px;margin-left:auto;margin-right:auto}
-    .map-block{position:relative;border-radius:var(--r-l);overflow:hidden;background:radial-gradient(ellipse at 60% 40%,#1a3050,#0e1829 70%);border:1.5px solid rgba(34,211,238,.22);box-shadow:0 0 0 1px rgba(34,211,238,.06),0 0 30px rgba(34,211,238,.05),0 0 60px rgba(34,211,238,.02),0 8px 32px rgba(0,0,0,.3);min-height:260px;cursor:pointer;animation:map-glow 5s ease-in-out infinite;transition:border-color .4s,box-shadow .4s}
-    .map-block:hover{border-color:rgba(34,211,238,.38);box-shadow:0 0 0 1px rgba(34,211,238,.12),0 0 50px rgba(34,211,238,.1),0 0 100px rgba(34,211,238,.04),0 8px 36px rgba(0,0,0,.35);animation-play-state:paused}
-    @keyframes map-glow{0%,100%{border-color:rgba(34,211,238,.22);box-shadow:0 0 0 1px rgba(34,211,238,.06),0 0 30px rgba(34,211,238,.05),0 0 60px rgba(34,211,238,.02),0 8px 32px rgba(0,0,0,.3)}50%{border-color:rgba(34,211,238,.34);box-shadow:0 0 0 1px rgba(34,211,238,.1),0 0 44px rgba(34,211,238,.08),0 0 80px rgba(34,211,238,.03),0 8px 32px rgba(0,0,0,.3)}}
+    .map-block{position:relative;border-radius:var(--r-l);overflow:hidden;background:radial-gradient(ellipse at 60% 40%,#1a3050,#0e1829 70%);border:1.5px solid rgba(34,211,238,.22);box-shadow:0 0 0 1px rgba(34,211,238,.06),0 0 30px rgba(34,211,238,.05),0 8px 32px rgba(0,0,0,.3);min-height:260px;cursor:pointer;transition:border-color .4s,box-shadow .4s}
+    .map-block:hover{border-color:rgba(34,211,238,.35);box-shadow:0 0 0 1px rgba(34,211,238,.10),0 0 35px rgba(34,211,238,.06),0 8px 36px rgba(0,0,0,.35)}
     .map-block iframe{position:absolute;inset:0;width:100%;height:100%;border:none;pointer-events:none;filter:brightness(.64) contrast(1.28) saturate(1.52)}
     .map-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,24,41,0) 0%,rgba(14,24,41,.15) 100%);display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--t1);transition:background .3s}
     .map-block:hover .map-ov{background:linear-gradient(180deg,rgba(14,24,41,0) 0%,rgba(14,24,41,.08) 100%)}
-    .map-cue{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#fff;padding:14px 36px;border:1.5px solid rgba(34,211,238,.4);border-radius:100px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(14,24,41,.42);animation:cue-pulse 3.5s ease-in-out infinite;transition:background .3s,transform .3s;text-shadow:0 1px 18px rgba(34,211,238,.15)}
-    .map-block:hover .map-cue{background:rgba(14,24,41,.52);transform:scale(1.03)}
-    @keyframes cue-pulse{0%,100%{border-color:rgba(34,211,238,.35);box-shadow:0 0 8px rgba(34,211,238,.04)}50%{border-color:rgba(34,211,238,.7);box-shadow:0 0 28px rgba(34,211,238,.1)}}
-    .map-bug{position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:6px;z-index:3;pointer-events:none;background:rgba(14,24,41,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:7px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.16);animation:bug-throb 4.2s ease-in-out infinite}
+    .map-cue{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#fff;padding:14px 36px;border:1.5px solid rgba(34,211,238,.4);border-radius:100px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(14,24,41,.42);transition:background .3s,transform .3s}
+    .map-block:hover .map-cue{background:rgba(14,24,41,.52)}
+    .map-bug{position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:6px;z-index:3;pointer-events:none;background:rgba(14,24,41,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:7px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.16);animation:bug-throb 6.5s ease-in-out infinite}
     .map-bug-logo{height:19px;width:auto;opacity:.97;display:block}
     .map-bug-text{font-family:var(--mono);font-size:11.2px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:#fff}
-    @keyframes bug-throb{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(34,211,238,.4)}50%{transform:scale(1.07);box-shadow:0 0 0 14px rgba(34,211,238,.18)}}
+    @keyframes bug-throb{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
     /* Metrics */
     .hero-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
     .hm{padding:14px 16px;background:var(--bg-card);border:1px solid var(--bdr);border-radius:var(--r-m)}
@@ -89,26 +86,21 @@
     .sec-t{font-size:clamp(26px,3.8vw,36px);font-weight:700;letter-spacing:-.5px;margin-bottom:8px}
     .sec-sub{font-size:15px;color:var(--t2);max-width:560px;line-height:1.6;margin-bottom:36px}
     .sec-div{border:0;border-top:1px solid var(--bdr);margin:0;max-width:1140px;margin-left:auto;margin-right:auto}
-    /* Pipeline Cards */
-    .pip-track{display:flex;gap:16px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--bdr-m) transparent}
-    .pip-track::-webkit-scrollbar{height:4px}
-    .pip-track::-webkit-scrollbar-track{background:transparent}
-    .pip-track::-webkit-scrollbar-thumb{background:var(--bdr-m);border-radius:2px}
-    .pip{min-width:320px;background:var(--bg-card);border:1px solid var(--bdr);box-shadow:0 1px 4px rgba(0,0,0,.12);border-radius:var(--r-m);padding:22px;flex-shrink:0;scroll-snap-align:start;transition:border-color .3s}
+    /* Pipeline */
+    .pip{min-width:320px;background:var(--bg-card);border:1px solid var(--bdr);box-shadow:0 1px 4px rgba(0,0,0,.12);border-radius:var(--r-m);padding:22px;flex-shrink:0;transition:border-color .3s}
     .pip:hover{border-color:var(--bdr-m)}
-    .pip-date{font-family:var(--mono);font-size:14.5px;color:var(--cyan);font-weight:600;margin-bottom:6px;animation:pulse-date 3s ease-in-out infinite}
+    .pip-date{font-family:var(--mono);font-size:14.5px;color:var(--cyan);font-weight:600;margin-bottom:6px}
     .pip-board{font-family:var(--mono);font-size:12.4px;color:#cfd8dc;letter-spacing:1.3px;text-transform:uppercase;font-weight:600;margin-bottom:12px}
     .pip-t{font-size:16.2px;font-weight:600;margin-bottom:8px;line-height:1.4}
     .pip-p{font-size:14.5px;color:var(--t2);line-height:1.55}
-    @keyframes pulse-date{0%,100%{opacity:1}50%{opacity:.78}}
     /* Other cards */
     .bc{background:var(--bg-card);border:1px solid var(--bdr);box-shadow:0 1px 4px rgba(0,0,0,.12);border-radius:var(--r-l);overflow:hidden;transition:all .3s;display:flex;flex-direction:column;position:relative}
-    .bc:hover{border-color:var(--bdr-m);transform:translateY(-2px);box-shadow:var(--shadow)}
+    .bc:hover{border-color:var(--bdr-m);transform:translateY(-1px);box-shadow:var(--shadow)}
     .bc:not(.bc-has-img){padding:24px}
     .bc-img{height:180px;overflow:hidden;flex-shrink:0;background:var(--bg-card-h);position:relative}
     .bc-img::after{content:'';position:absolute;inset:0;background:rgba(14,24,41,.1);pointer-events:none}
     .bc-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
-    .bc-has-img:hover .bc-img img{transform:scale(1.03)}
+    .bc-has-img:hover .bc-img img{transform:scale(1.02)}
     .bc-body{padding:20px 24px 24px;display:flex;flex-direction:column;flex:1}
     .bc-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:8px}
     .bc-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gold)}
@@ -152,47 +144,30 @@
         .hdr-logo img{height:48px;margin-top:0}
         .hdr-nav{gap:14px}
         .hdr-nav a:not(.cta-nav){display:none}
-        .hero{padding:28px 18px 40px}
+        .hero{padding:32px 18px 42px}
         .hero-ctas{flex-direction:column;align-items:stretch;gap:12px}
-        .btn-gold,.btn-out,.btn-cyan{justify-content:center;text-align:center}
-        .map-block{min-height:220px;max-height:280px}
-        .map-cue{font-size:10.5px;padding:12px 24px;letter-spacing:2.5px}
-        .sec-lbl{font-size:20.5px;letter-spacing:2.8px}
-        .bc-grid{grid-template-columns:1fr}
-        .bc-img{height:138px}
-        .bc-body{padding:18px 20px 20px}
-        .bc-ex{-webkit-line-clamp:3}
-        .me-grid{grid-template-columns:1fr}
-        .me{padding:20px 22px}
-        .pip-track{flex-direction:column;gap:14px}
-        .pip{min-width:100%;max-width:100%}
-        .cta-box{padding:32px 24px}
-        .cta-inner{flex-direction:column;gap:24px;text-align:center}
-        .cta-actions{align-items:stretch;width:100%}
-        .cta-actions .btn-gold,.cta-actions .btn-out{justify-content:center;text-align:center}
+        .btn-gold,.btn-out,.btn-cyan{justify-content:center;text-align:center;padding:14px 24px}
+        .map-block{min-height:235px}
+        .map-cue{font-size:11px;padding:12px 28px}
         .sec{padding:52px 18px}
-        .map-bug{top:10px;left:10px;padding:5px 11px}
-        .map-bug-logo{height:15px}
-        .map-bug-text{font-size:9.2px;letter-spacing:1.7px}
-        .ann{padding:10px 38px 10px 16px;gap:8px;font-size:12.5px;min-height:44px}
-        .hero-badge{font-size:12px;padding:7px 16px}
-        .pip-date{font-size:13.8px}
+        .bc-grid{grid-template-columns:1fr}
+        .bc-img{height:150px}
+        .map-bug{top:10px;left:10px;padding:6px 12px}
+        .ann{padding:10px 38px 10px 16px;gap:8px;font-size:13px;min-height:46px}
     }
     @media(max-width:480px){
-        .hero{padding:22px 14px 34px}
-        .hero h1{letter-spacing:-.8px}
+        .hero{padding:26px 14px 36px}
+        .hero h1{font-size:clamp(26px,5.5vw,42px)}
         .sec{padding:44px 14px}
-        .sec-lbl{font-size:18.5px;letter-spacing:2.4px}
-        .hm{padding:10px 12px}
         .hm-v{font-size:22px}
-        .bc-img{height:128px}
+        .bc-img{height:130px}
     }
     </style>
 </head>
 <body>
 <div class="ann" id="annBar" role="link" tabindex="0" aria-label="Founding member signup">
     <span class="ann-badge">FOUNDING RATE</span>
-    <span class="ann-text">First 100 Founding Members: <strong style="font-size:16.5px">$49/month</strong> — full signal access</span>
+    <span class="ann-text">Founding Member Rate: <strong style="font-size:16.5px">$49/month</strong> for the first 100 subscribers</span>
     <span class="ann-arr">→</span>
     <button class="ann-x" id="annClose" aria-label="Dismiss announcement">&times;</button>
 </div>
@@ -201,19 +176,19 @@
     <nav class="hdr-nav">
         <a href="#briefs">Intel Briefs</a>
         <a href="#meetings">Your Meetings</a>
-        <a href="#subscribe" class="cta-nav">Become a Founder</a>
+        <a href="#subscribe" class="cta-nav">Founding Membership</a>
     </nav>
 </header>
 <section class="hero">
     <div class="hero-badge"><span class="live-dot"></span> LIVE INTELLIGENCE — BROWARD COUNTY</div>
     <h1>Development Signals<br><span class="hl">Before They Hit the Market</span></h1>
-    <p class="hero-sub">Get ahead of the market with verified early signals on emerging development, capital deployment, and competitive moves — pulled straight from public records.</p>
+    <p class="hero-sub">Public-record intelligence on permit activity, entity filings, and capital movement across Fort Lauderdale, Hollywood, Pompano Beach, Wilton Manors, Oakland Park and the wider Broward County pipeline.</p>
     <div class="hero-ctas">
+        <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-cyan">Get the Free Intel Brief →</a>
         <a href="https://ftl-signal.github.io/broward-intelligence-map/" target="_blank" rel="noopener" class="btn-gold">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
             Open the Signal Map
         </a>
-        <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-cyan">Get the Free Intel Brief →</a>
     </div>
     <div class="map-wrap">
         <div class="map-block" id="mapBlock">
@@ -237,78 +212,78 @@
 <section class="sec fade-in" id="briefs">
     <div class="sec-lbl">INTELLIGENCE BRIEFS</div>
     <h2 class="sec-t">Signals We're Tracking Now</h2>
-    <p class="sec-sub">Verified public-record intelligence — published as signals are detected across Fort Lauderdale and Broward County.</p>
+    <p class="sec-sub">Verified public-record intelligence published as signals are detected across Fort Lauderdale and Broward County.</p>
     <div class="bc-grid" id="ghostBriefs"></div>
 </section>
 <hr class="sec-div">
 <section class="sec fade-in" id="meetings">
     <div class="sec-lbl">PROJECT PIPELINE</div>
     <h2 class="sec-t">Upcoming Meetings (Next 7–14 Days)</h2>
-    <p class="sec-sub">Key public meetings across Broward — early signals for zoning, permits, entitlements, and capital projects. Ordered by date. Agendas often posted closer to the meeting.</p>
+    <p class="sec-sub">Key public meetings across Broward County where early indicators of zoning changes, permitting activity, and development proposals commonly appear.</p>
    
     <!-- Hollywood - April 6 -->
     <div style="margin-bottom:32px">
         <div style="color:var(--cyan);font-family:var(--mono);font-size:13.5px;letter-spacing:1.8px;margin-bottom:10px;font-weight:600">MONDAY, APRIL 6</div>
         <div class="pip">
-            <div class="pip-date" style="font-size:14.5px;color:var(--cyan);font-weight:600;animation:pulse-date 3s ease-in-out infinite">1:00 PM</div>
+            <div class="pip-date" style="font-size:14.5px;color:var(--cyan);font-weight:600">1:00 PM</div>
             <div class="pip-board">HOLLYWOOD CITY COMMISSION</div>
             <h3 class="pip-t">Regular City Commission Meeting</h3>
-            <p class="pip-p">High-visibility items often surface here. Monitor for beach corridor, hospitality, or entitlement pipeline updates.</p>
+            <p class="pip-p">High-visibility items including beach corridor, hospitality, and entitlement proposals frequently surface here.</p>
         </div>
     </div>
     <!-- Pompano Beach - April 14 -->
     <div style="margin-bottom:32px">
         <div style="color:var(--cyan);font-family:var(--mono);font-size:13.5px;letter-spacing:1.8px;margin-bottom:10px;font-weight:600">TUESDAY, APRIL 14</div>
         <div class="pip">
-            <div class="pip-date" style="font-size:14.5px;color:var(--cyan);font-weight:600;animation:pulse-date 3s ease-in-out infinite">1:00 PM</div>
+            <div class="pip-date" style="font-size:14.5px;color:var(--cyan);font-weight:600">1:00 PM</div>
             <div class="pip-board">POMPANO BEACH COMMISSION</div>
             <h3 class="pip-t">City Commission Meeting</h3>
-            <p class="pip-p">Oceanfront and luxury corridor topics frequently appear. Watch for maintenance or new residential product signals.</p>
+            <p class="pip-p">Oceanfront and luxury corridor topics frequently appear, along with residential and maintenance proposals.</p>
         </div>
     </div>
     <!-- Fort Lauderdale - April 21 -->
     <div style="margin-bottom:32px">
         <div style="color:var(--cyan);font-family:var(--mono);font-size:13.5px;letter-spacing:1.8px;margin-bottom:10px;font-weight:600">TUESDAY, APRIL 21</div>
         <div class="pip">
-            <div class="pip-date" style="font-size:14.5px;color:var(--cyan);font-weight:600;animation:pulse-date 3s ease-in-out infinite">11:30 AM (Workshop)</div>
+            <div class="pip-date" style="font-size:14.5px;color:var(--cyan);font-weight:600">11:30 AM (Workshop)</div>
             <div class="pip-board">FORT LAUDERDALE CITY COMMISSION</div>
             <h3 class="pip-t">City Commission Conference / Joint Workshop</h3>
-            <p class="pip-p">Budget and planning workshops often preview larger development signals. Monitor for downtown or waterfront activity.</p>
+            <p class="pip-p">Budget and planning workshops that often preview larger downtown and waterfront development activity.</p>
         </div>
     </div>
     <!-- Wilton Manors - April 28 -->
     <div style="margin-bottom:32px">
         <div style="color:var(--cyan);font-family:var(--mono);font-size:13.5px;letter-spacing:1.8px;margin-bottom:10px;font-weight:600">TUESDAY, APRIL 28</div>
         <div class="pip">
-            <div class="pip-date" style="font-size:14.5px;color:var(--cyan);font-weight:600;animation:pulse-date 3s ease-in-out infinite">7:00 PM</div>
+            <div class="pip-date" style="font-size:14.5px;color:var(--cyan);font-weight:600">7:00 PM</div>
             <div class="pip-board">WILTON MANORS CITY COMMISSION</div>
             <h3 class="pip-t">Regular City Commission Meeting</h3>
-            <p class="pip-p">Standard monthly agenda. Watch for local zoning, small-scale development, or hospitality items in this dense urban area.</p>
+            <p class="pip-p">Local zoning matters, small-scale development, and hospitality items common in this dense urban area.</p>
         </div>
     </div>
-    <p style="font-size:13px;color:var(--t3);text-align:center;margin-top:24px">Updated weekly from public calendars • Agendas usually posted 5–7 days prior</p>
+    <p style="font-size:13px;color:var(--t3);text-align:center;margin-top:24px">Updated weekly from public calendars • Agendas typically posted 5–7 days in advance</p>
 </section>
 <hr class="sec-div">
 <section class="sec fade-in" id="method">
     <div class="sec-lbl">METHOD</div>
     <h2 class="sec-t">How Signals Are Detected</h2>
-    <p class="sec-sub">Every signal passes four verification filters before publication. No speculation, no tips — only patterns from verified public records.</p>
+    <p class="sec-sub">Every signal passes four verification filters before publication. Only patterns drawn from verified public records.</p>
     <div class="me-grid">
         <div class="me">
             <h3 class="me-t">Permit Clustering</h3>
-            <p class="me-p">Multiple filings targeting a single property indicate movement beyond routine maintenance — particularly when permit types escalate in scope and value.</p>
+            <p class="me-p">Multiple filings on a single property often indicate activity beyond routine maintenance, especially when scope and value increase.</p>
         </div>
         <div class="me me-gold">
             <h3 class="me-t">Declared Value</h3>
-            <p class="me-p">Construction value thresholds separate minor repairs from significant capital deployment. We flag activity that crosses meaningful dollar thresholds.</p>
+            <p class="me-p">Construction value thresholds help separate minor repairs from meaningful capital deployment.</p>
         </div>
         <div class="me me-green">
             <h3 class="me-t">Entity Movement</h3>
-            <p class="me-p">Developer, owner, and contractor names surface patterns early — especially when the same entities converge on a single corridor or submarket.</p>
+            <p class="me-p">Recurring developer, owner, and contractor names can reveal early patterns when entities converge on one corridor.</p>
         </div>
         <div class="me me-muted">
             <h3 class="me-t">Execution Shift</h3>
-            <p class="me-p">The critical filter: do records show genuine movement from planning to delivery, or just early-stage positioning? We separate intent from execution.</p>
+            <p class="me-p">The decisive filter: whether records show concrete movement from planning toward delivery.</p>
         </div>
     </div>
 </section>
@@ -319,18 +294,18 @@
             <div class="cta-copy">
                 <div class="sec-lbl">MEMBERSHIP</div>
                 <h2 class="sec-t" style="margin-bottom:10px">Signals Before They're News</h2>
-                <p class="cta-desc">Verified permit clusters, entity convergence, and capital deployment signals across Broward — early-position intelligence designed for developers, brokers, investors, and attorneys who consistently move first on public-record movement.</p>
+                <p class="cta-desc">Verified permit clusters, entity convergence, and capital deployment signals across Broward — structured intelligence for developers, brokers, investors, and attorneys who act on public-record movement.</p>
             </div>
             <div class="cta-actions">
                 <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-gold">Get the Free Intel Brief</a>
-                <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-out">Become a Founding Member — <strong style="font-size:16.5px">$49/month</strong></a>
+                <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-out">Founding Member Rate: <strong style="font-size:16.5px">$49/month</strong> for the first 100 subscribers</a>
             </div>
         </div>
-        <p class="su-note">Public records only. Verified patterns. Pause or cancel access anytime.</p>
+        <p class="su-note">Public records only. Verified patterns. Pause or cancel anytime.</p>
     </div>
 </section>
 <footer class="ftr">
-    <p>© 2026 The Florida Signal · Data sourced from public records<br>
+    <p>© 2026 The Florida Signal · Public-record intelligence for Fort Lauderdale and Broward County<br>
     <a href="https://ftl-signal.github.io/broward-intelligence-map/" target="_blank" rel="noopener">Signal Map</a> ·
     <a href="https://thefloridasignalbrief.ghost.io" target="_blank" rel="noopener">Briefs</a> ·
     <a href="#subscribe">Membership</a></p>
