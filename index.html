@@ -39,7 +39,7 @@
     .hdr{position:sticky;top:0;z-index:1000;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(14,24,41,.84);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
     .hdr.scrolled{background:rgba(14,24,41,.96);border-bottom-color:var(--bdr)}
     .hdr-logo{display:flex;align-items:center}
-    .hdr-logo img{height:74px;width:auto;display:block;object-fit:contain;opacity:.96}
+    .hdr-logo img{height:82px;width:auto;display:block;object-fit:contain;opacity:.97;margin-top:-4px}
     .hdr-nav{display:flex;align-items:center;gap:24px}
     .hdr-nav a{font-size:13.5px;font-weight:500;color:var(--t2);transition:color .2s}
     .hdr-nav a:hover{color:var(--t1)}
@@ -53,8 +53,8 @@
     .btn-cyan{display:inline-flex;align-items:center;gap:6px;background:rgba(34,211,238,.08);color:var(--cyan);font-weight:600;font-size:13.5px;padding:13px 24px;border-radius:var(--r-m);border:1px solid rgba(34,211,238,.32);cursor:pointer;transition:all .25s;font-family:var(--sans);white-space:nowrap}
     .btn-cyan:hover{color:#fff;border-color:rgba(34,211,238,.48);background:rgba(34,211,238,.20)}
     .hero{max-width:1200px;margin:0 auto;padding:38px 24px 48px}
-    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(34,211,238,.07);border:1px solid rgba(34,211,238,.18);border-radius:100px;padding:6px 15px;margin-bottom:16px;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--cyan);letter-spacing:1.6px;text-transform:uppercase}
-    .live-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+    .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(34,211,238,.09);border:1px solid rgba(34,211,238,.25);border-radius:100px;padding:8px 18px;margin-bottom:16px;font-family:var(--mono);font-size:13px;font-weight:600;color:var(--cyan);letter-spacing:2px;text-transform:uppercase}
+    .live-dot{width:9px;height:9px;background:var(--green);border-radius:50%;animation:pulse 1.8s ease-in-out infinite;flex-shrink:0}
     .hero h1{font-size:clamp(27px,4.6vw,46px);font-weight:800;line-height:1.08;letter-spacing:-1.1px;margin-bottom:12px;max-width:640px}
     .hero h1 .hl{color:var(--gold)}
     .hero-sub{font-size:clamp(14px,1.6vw,16px);color:var(--t2);max-width:520px;line-height:1.55;margin-bottom:22px}
@@ -69,9 +69,10 @@
     .map-cue{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#fff;padding:14px 36px;border:1.5px solid rgba(34,211,238,.4);border-radius:100px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(14,24,41,.42);animation:cue-pulse 3.5s ease-in-out infinite;transition:background .3s,transform .3s;text-shadow:0 1px 18px rgba(34,211,238,.15)}
     .map-block:hover .map-cue{background:rgba(14,24,41,.52);transform:scale(1.03)}
     @keyframes cue-pulse{0%,100%{border-color:rgba(34,211,238,.35);box-shadow:0 0 8px rgba(34,211,238,.04)}50%{border-color:rgba(34,211,238,.7);box-shadow:0 0 28px rgba(34,211,238,.1)}}
-    .map-bug{position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:5px;z-index:3;pointer-events:none;background:rgba(14,24,41,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:5px 12px;border-radius:6px;border:1px solid rgba(255,255,255,.12)}
-    .map-bug-logo{height:16px;width:auto;opacity:.96;display:block}
-    .map-bug-text{font-family:var(--mono);font-size:9.2px;font-weight:700;letter-spacing:1.9px;text-transform:uppercase;color:#fff}
+    .map-bug{position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:6px;z-index:3;pointer-events:none;background:rgba(14,24,41,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:6px 14px;border-radius:7px;border:1px solid rgba(255,255,255,.14);animation:bug-throb 2.2s ease-in-out infinite}
+    .map-bug-logo{height:18px;width:auto;opacity:.97;display:block}
+    .map-bug-text{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff}
+    @keyframes bug-throb{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(34,211,238,.4)}50%{transform:scale(1.04);box-shadow:0 0 0 8px rgba(34,211,238,.15)}}
     .hero-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
     .hm{padding:14px 16px;background:var(--bg-card);border:1px solid var(--bdr);border-radius:var(--r-m)}
     .hm-v{font-family:var(--mono);font-size:24px;font-weight:700;line-height:1.15}
@@ -144,7 +145,7 @@
     /* Mobile refinements */
     @media(max-width:767px){
         .hdr{padding:0 16px;height:56px}
-        .hdr-logo img{height:44px}
+        .hdr-logo img{height:48px;margin-top:0}
         .hdr-nav{gap:14px}
         .hdr-nav a:not(.cta-nav){display:none}
         .hero{padding:28px 18px 40px}
@@ -166,10 +167,11 @@
         .cta-actions{align-items:stretch;width:100%}
         .cta-actions .btn-gold,.cta-actions .btn-out{justify-content:center;text-align:center}
         .sec{padding:52px 18px}
-        .map-bug{top:9px;left:9px;padding:4px 9px}
-        .map-bug-logo{height:14px}
-        .map-bug-text{font-size:8.4px;letter-spacing:1.4px}
+        .map-bug{top:10px;left:10px;padding:5px 11px}
+        .map-bug-logo{height:15px}
+        .map-bug-text{font-size:9px;letter-spacing:1.6px}
         .ann{padding:10px 38px 10px 16px;gap:8px;font-size:12.5px;min-height:44px}
+        .hero-badge{font-size:12px;padding:7px 16px}
     }
     @media(max-width:480px){
         .hero{padding:22px 14px 34px}
@@ -198,7 +200,7 @@
     </nav>
 </header>
 <section class="hero">
-    <div class="hero-badge"><span class="live-dot"></span> Live Intelligence — Broward County</div>
+    <div class="hero-badge"><span class="live-dot"></span> LIVE INTELLIGENCE — BROWARD COUNTY</div>
     <h1>Development Signals<br><span class="hl">Before They Hit the Market</span></h1>
     <p class="hero-sub">Permits, entity filings, and capital movement across Fort Lauderdale and Broward — direct from public records.</p>
     <div class="hero-ctas">
