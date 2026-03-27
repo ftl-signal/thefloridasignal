@@ -38,19 +38,26 @@
     body{font-family:var(--sans);background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
     a{color:inherit;text-decoration:none}
     
+    /* Announcement Bar */
     .ann{display:flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:14px 20px;background: #0b1424; border-bottom: 1px solid var(--bdr); position:relative;overflow:hidden;cursor:pointer;font-size:15.5px;text-align:center;line-height:1.4;color:#fff;font-weight:600;letter-spacing:0.3px}
+    .ann-mob-logo{display:none}
+    .ann-text{color:#fff}
     .ann-text strong{color:var(--gold-b);font-weight:800}
     .ann-arr{color:var(--gold);font-size:16px;flex-shrink:0;transition:transform .2s}
     .ann:hover .ann-arr{transform:translateX(4px)}
     
+    /* Header */
     .hdr{position:sticky;top:0;z-index:1000;height:84px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(14,24,41,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
     .hdr.scrolled{background:rgba(14,24,41,.96);border-bottom-color:var(--bdr)}
     .hdr-logo{display:flex;align-items:center;height:100%}
     .hdr-logo img{height:110px;width:auto;display:block;object-fit:contain;opacity:.97;margin-top:8px}
     
-    .hdr-tag{display:flex;align-items:center;margin-left:24px;padding-left:24px;border-left:1px solid var(--bdr);height:40px}
-    .tag-line-1{font-size:11px;font-weight:800;color:#fff;letter-spacing:1px;text-transform:uppercase;line-height:1.2;display:block}
-    .tag-line-2{font-size:10px;font-family:var(--mono);color:var(--cyan);letter-spacing:2px;text-transform:uppercase;line-height:1.2;margin-top:2px;opacity:0.8;display:block}
+    /* Desktop Intelligence Tag - DOUBLED SIZE + LIVE PULSE */
+    .hdr-tag{display:flex;align-items:center;margin-left:24px;padding-left:24px;border-left:1px solid var(--bdr);height:60px;gap:14px}
+    .tag-live-dot{width:10px;height:10px;background:var(--green);border-radius:50%;animation:pulse 1.8s ease-in-out infinite;box-shadow: 0 0 12px var(--green);flex-shrink:0}
+    .hdr-tag-inner{display:flex;flex-direction:column;justify-content:center}
+    .tag-line-1{font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px;text-transform:uppercase;line-height:1.1}
+    .tag-line-2{font-size:20px;font-family:var(--mono);color:var(--cyan);letter-spacing:1px;text-transform:uppercase;line-height:1.1;margin-top:2px;opacity:0.9}
 
     .hdr-nav{display:flex;align-items:center;gap:32px}
     .hdr-nav a{font-size:14px;font-weight:500;color:var(--t2);transition:color .2s}
@@ -58,6 +65,7 @@
     .hdr-nav .cta-nav{background:var(--gold);color:#000;padding:12px 26px;border-radius:var(--r-s);font-weight:700;font-size:14px;transition:all .2s;box-shadow:0 0 14px rgba(201,162,39,.1)}
     .hdr-nav .cta-nav:hover{background:var(--gold-b);transform:translateY(-1px)}
     
+    /* Section Shell */
     .hero{max-width:920px;margin:0 auto;padding:56px 24px 64px}
     .hero h1{font-size:clamp(32px,5vw,52px);font-weight:800;line-height:1.05;letter-spacing:-1.2px;margin-bottom:16px;max-width:720px}
     .hero h1 .hl{color:var(--gold)}
@@ -96,18 +104,12 @@
     
     .bc{background:var(--bg-card);border:1px solid var(--bdr);box-shadow:0 2px 8px rgba(0,0,0,.15);border-radius:var(--r-l);overflow:hidden;transition:all .3s;display:flex;flex-direction:column;position:relative}
     .bc:hover{border-color:var(--bdr-m);transform:translateY(-2px);box-shadow:var(--shadow)}
-    .bc-img{height:200px;overflow:hidden;flex-shrink:0;background:var(--bg-card-h);position:relative}
-    .bc-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
     .bc-body{padding:24px 28px 28px;display:flex;flex-direction:column;flex:1}
-    .bc-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:8px}
-    .bc-tag{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold)}
-    .acc{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:4px 10px;border-radius:4px;flex-shrink:0}
-    .acc-open{background:var(--green-d);color:var(--green)}
     .bc-title{font-size:19px;font-weight:700;line-height:1.35;margin-bottom:10px}
     .bc-ex{font-size:15.5px;color:var(--t2);line-height:1.6;flex:1;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .bc-ft{display:flex;align-items:center;justify-content:flex-end;margin-top:auto;padding-top:18px}
     .bc-link{font-size:14px;color:var(--gold);font-weight:700;display:inline-flex;align-items:center;gap:4px}
-    .bc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+    .bc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
     
     .me-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
     .me{background:var(--bg-card);border:1px solid var(--bdr);border-left:3px solid var(--cyan);border-radius:3px var(--r-m) var(--r-m) 3px;padding:28px 32px}
@@ -116,7 +118,6 @@
     
     .cta-box{background:var(--bg-card);border:1px solid var(--bdr-m);border-top:3px solid rgba(201,162,39,.4);border-radius:var(--r-xl);padding:56px 48px;max-width:920px;margin:0 auto}
     .cta-inner{display:grid;grid-template-columns:1.6fr 1fr;gap:64px;align-items:start}
-    .cta-actions{display:flex;flex-direction:column;gap:16px;padding-top:8px}
     .price-badge{background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.25);border-radius:var(--r-s);padding:14px 18px;font-size:13.5px;color:var(--t2);text-align:center;line-height:1.5}
     .price-badge strong{color:var(--gold);font-size:15.5px;font-weight:700}
     .su-note{font-size:13px;color:var(--t3);margin-top:32px;text-align:center;grid-column:1/-1}
@@ -130,7 +131,7 @@
     
     @keyframes pulse {
         0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(52,211,153, 0.7); }
-        70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(52,211,153, 0); }
+        70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(52,211,153, 0); }
         100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(52,211,153, 0); }
     }
     
@@ -147,19 +148,16 @@
         .hdr-nav .cta-nav{width:auto; text-align:center; padding:12px 16px; font-size:12.5px; font-weight:800; letter-spacing: 0.5px; background: var(--gold); border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); display: inline-block;}
         
         .hero{padding:12px 14px 56px}
+        .hero-badge{display:none}
         .hero h1{font-size:clamp(26px,7vw,32px);margin-bottom:20px}
         .hero-ctas .btn-gold { display: none; }
         .btn-out,.btn-cyan{justify-content:center;text-align:center;padding:15px 24px}
         .map-block{min-height:260px}
         .hero-metrics{margin-top:32px;gap:16px}
         
-        /* Mobile Brief Styling - Optimized Cyan Border */
-        .bc, .bc:first-child { border: 1.5px solid rgba(34, 211, 238, 0.4) !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-bottom: 32px; }
+        .bc { border: 3px solid rgba(34, 211, 238, 0.45); box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-bottom: 32px; }
         .bc-grid { gap: 32px; }
         .sec{padding:64px 14px}
-        
-        .sec-div { border-top-color: rgba(255,255,255, 0.04); }
-
         .bc-grid{grid-template-columns:1fr}
         .me-grid{grid-template-columns:1fr}
         .bc-img{height:180px}
@@ -167,38 +165,23 @@
         .cta-box{padding:40px 20px}
         .pip{padding:28px 20px}
     }
-    @media(max-width:480px){
-        .hdr{height:60px}
-        .hdr-nav .cta-nav{padding:12px 0;font-size:14.5px}
-        .ann-mob-logo{height:68px}
-        .hero{padding:24px 14px 48px}
-        .hero h1{font-size:clamp(26px,7vw,32px)}
-        .hero-metrics{margin-top:32px;gap:12px}
-        .sec{padding:56px 14px}
-        .sec-lbl{font-size:15px}
-        .hm-v{font-size:24px}
-        .bc-img{height:160px}
-        .cta-box{padding:40px 16px}
-        .pip{padding:24px 20px}
-    }
     </style>
+    <script>
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+        window.scrollTo(0, 0);
+    </script>
 </head>
 <body>
 <div class="ann" id="annBar" role="link" tabindex="0" aria-label="Founding member signup">
-    <img src="logo.png" alt="The Florida Signal" class="ann-mob-logo" style="display:none">
+    <img src="logo.png" alt="The Florida Signal" class="ann-mob-logo">
     <span class="ann-text">Founding Member Rate: <strong>$49/month</strong> for the first 100 subscribers</span>
     <span class="ann-arr">→</span>
 </div>
-<script>
-    // Logic for mobile logo visibility in announcement bar
-    if(window.innerWidth < 768) {
-        document.querySelector('.ann-mob-logo').style.display = 'block';
-    }
-</script>
 <header class="hdr" id="hdr">
     <div style="display:flex; align-items:center;">
         <a href="/" class="hdr-logo"><img src="logo.png" alt="The Florida Signal"></a>
         <div class="hdr-tag">
+            <div class="tag-live-dot"></div>
             <div class="hdr-tag-inner">
                 <span class="tag-line-1">Live Development Intelligence</span>
                 <span class="tag-line-2">Broward County</span>
@@ -256,7 +239,7 @@
         <div class="pip-date-lbl">MONDAY, APRIL 6</div>
         <div class="pip">
             <div class="pip-t">Regular City Commission Meeting</div>
-            <p class="pip-board" style="font-size: 11px; margin-top: 4px; color: var(--t3); letter-spacing: 1px; font-family: var(--mono)">HOLLYWOOD CITY COMMISSION</p>
+            <p style="font-size: 11px; margin-top: 4px; color: var(--t3); letter-spacing: 1px; font-family: var(--mono)">HOLLYWOOD CITY COMMISSION</p>
             <p class="pip-p" style="margin-top: 12px">High-visibility items frequently appear here, including beach corridor, hospitality, and entitlement matters.</p>
         </div>
     </div>
@@ -264,19 +247,10 @@
         <div class="pip-date-lbl">TUESDAY, APRIL 14</div>
         <div class="pip">
             <div class="pip-t">City Commission Meeting</div>
-            <p class="pip-board" style="font-size: 11px; margin-top: 4px; color: var(--t3); letter-spacing: 1px; font-family: var(--mono)">POMPANO BEACH COMMISSION</p>
+            <p style="font-size: 11px; margin-top: 4px; color: var(--t3); letter-spacing: 1px; font-family: var(--mono)">POMPANO BEACH COMMISSION</p>
             <p class="pip-p" style="margin-top: 12px">Oceanfront and luxury corridor topics frequently appear, along with residential and maintenance proposals.</p>
         </div>
     </div>
-    <div class="pip-container">
-        <div class="pip-date-lbl">TUESDAY, APRIL 21</div>
-        <div class="pip">
-            <div class="pip-t">City Commission Conference / Workshop</div>
-            <p class="pip-board" style="font-size: 11px; margin-top: 4px; color: var(--t3); letter-spacing: 1px; font-family: var(--mono)">FORT LAUDERDALE CITY COMMISSION</p>
-            <p class="pip-p" style="margin-top: 12px">Budget and planning sessions often preview larger downtown and waterfront development activity.</p>
-        </div>
-    </div>
-
     <p style="font-size:14px;color:var(--t3);text-align:center;margin-top:32px">Updated weekly from public calendars • Agendas typically posted 5–7 days in advance</p>
 </section>
 <hr class="sec-div">
@@ -341,11 +315,10 @@ function esc(s){var d=document.createElement('div');d.textContent=s||'';return d
         var has=!!p.feature_image,ex=p.custom_excerpt||p.excerpt||'',url=p.url||(GH+'/'+p.slug+'/');
         var a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';
         a.className='bc'+(has?' bc-has-img':'');
-        var imgHtml = has ? '<div class="bc-img"><img src="'+esc(p.feature_image)+'" alt="" loading="lazy"></div>' : '';
         var bodyOpen = '<div class="bc-body">';
         var bodyClose = '</div>';
         if(ex.length < 50) { ex = ex + " Detailed signal tracking indicates active movement in the immediate area. Permit filings and entity associations suggest expanding scope beyond routine maintenance."; }
-        a.innerHTML = imgHtml + bodyOpen +
+        a.innerHTML = bodyOpen +
             '<div class="bc-hd"><span class="bc-tag">'+esc(LBL[i]||'SIGNAL')+'</span><span class="acc acc-open">Open</span></div>'+
             '<h3 class="bc-title">'+esc(p.title)+'</h3>'+
             '<p class="bc-ex">'+esc(ex)+'</p>'+
