@@ -160,7 +160,9 @@
         .hero h1{font-size:clamp(26px,7vw,32px);margin-bottom:20px}
         .hero-sub{margin-bottom:28px}
         .hero-ctas{flex-direction:column;align-items:stretch;gap:12px}
-        .btn-gold,.btn-out,.btn-cyan{justify-content:center;text-align:center;padding:15px 24px}
+        /* Hiding redundant gold button on mobile */
+        .hero-ctas .btn-gold { display: none; }
+        .btn-out,.btn-cyan{justify-content:center;text-align:center;padding:15px 24px}
         .map-block{min-height:260px}
         .hero-metrics{margin-top:32px;gap:16px}
         
