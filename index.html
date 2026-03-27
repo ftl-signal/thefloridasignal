@@ -20,167 +20,96 @@
         --sans:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
         --mono:'JetBrains Mono','Fira Code','SF Mono',monospace;
         --r-s:6px;--r-m:10px;--r-l:14px;--r-xl:20px;
-        --shadow:0 4px 24px rgba(0,0,0,.28);
-        --glow-g:0 0 30px rgba(201,162,39,.15)
     }
     html{scroll-behavior:smooth}
     body{font-family:var(--sans);background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-    a{color:inherit;text-decoration:none}
-    .ann{display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 44px 12px 20px;background:linear-gradient(90deg,rgba(201,162,39,.08) 0%,rgba(201,162,39,.16) 50%,rgba(201,162,39,.08) 100%);position:relative;overflow:hidden;cursor:pointer;font-size:13.5px;text-align:center;line-height:1.4;color:var(--t1);font-weight:500}
+
+    /* Announcement Bar */
+    .ann{display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 20px;background:linear-gradient(90deg,rgba(201,162,39,.09) 0%,rgba(201,162,39,.18) 50%,rgba(201,162,39,.09) 100%);position:relative;cursor:pointer;font-size:13.5px;text-align:center;line-height:1.4;color:var(--t1);font-weight:500}
     .ann.hidden{display:none}
-    .ann::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(201,162,39,.25) 20%,rgba(201,162,39,.45) 50%,rgba(201,162,39,.25) 80%,transparent 100%)}
-    .ann-badge{background:linear-gradient(135deg,var(--gold),#d4aa30);color:#000;font-size:9.5px;font-weight:700;padding:4px 10px;border-radius:3px;text-transform:uppercase;letter-spacing:.7px;white-space:nowrap;flex-shrink:0}
-    .ann-text{color:#fff;font-size:13.5px}
-    .ann-text strong{color:#fff;font-weight:700}
-    .ann-arr{color:var(--gold);font-size:15px;flex-shrink:0;transition:transform .2s}
-    .ann:hover .ann-arr{transform:translateX(4px)}
-    .ann-x{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--t3);font-size:20px;cursor:pointer;padding:4px 8px;line-height:1;transition:color .2s;z-index:2}
+    .ann-badge{background:linear-gradient(135deg,var(--gold),#d4aa30);color:#000;font-size:9.5px;font-weight:700;padding:4px 10px;border-radius:3px;text-transform:uppercase;letter-spacing:.7px}
+    .ann-text{color:#fff}
+    .ann-text strong{color:#fff;font-weight:700;font-size:16px}
+    .ann-arr{color:var(--gold);font-size:15px;transition:transform .2s}
+    .ann-x{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--t3);font-size:20px;cursor:pointer;padding:4px 8px;line-height:1;transition:color .2s}
     .ann-x:hover{color:var(--t2)}
-    .hdr{position:sticky;top:0;z-index:1000;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(14,24,41,.84);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
-    .hdr.scrolled{background:rgba(14,24,41,.96);border-bottom-color:var(--bdr)}
-    .hdr-logo{display:flex;align-items:center}
-    .hdr-logo img{height:82px;width:auto;display:block;object-fit:contain;opacity:.97;margin-top:-4px}
-    .hdr-nav{display:flex;align-items:center;gap:24px}
-    .hdr-nav a{font-size:13.5px;font-weight:500;color:var(--t2);transition:color .2s}
+
+    /* Header */
+    .hdr{position:sticky;top:0;z-index:1000;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:rgba(14,24,41,.92);backdrop-filter:blur(20px);border-bottom:1px solid transparent}
+    .hdr.scrolled{background:rgba(14,24,41,.96)}
+    .hdr-logo img{height:52px;width:auto;object-fit:contain;opacity:.97}
+    .hdr-nav{display:flex;align-items:center;gap:16px}
+    .hdr-nav a{font-size:13.5px;font-weight:500;color:var(--t2);white-space:nowrap}
     .hdr-nav a:hover{color:var(--t1)}
-    .hdr-nav .cta-nav{background:var(--gold);color:#000;padding:10px 22px;border-radius:var(--r-s);font-weight:700;font-size:13px;transition:all .2s;box-shadow:0 0 14px rgba(201,162,39,.1)}
-    .hdr-nav .cta-nav:hover{background:var(--gold-b);transform:translateY(-1px)}
-    .btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#000;font-weight:700;font-size:14px;padding:13px 26px;border-radius:var(--r-m);border:none;cursor:pointer;transition:all .25s;box-shadow:var(--glow-g);font-family:var(--sans);white-space:nowrap}
-    .btn-gold:hover{background:var(--gold-b);transform:translateY(-2px);box-shadow:0 0 40px rgba(201,162,39,.25)}
-    .btn-gold svg{width:16px;height:16px;flex-shrink:0}
-    .btn-out{display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--t2);font-weight:500;font-size:13.5px;padding:13px 24px;border-radius:var(--r-m);border:1px solid var(--bdr-m);cursor:pointer;transition:all .25s;font-family:var(--sans);white-space:nowrap}
-    .btn-out:hover{color:var(--t1);border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.06)}
-    .btn-cyan{display:inline-flex;align-items:center;gap:6px;background:rgba(34,211,238,.08);color:var(--cyan);font-weight:600;font-size:13.5px;padding:13px 24px;border-radius:var(--r-m);border:1px solid rgba(34,211,238,.32);cursor:pointer;transition:all .25s;font-family:var(--sans);white-space:nowrap}
-    .btn-cyan:hover{color:#fff;border-color:rgba(34,211,238,.48);background:rgba(34,211,238,.20)}
-    .hero{max-width:1200px;margin:0 auto;padding:38px 24px 48px}
-    .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(34,211,238,.09);border:1px solid rgba(34,211,238,.25);border-radius:100px;padding:8px 18px;margin-bottom:16px;font-family:var(--mono);font-size:13px;font-weight:600;color:var(--cyan);letter-spacing:2px;text-transform:uppercase}
-    .live-dot{width:9px;height:9px;background:var(--green);border-radius:50%;animation:pulse 1.8s ease-in-out infinite;flex-shrink:0}
-    .hero h1{font-size:clamp(27px,4.6vw,46px);font-weight:800;line-height:1.08;letter-spacing:-1.1px;margin-bottom:12px;max-width:640px}
+    .hdr-nav .cta-nav{display:none} /* Hidden on mobile */
+
+    @media(min-width:768px){
+        .hdr{height:72px;padding:0 28px}
+        .hdr-logo img{height:86px;margin-top:-6px}
+        .hdr-nav .cta-nav{display:block;background:var(--gold);color:#000;padding:10px 22px;border-radius:6px;font-weight:700;font-size:13px}
+        .ann{padding:14px 44px 14px 20px;min-height:52px}
+    }
+
+    /* Hero */
+    .hero{max-width:1140px;margin:0 auto;padding:28px 20px 40px}
+    .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(34,211,238,.09);border:1px solid rgba(34,211,238,.25);border-radius:100px;padding:7px 16px;font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--cyan);letter-spacing:2px;text-transform:uppercase}
+    .live-dot{width:9px;height:9px;background:var(--green);border-radius:50%;animation:pulse 1.8s ease-in-out infinite}
+    .hero h1{font-size:clamp(26px,5.8vw,42px);font-weight:800;line-height:1.1;letter-spacing:-0.9px;margin-bottom:12px}
     .hero h1 .hl{color:var(--gold)}
-    .hero-sub{font-size:clamp(14px,1.6vw,16px);color:var(--t2);max-width:520px;line-height:1.55;margin-bottom:22px}
-    .hero-ctas{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-    .map-wrap{margin-top:24px;max-width:920px;margin-left:auto;margin-right:auto}
-    .map-block{position:relative;border-radius:var(--r-l);overflow:hidden;background:radial-gradient(ellipse at 60% 40%,#1a3050,#0e1829 70%);border:1.5px solid rgba(34,211,238,.22);box-shadow:0 0 0 1px rgba(34,211,238,.06),0 0 30px rgba(34,211,238,.05),0 0 60px rgba(34,211,238,.02),0 8px 32px rgba(0,0,0,.3);min-height:260px;cursor:pointer;animation:map-glow 5s ease-in-out infinite;transition:border-color .4s,box-shadow .4s}
-    .map-block:hover{border-color:rgba(34,211,238,.38);box-shadow:0 0 0 1px rgba(34,211,238,.12),0 0 50px rgba(34,211,238,.1),0 0 100px rgba(34,211,238,.04),0 8px 36px rgba(0,0,0,.35);animation-play-state:paused}
-    @keyframes map-glow{0%,100%{border-color:rgba(34,211,238,.22);box-shadow:0 0 0 1px rgba(34,211,238,.06),0 0 30px rgba(34,211,238,.05),0 0 60px rgba(34,211,238,.02),0 8px 32px rgba(0,0,0,.3)}50%{border-color:rgba(34,211,238,.34);box-shadow:0 0 0 1px rgba(34,211,238,.1),0 0 44px rgba(34,211,238,.08),0 0 80px rgba(34,211,238,.03),0 8px 32px rgba(0,0,0,.3)}}
-    .map-block iframe{position:absolute;inset:0;width:100%;height:100%;border:none;pointer-events:none;filter:brightness(.64) contrast(1.28) saturate(1.52)}
-    .map-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,24,41,0) 0%,rgba(14,24,41,.15) 100%);display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--t1);transition:background .3s}
-    .map-block:hover .map-ov{background:linear-gradient(180deg,rgba(14,24,41,0) 0%,rgba(14,24,41,.08) 100%)}
-    .map-cue{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#fff;padding:14px 36px;border:1.5px solid rgba(34,211,238,.4);border-radius:100px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(14,24,41,.42);animation:cue-pulse 3.5s ease-in-out infinite;transition:background .3s,transform .3s;text-shadow:0 1px 18px rgba(34,211,238,.15)}
-    .map-block:hover .map-cue{background:rgba(14,24,41,.52);transform:scale(1.03)}
-    @keyframes cue-pulse{0%,100%{border-color:rgba(34,211,238,.35);box-shadow:0 0 8px rgba(34,211,238,.04)}50%{border-color:rgba(34,211,238,.7);box-shadow:0 0 28px rgba(34,211,238,.1)}}
-    .map-bug{position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:6px;z-index:3;pointer-events:none;background:rgba(14,24,41,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:6px 14px;border-radius:7px;border:1px solid rgba(255,255,255,.14);animation:bug-throb 2.2s ease-in-out infinite}
-    .map-bug-logo{height:18px;width:auto;opacity:.97;display:block}
+    .hero-sub{font-size:15px;color:var(--t2);max-width:520px;line-height:1.55;margin-bottom:22px}
+    .hero-ctas{display:flex;flex-direction:column;gap:12px}
+
+    /* Map */
+    .map-wrap{margin-top:20px}
+    .map-block{position:relative;border-radius:14px;overflow:hidden;background:radial-gradient(ellipse at 60% 40%,#1a3050,#0e1829 70%);border:1.5px solid rgba(34,211,238,.22);min-height:210px}
+    .map-bug{position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:6px;z-index:3;background:rgba(14,24,41,.85);backdrop-filter:blur(16px);padding:5px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.16);animation:bug-throb 2.2s ease-in-out infinite}
+    .map-bug-logo{height:17px}
     .map-bug-text{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff}
-    @keyframes bug-throb{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(34,211,238,.4)}50%{transform:scale(1.04);box-shadow:0 0 0 8px rgba(34,211,238,.15)}}
-    .hero-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
-    .hm{padding:14px 16px;background:var(--bg-card);border:1px solid var(--bdr);border-radius:var(--r-m)}
-    .hm-v{font-family:var(--mono);font-size:24px;font-weight:700;line-height:1.15}
+    .map-block iframe{position:absolute;inset:0;width:100%;height:100%;border:none;filter:brightness(.64) contrast(1.28) saturate(1.52)}
+    .map-ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+    .map-cue{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#fff;padding:12px 28px;border:1.5px solid rgba(34,211,238,.45);border-radius:100px;background:rgba(14,24,41,.45);backdrop-filter:blur(12px)}
+
+    /* Metrics */
+    .hero-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+    .hm{padding:12px 14px;background:var(--bg-card);border:1px solid var(--bdr);border-radius:10px}
+    .hm-v{font-family:var(--mono);font-size:22px;font-weight:700}
     .hm-v.gold{color:var(--gold)}
-    .hm-l{font-size:12px;color:var(--t3);letter-spacing:.4px;text-transform:uppercase;font-weight:500;margin-top:3px}
-    .sec{max-width:1200px;margin:0 auto;padding:64px 24px}
-    .sec-lbl{font-family:var(--mono);font-size:23.5px;color:var(--cyan-b);letter-spacing:3.2px;text-transform:uppercase;font-weight:700;margin-bottom:12px}
-    .sec-t{font-size:clamp(26px,3.8vw,36px);font-weight:700;letter-spacing:-.5px;margin-bottom:8px}
-    .sec-sub{font-size:15px;color:var(--t2);max-width:560px;line-height:1.6;margin-bottom:36px}
-    .sec-div{border:0;border-top:1px solid var(--bdr);margin:0;max-width:1200px;margin-left:auto;margin-right:auto}
-    #briefs,#meetings,#subscribe{scroll-margin-top:96px}
-    .bc{background:var(--bg-card);border:1px solid var(--bdr);box-shadow:0 1px 4px rgba(0,0,0,.12);border-radius:var(--r-l);overflow:hidden;transition:all .3s;display:flex;flex-direction:column;position:relative}
-    .bc:hover{border-color:var(--bdr-m);transform:translateY(-2px);box-shadow:var(--shadow)}
-    .bc:not(.bc-has-img){padding:24px}
-    .bc-img{height:180px;overflow:hidden;flex-shrink:0;background:var(--bg-card-h);position:relative}
-    .bc-img::after{content:'';position:absolute;inset:0;background:rgba(14,24,41,.1);pointer-events:none}
-    .bc-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
-    .bc-has-img:hover .bc-img img{transform:scale(1.03)}
-    .bc-body{padding:20px 24px 24px;display:flex;flex-direction:column;flex:1}
-    .bc-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:8px}
-    .bc-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gold)}
-    .acc{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:4px;flex-shrink:0}
-    .acc-open{background:var(--green-d);color:var(--green)}
-    .bc-title{font-size:17px;font-weight:600;line-height:1.4;margin-bottom:8px}
-    .bc-ex{font-size:14.5px;color:var(--t2);line-height:1.6;flex:1;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-    .bc-ft{display:flex;align-items:center;justify-content:flex-end;margin-top:auto;padding-top:14px}
-    .bc-link{font-size:13px;color:var(--gold);font-weight:600;display:inline-flex;align-items:center;gap:4px;transition:opacity .2s}
-    .bc-link:hover{opacity:.75}
-    .bc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-    .pip-track{display:flex;gap:14px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--bdr-m) transparent}
-    .pip-track::-webkit-scrollbar{height:4px}
-    .pip-track::-webkit-scrollbar-track{background:transparent}
-    .pip-track::-webkit-scrollbar-thumb{background:var(--bdr-m);border-radius:2px}
-    .pip{min-width:300px;max-width:360px;background:var(--bg-card);border:1px solid var(--bdr);box-shadow:0 1px 4px rgba(0,0,0,.12);border-radius:var(--r-m);padding:20px;flex-shrink:0;scroll-snap-align:start;transition:border-color .3s}
-    .pip:hover{border-color:var(--bdr-m)}
-    .pip-date{font-family:var(--mono);font-size:12.5px;color:var(--cyan);font-weight:500;margin-bottom:4px}
-    .pip-board{font-family:var(--mono);font-size:12px;color:#cfd8dc;letter-spacing:1px;text-transform:uppercase;font-weight:600;margin-bottom:12px}
+    .hm-l{font-size:11.5px;color:var(--t3);text-transform:uppercase}
+
+    /* Sections */
+    .sec{max-width:1140px;margin:0 auto;padding:48px 20px}
+    .sec-lbl{font-family:var(--mono);font-size:21px;color:var(--cyan-b);letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:12px}
+    .sec-t{font-size:clamp(24px,4.8vw,34px);font-weight:700;letter-spacing:-0.5px;margin-bottom:8px}
+    .sec-sub{font-size:15px;color:var(--t2);max-width:520px;line-height:1.6;margin-bottom:32px}
+
+    /* Pipeline */
+    .pip{background:var(--bg-card);border:1px solid var(--bdr);border-radius:10px;padding:20px;margin-bottom:16px}
+    .pip-date{font-family:var(--mono);font-size:14.2px;color:var(--cyan);font-weight:600;margin-bottom:6px;animation:pulse-date 3s ease-in-out infinite}
+    .pip-board{font-family:var(--mono);font-size:12.4px;color:#cfd8dc;letter-spacing:1.2px;text-transform:uppercase;font-weight:600;margin-bottom:10px}
     .pip-t{font-size:16px;font-weight:600;margin-bottom:8px;line-height:1.4}
     .pip-p{font-size:14.5px;color:var(--t2);line-height:1.55}
-    .me-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-    .me{background:var(--bg-card);border:1px solid var(--bdr);border-left:2px solid var(--cyan);border-radius:2px var(--r-m) var(--r-m) 2px;padding:22px 24px;transition:border-color .3s}
-    .me:hover{border-color:var(--bdr-m);border-left-color:inherit}
-    .me.me-gold{border-left-color:var(--gold)}
-    .me.me-green{border-left-color:var(--green)}
-    .me.me-muted{border-left-color:var(--t3)}
-    .me-t{font-size:16px;font-weight:600;margin-bottom:7px}
-    .me-p{font-size:14.5px;color:var(--t2);line-height:1.62}
-    .cta-box{background:var(--bg-card);border:1px solid var(--bdr-m);border-top:2px solid rgba(201,162,39,.32);border-radius:var(--r-xl);padding:42px 40px;max-width:780px;margin:0 auto}
-    .cta-inner{display:flex;align-items:center;gap:40px}
-    .cta-copy{flex:1;min-width:0}
-    .cta-copy .sec-lbl{margin-bottom:5px}
-    .cta-copy .sec-t{margin-bottom:10px}
-    .cta-desc{font-size:15.4px;color:var(--t2);line-height:1.65}
-    .cta-actions{display:flex;flex-direction:column;gap:12px;flex-shrink:0}
-    .su-note{font-size:12.4px;color:var(--t3);margin-top:20px;text-align:center}
-    .ftr{text-align:center;padding:36px 24px;border-top:1px solid var(--bdr)}
-    .ftr p{font-size:12px;color:var(--t3);line-height:1.8}
-    .ftr a{color:var(--t2);transition:color .2s}
-    .ftr a:hover{color:var(--t1)}
-    .sk{background:var(--bg-card);border:1px solid var(--bdr);border-radius:var(--r-l);overflow:hidden}
-    .sk-pad{padding:20px}
-    .sk-l{height:10px;border-radius:5px;background:linear-gradient(90deg,#172438 25%,#1e3050 50%,#172438 75%);background-size:200% 100%;animation:shimmer 1.8s ease-in-out infinite;margin-bottom:10px}
-    .sk-l.w40{width:40%}.sk-l.w60{width:60%}.sk-l.w80{width:80%}.sk-l.w100{width:100%}
-    .sk-l.h16{height:16px}.sk-l.mt8{margin-top:8px}.sk-l.mt12{margin-top:12px}
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-    @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-    .fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
-    .fade-in.vis{opacity:1;transform:translateY(0)}
 
-    /* Mobile refinements */
-    @media(max-width:767px){
-        .hdr{padding:0 16px;height:56px}
-        .hdr-logo img{height:48px;margin-top:0}
-        .hdr-nav{gap:14px}
-        .hdr-nav a:not(.cta-nav){display:none}
-        .hero{padding:28px 18px 40px}
-        .hero-ctas{flex-direction:column;align-items:stretch;gap:12px}
-        .btn-gold,.btn-out,.btn-cyan{justify-content:center;text-align:center}
-        .map-block{min-height:220px;max-height:280px}
-        .map-cue{font-size:10.5px;padding:12px 24px;letter-spacing:2.5px}
-        .sec-lbl{font-size:20.5px;letter-spacing:2.8px}
-        .bc-grid{grid-template-columns:1fr}
-        .bc-img{height:138px}
-        .bc-body{padding:18px 20px 20px}
-        .bc-ex{-webkit-line-clamp:3}
-        .me-grid{grid-template-columns:1fr}
-        .me{padding:20px 22px}
-        .pip-track{flex-direction:column;gap:14px}
-        .pip{min-width:100%;max-width:100%}
-        .cta-box{padding:32px 24px}
-        .cta-inner{flex-direction:column;gap:24px;text-align:center}
-        .cta-actions{align-items:stretch;width:100%}
-        .cta-actions .btn-gold,.cta-actions .btn-out{justify-content:center;text-align:center}
-        .sec{padding:52px 18px}
-        .map-bug{top:10px;left:10px;padding:5px 11px}
-        .map-bug-logo{height:15px}
-        .map-bug-text{font-size:9px;letter-spacing:1.6px}
-        .ann{padding:10px 38px 10px 16px;gap:8px;font-size:12.5px;min-height:44px}
-        .hero-badge{font-size:12px;padding:7px 16px}
-    }
-    @media(max-width:480px){
-        .hero{padding:22px 14px 34px}
-        .hero h1{letter-spacing:-.8px}
-        .sec{padding:44px 14px}
-        .sec-lbl{font-size:18.5px;letter-spacing:2.4px}
-        .hm{padding:10px 12px}
-        .hm-v{font-size:22px}
-        .bc-img{height:128px}
+    /* Other sections */
+    .bc-grid{display:grid;grid-template-columns:1fr;gap:16px}
+    .me-grid{display:grid;grid-template-columns:1fr;gap:14px}
+    .cta-box{background:var(--bg-card);border:1px solid var(--bdr-m);border-top:2px solid rgba(201,162,39,.32);border-radius:20px;padding:32px 24px}
+    .cta-inner{display:flex;flex-direction:column;gap:24px;text-align:center}
+    .cta-actions{align-items:stretch}
+
+    /* Animations */
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+    @keyframes bug-throb{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+    @keyframes pulse-date{0%,100%{opacity:1}50%{opacity:.78}}
+
+    /* Desktop improvements */
+    @media(min-width:768px){
+        .hero{padding:38px 24px 48px}
+        .sec{padding:64px 24px}
+        .hero-ctas{flex-direction:row}
+        .bc-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+        .me-grid{grid-template-columns:repeat(2,1fr)}
+        .pip{min-width:320px;margin-bottom:0}
+        .pip-track{display:flex;gap:16px;overflow-x:auto;padding-bottom:16px}
     }
     </style>
 </head>
@@ -189,8 +118,9 @@
     <span class="ann-badge">FOUNDING RATE</span>
     <span class="ann-text">First 100 Founding Members: <strong>$49/year</strong> — full signal access</span>
     <span class="ann-arr">→</span>
-    <button class="ann-x" id="annClose" aria-label="Dismiss announcement">&times;</button>
+    <button class="ann-x" id="annClose" aria-label="Dismiss announcement">×</button>
 </div>
+
 <header class="hdr" id="hdr">
     <a href="/" class="hdr-logo"><img src="logo.png" alt="The Florida Signal"></a>
     <nav class="hdr-nav">
@@ -199,19 +129,18 @@
         <a href="#subscribe" class="cta-nav">Become a Founder</a>
     </nav>
 </header>
+
 <section class="hero">
     <div class="hero-badge"><span class="live-dot"></span> LIVE INTELLIGENCE — BROWARD COUNTY</div>
     <h1>Development Signals<br><span class="hl">Before They Hit the Market</span></h1>
     <p class="hero-sub">Permits, entity filings, and capital movement across Fort Lauderdale and Broward — direct from public records.</p>
     <div class="hero-ctas">
-        <a href="https://ftl-signal.github.io/broward-intelligence-map/" target="_blank" rel="noopener" class="btn-gold">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-            Open the Signal Map
-        </a>
+        <a href="https://ftl-signal.github.io/broward-intelligence-map/" target="_blank" rel="noopener" class="btn-gold">Open the Signal Map</a>
         <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-cyan">Get the Free Intel Brief →</a>
     </div>
+
     <div class="map-wrap">
-        <div class="map-block" id="mapBlock">
+        <div class="map-block">
             <div class="map-bug">
                 <img src="logo.png" alt="" class="map-bug-logo">
                 <span class="map-bug-text">LIVE SIGNALS</span>
@@ -228,39 +157,68 @@
         </div>
     </div>
 </section>
+
 <hr class="sec-div">
+
 <section class="sec fade-in" id="briefs">
     <div class="sec-lbl">INTELLIGENCE BRIEFS</div>
     <h2 class="sec-t">Signals We're Tracking Now</h2>
     <p class="sec-sub">Verified public-record intelligence — published as signals are detected across Fort Lauderdale and Broward County.</p>
     <div class="bc-grid" id="ghostBriefs"></div>
 </section>
+
 <hr class="sec-div">
+
 <section class="sec fade-in" id="meetings">
     <div class="sec-lbl">PROJECT PIPELINE</div>
-    <h2 class="sec-t">Your Meetings</h2>
-    <div class="pip-track">
+    <h2 class="sec-t">Upcoming Meetings</h2>
+    <p class="sec-sub">Key public meetings across Broward County. This week is quiet after spring break. Next confirmed meetings start early April.</p>
+    
+    <div style="margin-bottom:32px">
+        <div style="color:var(--cyan);font-family:var(--mono);font-size:13.5px;letter-spacing:1.8px;margin-bottom:10px;font-weight:600">MONDAY, APRIL 6</div>
         <div class="pip">
-            <div class="pip-date">Wed Mar 25 · 1:00 PM</div>
-            <div class="pip-board">Hollywood City Commission</div>
-            <h3 class="pip-t">Hollywood Beach hotel site returns to the board</h3>
-            <p class="pip-p">High-visibility hospitality positioning could re-enter the entitlement pipeline if movement resumes.</p>
-        </div>
-        <div class="pip">
-            <div class="pip-date">Tue Mar 24 · 6:00 PM</div>
-            <div class="pip-board">Pompano Beach Commission</div>
-            <h3 class="pip-t">Pompano oceanfront maintenance supports luxury corridor</h3>
-            <p class="pip-p">A1A upkeep supports the broader oceanfront upgrade story around new residential product.</p>
-        </div>
-        <div class="pip">
-            <div class="pip-date">Thu Mar 26 · 10:00 AM</div>
-            <div class="pip-board">Broward County Commission</div>
-            <h3 class="pip-t">Broward agenda crossover: civic &amp; hospitality movement</h3>
-            <p class="pip-p">When county process, procurement timing, and permit activity overlap, the odds of a meaningful execution signal rise fast.</p>
+            <div class="pip-date">1:00 PM</div>
+            <div class="pip-board">HOLLYWOOD CITY COMMISSION</div>
+            <h3 class="pip-t">Regular City Commission Meeting</h3>
+            <p class="pip-p">High-visibility items often surface here. Monitor for beach corridor, hospitality, or entitlement updates.</p>
         </div>
     </div>
+
+    <div style="margin-bottom:32px">
+        <div style="color:var(--cyan);font-family:var(--mono);font-size:13.5px;letter-spacing:1.8px;margin-bottom:10px;font-weight:600">TUESDAY, APRIL 14</div>
+        <div class="pip">
+            <div class="pip-date">1:00 PM</div>
+            <div class="pip-board">POMPANO BEACH COMMISSION</div>
+            <h3 class="pip-t">City Commission Meeting</h3>
+            <p class="pip-p">Oceanfront and luxury corridor topics frequently appear. Watch for maintenance or residential product signals.</p>
+        </div>
+    </div>
+
+    <div style="margin-bottom:32px">
+        <div style="color:var(--cyan);font-family:var(--mono);font-size:13.5px;letter-spacing:1.8px;margin-bottom:10px;font-weight:600">TUESDAY, APRIL 21</div>
+        <div class="pip">
+            <div class="pip-date">11:30 AM (Workshop)</div>
+            <div class="pip-board">FORT LAUDERDALE CITY COMMISSION</div>
+            <h3 class="pip-t">City Commission Conference / Joint Workshop</h3>
+            <p class="pip-p">Budget and planning workshops often preview larger development signals. Monitor for downtown or waterfront activity.</p>
+        </div>
+    </div>
+
+    <div style="margin-bottom:32px">
+        <div style="color:var(--cyan);font-family:var(--mono);font-size:13.5px;letter-spacing:1.8px;margin-bottom:10px;font-weight:600">TUESDAY, APRIL 28</div>
+        <div class="pip">
+            <div class="pip-date">7:00 PM</div>
+            <div class="pip-board">WILTON MANORS CITY COMMISSION</div>
+            <h3 class="pip-t">Regular City Commission Meeting</h3>
+            <p class="pip-p">Standard monthly agenda. Watch for local zoning, small-scale development, or hospitality items.</p>
+        </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--t3);text-align:center;margin-top:24px">Updated weekly from public calendars • Agendas usually posted 5–7 days prior</p>
 </section>
+
 <hr class="sec-div">
+
 <section class="sec fade-in" id="method">
     <div class="sec-lbl">METHOD</div>
     <h2 class="sec-t">How Signals Are Detected</h2>
@@ -268,88 +226,65 @@
     <div class="me-grid">
         <div class="me">
             <h3 class="me-t">Permit Clustering</h3>
-            <p class="me-p">Multiple filings targeting a single property indicate movement beyond routine maintenance — particularly when permit types escalate in scope and value.</p>
+            <p class="me-p">Multiple filings targeting a single property indicate movement beyond routine maintenance.</p>
         </div>
         <div class="me me-gold">
             <h3 class="me-t">Declared Value</h3>
-            <p class="me-p">Construction value thresholds separate minor repairs from significant capital deployment. We flag activity that crosses meaningful dollar thresholds.</p>
+            <p class="me-p">Construction value thresholds separate minor repairs from significant capital deployment.</p>
         </div>
         <div class="me me-green">
             <h3 class="me-t">Entity Movement</h3>
-            <p class="me-p">Developer, owner, and contractor names surface patterns early — especially when the same entities converge on a single corridor or submarket.</p>
+            <p class="me-p">Developer, owner, and contractor names surface patterns early.</p>
         </div>
         <div class="me me-muted">
             <h3 class="me-t">Execution Shift</h3>
-            <p class="me-p">The critical filter: do records show genuine movement from planning to delivery, or just early-stage positioning? We separate intent from execution.</p>
+            <p class="me-p">Do records show genuine movement from planning to delivery?</p>
         </div>
     </div>
 </section>
+
 <hr class="sec-div">
+
 <section class="sec fade-in" id="subscribe">
     <div class="cta-box">
         <div class="cta-inner">
             <div class="cta-copy">
                 <div class="sec-lbl">MEMBERSHIP</div>
-                <h2 class="sec-t" style="margin-bottom:10px">Signals Before They're News</h2>
-                <p class="cta-desc">Verified permit clusters, entity convergence, and capital deployment signals across Broward — early-position intelligence designed for developers, brokers, investors, and attorneys who consistently move first on public-record movement.</p>
+                <h2 class="sec-t">Signals Before They're News</h2>
+                <p class="cta-desc">Verified permit clusters, entity convergence, and capital deployment signals across Broward — early-position intelligence for developers, brokers, investors, and attorneys.</p>
             </div>
             <div class="cta-actions">
                 <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-gold">Get the Free Intel Brief</a>
-                <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-out">Become a Founding Member — $49/year</a>
+                <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-out">Become a Founding Member — <strong>$49/year</strong></a>
             </div>
         </div>
-        <p class="su-note">Public records only. Verified patterns. Pause or cancel access anytime.</p>
+        <p class="su-note">Public records only. Verified patterns. Pause or cancel anytime.</p>
     </div>
 </section>
+
 <footer class="ftr">
-    <p>© 2026 The Florida Signal · Data sourced from public records<br>
-    <a href="https://ftl-signal.github.io/broward-intelligence-map/" target="_blank" rel="noopener">Signal Map</a> ·
-    <a href="https://thefloridasignalbrief.ghost.io" target="_blank" rel="noopener">Briefs</a> ·
-    <a href="#subscribe">Membership</a></p>
+    <p>© 2026 The Florida Signal · Data sourced from public records</p>
 </footer>
+
 <script>
 (function(){
-    var bar=document.getElementById('annBar'),btn=document.getElementById('annClose');
-    var URL='https://thefloridasignalbrief.ghost.io/#/portal/signup';
-    try{if(localStorage.getItem('tfs-ann-hide'))bar.classList.add('hidden')}catch(e){}
-    bar.addEventListener('click',function(e){if(e.target===btn||btn.contains(e.target))return;window.open(URL,'_blank','noopener')});
-    btn.addEventListener('click',function(e){e.stopPropagation();bar.classList.add('hidden');try{localStorage.setItem('tfs-ann-hide','1')}catch(e){}});
+    var bar = document.getElementById('annBar');
+    var btn = document.getElementById('annClose');
+    var URL = 'https://thefloridasignalbrief.ghost.io/#/portal/signup';
+    try{if(localStorage.getItem('tfs-ann-hide')) bar.classList.add('hidden')}catch(e){}
+    bar.addEventListener('click', function(e){
+        if(e.target === btn || btn.contains(e.target)) return;
+        window.open(URL, '_blank', 'noopener');
+    });
+    btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        bar.classList.add('hidden');
+        try{localStorage.setItem('tfs-ann-hide','1')}catch(e){}
+    });
 })();
 (function(){
-    var h=document.getElementById('hdr');
-    window.addEventListener('scroll',function(){h.classList.toggle('scrolled',window.scrollY>10)},{passive:true});
-})();
-(function(){
-    var o=new IntersectionObserver(function(ents){ents.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');o.unobserve(e.target)}})},{threshold:.08});
-    document.querySelectorAll('.fade-in').forEach(function(el){o.observe(el)});
-})();
-function esc(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
-(async function(){
-    var GH='https://thefloridasignalbrief.ghost.io',GK='535f4f2c2e3ee18574a67395b1';
-    var el=document.getElementById('ghostBriefs');
-    var LBL=['THE LATEST SIGNAL','DEVELOPING NOW','NEW INTEL'];
-    function card(p,i){
-        var has=!!p.feature_image,ex=p.custom_excerpt||p.excerpt||'',url=p.url||(GH+'/'+p.slug+'/');
-        var a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';
-        a.className='bc'+(has?' bc-has-img':'');
-        var img=has?'<div class="bc-img"><img src="'+esc(p.feature_image)+'" alt="" loading="lazy"></div>':'';
-        var bo=has?'<div class="bc-body">':'',bc=has?'</div>':'';
-        a.innerHTML=img+bo+
-            '<div class="bc-hd"><span class="bc-tag">'+esc(LBL[i]||'SIGNAL')+'</span><span class="acc acc-open">Open</span></div>'+
-            '<h3 class="bc-title">'+esc(p.title)+'</h3>'+
-            '<p class="bc-ex">'+esc(ex)+'</p>'+
-            '<div class="bc-ft"><span class="bc-link">Read brief →</span></div>'+bc;
-        return a;
-    }
-    try{
-        var r=await fetch(GH+'/ghost/api/content/posts/?key='+GK+'&limit=3&include=tags&fields=title,slug,excerpt,published_at,custom_excerpt,url,visibility,feature_image');
-        if(!r.ok)throw new Error(r.status);
-        var d=await r.json(),posts=d.posts||[];if(!posts.length)throw new Error('empty');
-        el.innerHTML='';posts.forEach(function(p,i){el.appendChild(card(p,i))});
-    }catch(err){
-        console.warn('Ghost:',err);
-        el.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:48px 20px"><p style="color:var(--t3);font-size:14px">Latest briefs at <a href="'+GH+'" target="_blank" rel="noopener" style="color:var(--gold);font-weight:600">thefloridasignalbrief.ghost.io</a></p></div>';
-    }
+    var h = document.getElementById('hdr');
+    window.addEventListener('scroll', function(){ h.classList.toggle('scrolled', window.scrollY > 10); }, {passive:true});
 })();
 </script>
 </body>
