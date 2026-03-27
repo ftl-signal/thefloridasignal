@@ -160,7 +160,6 @@
         .map-block{min-height:260px}
         .hero-metrics{margin-top:32px;gap:16px}
         
-        /* Mobile Specific Brief Styling - Brighter Cyan Borders */
         .bc { border: 1px solid rgba(34, 211, 238, 0.4); box-shadow: inset 0 0 15px rgba(34, 211, 238, 0.05); }
         .bc-grid { gap: 24px; }
 
@@ -172,6 +171,23 @@
         .cta-inner{grid-template-columns:1fr;gap:32px}
         .cta-box{padding:40px 20px}
         .pip{padding:28px 20px}
+    }
+    @media(max-width:480px){
+        .hdr{height:60px}
+        .hdr-nav .cta-nav{padding:12px 0;font-size:14.5px}
+        .ann-mob-logo{height:68px}
+        
+        .hero{padding:32px 14px 48px}
+        .hero-badge{font-size:14px;padding:8px 16px;margin-bottom:16px}
+        .hero h1{font-size:clamp(26px,7vw,32px)}
+        .hero-metrics{margin-top:32px;gap:12px}
+        
+        .sec{padding:56px 14px}
+        .sec-lbl{font-size:15px}
+        .hm-v{font-size:24px}
+        .bc-img{height:160px}
+        .cta-box{padding:32px 16px}
+        .pip{padding:24px 20px}
     }
     </style>
     <script>
@@ -278,7 +294,7 @@
 <section class="sec fade-in" id="method">
     <div class="sec-lbl">METHOD</div>
     <h2 class="sec-t">How Signals Are Detected</h2>
-    <p class="sec-sub">Every signal passes four verification filters before publication. Only patterns drawn from verified public records.</p>
+    <p class="sec-sub">Each signal is reviewed through four verification filters before publication and built only from verified public records.</p>
     <div class="me-grid">
         <div class="me">
             <h3 class="me-t">Permit Clustering</h3>
