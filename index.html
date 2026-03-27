@@ -27,7 +27,7 @@
     body{font-family:var(--sans);background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
     a{color:inherit;text-decoration:none}
     
-    .ann{display:flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:14px 20px;background: #0b1424; border-bottom: 1px solid var(--bdr); position:relative;cursor:pointer;font-size:15.5px;text-align:center;line-height:1.4;color:#fff;font-weight:600;letter-spacing:0.3px}
+    .ann{display:flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:14px 20px;background: #0b1424; border-bottom: 1px solid var(--bdr); position:relative;overflow:hidden;cursor:pointer;font-size:15.5px;text-align:center;line-height:1.4;color:#fff;font-weight:600;letter-spacing:0.3px}
     .ann-text strong{color:var(--gold-b);font-weight:800}
     .ann-arr{color:var(--gold);font-size:16px;flex-shrink:0;transition:transform .2s}
     
@@ -37,10 +37,9 @@
     .hdr-logo{display:flex;align-items:center;height:100%}
     .hdr-logo img{height:110px;width:auto;display:block;object-fit:contain;opacity:.97;margin-top:8px}
     
-    .hdr-tag{display:flex;align-items:center;margin-left:24px;padding-left:24px;border-left:1px solid var(--bdr);height:60px;gap:14px}
-    .tag-live-dot{width:10px;height:10px;background:var(--green);border-radius:50%;animation:pulse 1.8s ease-in-out infinite;opacity:0.8;flex-shrink:0}
-    .tag-line-1{font-size:22px;font-weight:800;color:#e2e8f0;letter-spacing:-0.5px;text-transform:uppercase;line-height:1.1}
-    .tag-line-2{font-size:20px;font-family:var(--mono);color:var(--cyan);letter-spacing:1px;text-transform:uppercase;line-height:1.1;margin-top:2px;opacity:0.7}
+    .hdr-tag{display:flex;align-items:center;margin-left:24px;padding-left:24px;border-left:1px solid var(--bdr);height:40px}
+    .tag-line-1{font-size:11px;font-weight:800;color:#fff;letter-spacing:1px;text-transform:uppercase;line-height:1.2;display:block}
+    .tag-line-2{font-size:10px;font-family:var(--mono);color:var(--cyan);letter-spacing:2px;text-transform:uppercase;line-height:1.2;margin-top:2px;opacity:0.8;display:block}
 
     .hdr-nav{display:flex;align-items:center;gap:32px}
     .hdr-nav a{font-size:14px;font-weight:500;color:var(--t2);transition:color .2s}
@@ -68,8 +67,7 @@
     .sec{max-width:920px;margin:0 auto;padding:80px 24px}
     .sec-lbl{font-family:var(--mono);font-size:22px;color:var(--cyan-b);letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:16px}
     .sec-t{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.8px;margin-bottom:12px;line-height:1.1}
-    .sec-sub{font-size:16.5px;color:var(--t2);max-width:680px;line-height:1.6;margin-bottom:48px}
-    .sec-div{border:0;border-top:1px solid rgba(255,255,255,0.05);margin:0;max-width:920px;margin-left:auto;margin-right:auto}
+    .sec-div{border:0;border-top:1px solid var(--bdr);margin:0;max-width:920px;margin-left:auto;margin-right:auto}
 
     .btn-gold, .btn-cyan { white-space: nowrap; font-family: var(--sans); }
     .btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#000;font-weight:700;font-size:14.5px;padding:14px 28px;border-radius:var(--r-m);border:none;cursor:pointer;transition:all .25s}
@@ -81,51 +79,44 @@
     .pip-t{font-size:18px;font-weight:700;margin-bottom:10px;line-height:1.3}
     .pip-p{font-size:16px;color:var(--t2);line-height:1.6}
     
-    /* Intel Briefs */
     .bc{background:var(--bg-card);border:1px solid var(--bdr);box-shadow:0 2px 8px rgba(0,0,0,.15);border-radius:var(--r-l);overflow:hidden;transition:all .3s;display:flex;flex-direction:column;position:relative}
-    .bc:hover{border-color:var(--bdr-m);transform:translateY(-2px);box-shadow:var(--shadow)}
-    .bc-img{height:220px;overflow:hidden;flex-shrink:0;background:var(--bg-card-h);position:relative}
-    .bc-img img{width:100%;height:100%;object-fit:cover;display:block}
     .bc-body{padding:24px 28px 28px;display:flex;flex-direction:column;flex:1}
-    .bc-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:8px}
     .bc-tag{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold)}
-    .acc-open{background:var(--green-d);color:var(--green);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:4px 10px;border-radius:4px;flex-shrink:0}
     .bc-title{font-size:19px;font-weight:700;line-height:1.35;margin-bottom:10px}
     .bc-ex{font-size:15.5px;color:var(--t2);line-height:1.6;flex:1;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .bc-ft{display:flex;align-items:center;justify-content:flex-end;margin-top:auto;padding-top:18px}
     .bc-link{font-size:14px;color:var(--gold);font-weight:700;display:inline-flex;align-items:center;gap:4px}
     .bc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
     
-    .me-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .me-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
     .me{background:var(--bg-card);border:1px solid var(--bdr);border-left:3px solid var(--cyan);border-radius:3px var(--r-m) var(--r-m) 3px;padding:28px 32px}
     .me-t{font-size:18px;font-weight:700;margin-bottom:8px}
     .me-p{font-size:15.5px;color:var(--t2);line-height:1.65}
     
     @keyframes pulse {
-        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(52,211,153, 0.4); }
-        70% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(52,211,153, 0); }
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(52,211,153, 0.7); }
+        70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(52,211,153, 0); }
         100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(52,211,153, 0); }
     }
     
+    /* Mobile App-Style Refinement */
     @media(max-width:767px){
         .ann{padding:12px 14px;gap:20px;justify-content:flex-start;text-align:left;min-height:84px; background: #0b1424; border-top: 2px solid var(--gold); border-bottom: 1px solid var(--bdr)}
         .ann-mob-logo{display:block;height:72px;width:auto;flex-shrink:0}
-        .ann-text{font-size:12px;line-height:1.3;padding-left:4px}
-        .ann-text strong{font-size:13px !important}
         
-        .hdr{display:none !important;} 
+        .hdr{display:none !important;} /* Force hidden on mobile to move button down */
         
         .hero{padding:24px 14px 56px}
         .hero h1{font-size:clamp(26px,7vw,32px);margin-bottom:20px}
         
-        /* Mobile Folder Tabs */
-        .hero-ctas{display:flex; flex-direction:row; align-items:flex-end; gap:4px; padding-left:2px}
+        /* Mobile Side-by-Side Folder Tab Styling */
+        .hero-ctas{display:flex; flex-direction:row; align-items:flex-end; gap:4px; padding-left:2px; margin-bottom: 0px}
         .btn-cyan, .btn-mob-gold {
             flex:1; 
             justify-content:center; 
             text-align:center; 
             padding:18px 8px; 
-            border-radius: 12px 12px 0 0 !important; 
+            border-radius: 12px 12px 0 0 !important; /* Folder Tab shape */
             font-size:11.5px !important;
             font-weight:800;
             text-transform:uppercase;
@@ -134,35 +125,31 @@
         }
         .btn-cyan { background: var(--bg-card); border: 1.5px solid rgba(34, 211, 238, 0.5) !important; color: var(--cyan); }
         .btn-mob-gold { display: flex; align-items:center; background: var(--gold); color: #000; border: 1.5px solid var(--gold) !important; }
+        .hero-ctas .btn-gold { display: none; } 
 
         .map-block{border-radius: 0 12px 12px 12px; border: 1.5px solid rgba(34, 211, 238, 0.4); min-height:260px}
-        
-        /* Mobile Brief Density Fix */
-        .bc, .bc:first-child { border: 1.5px solid rgba(34, 211, 238, 0.4) !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-bottom: 32px; }
-        .bc-img { height: 160px; }
-        .bc-body { padding: 18px 20px 20px; }
-        .bc-grid { gap: 32px; grid-template-columns: 1fr; }
-        .sec{padding:64px 14px}
         .sec-div { border-top-color: rgba(255,255,255, 0.04); }
-        .me-grid{grid-template-columns:1fr}
+        .bc, .bc:first-child { border: 1.5px solid rgba(34, 211, 238, 0.4) !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-bottom: 32px; }
+        .bc-grid { gap: 32px; grid-template-columns: 1fr; }
     }
     </style>
 </head>
 <body>
-<div class="ann" id="annBar" role="link" tabindex="0">
-    <img src="logo.png" alt="The Florida Signal" class="ann-mob-logo">
+<div class="ann" id="annBar" role="link" tabindex="0" aria-label="Founding member signup">
+    <img src="logo.png" alt="The Florida Signal" class="ann-mob-logo" style="display:none">
     <span class="ann-text">Founding Member Rate: <strong>$49/month</strong> for the first 100 subscribers</span>
     <span class="ann-arr">→</span>
 </div>
 <script>
-    if(window.innerWidth < 768) { document.querySelector('.ann-mob-logo').style.display = 'block'; }
+    if(window.innerWidth < 768) {
+        document.querySelector('.ann-mob-logo').style.display = 'block';
+    }
 </script>
 
 <header class="hdr" id="hdr">
     <div style="display:flex; align-items:center;">
         <a href="/" class="hdr-logo"><img src="logo.png" alt="The Florida Signal"></a>
         <div class="hdr-tag">
-            <div class="tag-live-dot"></div>
             <div class="hdr-tag-inner">
                 <span class="tag-line-1">Live Development Intelligence</span>
                 <span class="tag-line-2">Broward County</span>
@@ -178,7 +165,7 @@
 
 <section class="hero">
     <h1>Development Signals<br><span class="hl">Before They Hit the Market</span></h1>
-    <p class="hero-sub">Public-record intelligence on permit activity, entity filings, and capital movement across Fort Lauderdale, Hollywood, Pompano Beach, Wilton Manors, Oakland Park and the wider Broward County pipeline.</p>
+    <p class="hero-sub">Public-record intelligence on permit activity, entity filings, and capital movement across Fort Lauderdale and the wider Broward County pipeline.</p>
     
     <div class="hero-ctas">
         <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-cyan">Free Intel Brief</a>
@@ -207,9 +194,14 @@
 <section class="sec fade-in" id="briefs">
     <div class="sec-lbl">INTELLIGENCE BRIEFS</div>
     <h2 class="sec-t">Signals We're Tracking Now</h2>
-    <p class="sec-sub">Verified public-record intelligence published as signals are detected.</p>
     <div class="bc-grid" id="ghostBriefs">
-         <p>Loading verified signals...</p>
+         <a href="#" class="bc">
+            <div class="bc-body">
+                <div class="bc-hd"><span class="bc-tag">SIGNAL</span><span class="acc-open">Open</span></div>
+                <h3 class="bc-title">Loading verified signals...</h3>
+                <div class="bc-ft"><span class="bc-link">Read brief →</span></div>
+            </div>
+        </a>
     </div>
 </section>
 
@@ -232,45 +224,10 @@
             <p style="font-size: 11px; margin-top: 4px; color: var(--t3); letter-spacing: 1px; font-family: var(--mono)">POMPANO BEACH COMMISSION</p>
         </div>
     </div>
-    <div class="pip-container">
-        <div class="pip-date-lbl">TUESDAY, APRIL 21</div>
-        <div class="pip">
-            <div class="pip-t">City Commission Conference / Joint Workshop</div>
-            <p style="font-size: 11px; margin-top: 4px; color: var(--t3); letter-spacing: 1px; font-family: var(--mono)">FORT LAUDERDALE CITY COMMISSION</p>
-        </div>
-    </div>
 </section>
 
-<hr class="sec-div">
-
-<section class="sec fade-in" id="method">
-    <div class="sec-lbl">METHOD</div>
-    <h2 class="sec-t">How Signals Are Detected</h2>
-    <p class="sec-sub">Each signal is reviewed through four verification filters before publication and built only from verified public records.</p>
-    <div class="me-grid">
-        <div class="me"><h3 class="me-t">Permit Clustering</h3><p class="me-p">Multiple filings on a single property often indicate activity beyond routine maintenance.</p></div>
-        <div class="me"><h3 class="me-t">Declared Value</h3><p class="me-p">Thresholds help separate minor repairs from meaningful capital deployment.</p></div>
-        <div class="me"><h3 class="me-t">Entity Movement</h3><p class="me-p">Recurring developer, owner, and contractor names reveal early convergence patterns.</p></div>
-        <div class="me"><h3 class="me-t">Execution Shift</h3><p class="me-p">Verified movement from preliminary planning toward actual vertical project delivery.</p></div>
-    </div>
-</section>
-
-<hr class="sec-div" id="subscribe">
-
-<section class="sec fade-in">
-    <div style="background:var(--bg-card); border:1px solid var(--bdr-m); border-top:3px solid var(--gold); border-radius:var(--r-xl); padding:56px 48px; max-width:920px; margin:0 auto">
-        <div style="text-align:center">
-            <div class="sec-lbl">MEMBERSHIP</div>
-            <h2 class="sec-t">Signals Before They're News</h2>
-            <p style="color:var(--t2); margin-bottom:32px">Verified permit clusters, entity convergence, and capital deployment across Broward.</p>
-            <a href="https://thefloridasignalbrief.ghost.io/#/portal/signup" target="_blank" rel="noopener" class="btn-gold">Get the Free Intel Brief</a>
-            <p style="font-size:13px; color:var(--t3); margin-top:24px">Founding Member Rate: $49/month for the first 100 subscribers</p>
-        </div>
-    </div>
-</section>
-
-<footer style="text-align:center; padding:48px 24px; border-top:1px solid var(--bdr)">
-    <p style="font-size:13px; color:var(--t3)">© 2026 The Florida Signal · Public-record intelligence for Fort Lauderdale and Broward County</p>
+<footer class="ftr">
+    <p>© 2026 The Florida Signal · Public-record intelligence for Broward County</p>
 </footer>
 
 <script>
@@ -280,29 +237,25 @@
     bar.addEventListener('click',function(){window.open(URL,'_blank','noopener')});
 })();
 
-(function(){
-    var h=document.getElementById('hdr');
-    window.addEventListener('scroll',function(){h.classList.toggle('scrolled',window.scrollY>10)},{passive:true});
-})();
-
 function esc(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
 (async function(){
     var GH='https://thefloridasignalbrief.ghost.io',GK='535f4f2c2e3ee18574a67395b1';
     var el=document.getElementById('ghostBriefs');
     function card(p,i){
         var has=!!p.feature_image, url=p.url||(GH+'/'+p.slug+'/');
-        var a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener'; a.className='bc';
+        var a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';
+        a.className='bc';
         var img = has ? '<div class="bc-img"><img src="'+esc(p.feature_image)+'" alt="" loading="lazy"></div>' : '';
-        a.innerHTML = img + '<div class="bc-body">'+
-            '<div class="bc-hd"><span class="bc-tag">SIGNAL</span><span class="acc acc-open">Open</span></div>'+
+        a.innerHTML=img + '<div class="bc-body">'+
+            '<div class="bc-hd"><span class="bc-tag">SIGNAL</span><span class="acc-open">Open</span></div>'+
             '<h3 class="bc-title">'+esc(p.title)+'</h3>'+
             '<div class="bc-ft"><span class="bc-link">Read brief →</span></div></div>';
         return a;
     }
     try{
         var r=await fetch(GH+'/ghost/api/content/posts/?key='+GK+'&limit=3&fields=title,slug,excerpt,custom_excerpt,url,feature_image');
-        var d=await r.json(),posts=d.posts||[]; el.innerHTML='';
-        posts.forEach(function(p,i){el.appendChild(card(p,i))});
+        var d=await r.json(),posts=d.posts||[];if(!posts.length)throw new Error('empty');
+        el.innerHTML='';posts.forEach(function(p,i){el.appendChild(card(p,i))});
     }catch(err){console.warn('Ghost:',err);}
 })();
 </script>
