@@ -63,6 +63,7 @@
     
     .map-wrap{margin-top:32px;max-width:920px;margin-left:auto;margin-right:auto}
     .map-block{display:block;position:relative;border-radius:var(--r-l);overflow:hidden;background:radial-gradient(ellipse at 60% 40%,#1a3050,#0e1829 70%);border:1px solid rgba(34,211,238,.3);box-shadow:0 0 20px rgba(34,211,238,.15), 0 8px 32px rgba(0,0,0,.4);min-height:300px;cursor:pointer;transition:border-color .4s,box-shadow .4s}
+    .map-block:hover{border-color:rgba(34,211,238,.5);box-shadow:0 0 30px rgba(34,211,238,.25),0 8px 36px rgba(0,0,0,.45)}
     .map-block iframe{position:absolute;inset:0;width:100%;height:100%;border:none;pointer-events:none}
     
     .hero-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
@@ -75,7 +76,6 @@
     .sec-lbl{font-family:var(--mono);font-size:22px;color:var(--cyan-b);letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:16px}
     .sec-t{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.8px;margin-bottom:12px;line-height:1.1}
     .sec-sub{font-size:16.5px;color:var(--t2);max-width:680px;line-height:1.6;margin-bottom:48px}
-    .sec-div{border:0;border-top:1px solid var(--bdr);margin:0;max-width:920px;margin-left:auto;margin-right:auto}
 
     .btn-gold, .btn-cyan, .btn-out { white-space: nowrap; font-family: var(--sans); }
     .btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#000;font-weight:700;font-size:14.5px;padding:14px 28px;border-radius:var(--r-m);border:none;cursor:pointer;transition:all .25s}
@@ -92,7 +92,13 @@
     
     .bc{background:var(--bg-card);border:1px solid var(--bdr);box-shadow:0 2px 8px rgba(0,0,0,.15);border-radius:var(--r-l);overflow:hidden;transition:all .3s;display:flex;flex-direction:column;position:relative}
     .bc:hover{border-color:var(--bdr-m);transform:translateY(-2px);box-shadow:var(--shadow)}
+    .bc-img{height:200px;overflow:hidden;flex-shrink:0;background:var(--bg-card-h);position:relative}
+    .bc-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
     .bc-body{padding:24px 28px 28px;display:flex;flex-direction:column;flex:1}
+    .bc-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:8px}
+    .bc-tag{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold)}
+    .acc{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:4px 10px;border-radius:4px;flex-shrink:0}
+    .acc-open{background:var(--green-d);color:var(--green)}
     .bc-title{font-size:19px;font-weight:700;line-height:1.35;margin-bottom:10px}
     .bc-ex{font-size:15.5px;color:var(--t2);line-height:1.6;flex:1;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .bc-ft{display:flex;align-items:center;justify-content:flex-end;margin-top:auto;padding-top:18px}
@@ -106,6 +112,7 @@
     
     .cta-box{background:var(--bg-card);border:1px solid var(--bdr-m);border-top:3px solid rgba(201,162,39,.4);border-radius:var(--r-xl);padding:56px 48px;max-width:920px;margin:0 auto}
     .cta-inner{display:grid;grid-template-columns:1.6fr 1fr;gap:64px;align-items:start}
+    .cta-actions{display:flex;flex-direction:column;gap:16px;padding-top:8px}
     .price-badge{background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.25);border-radius:var(--r-s);padding:14px 18px;font-size:13.5px;color:var(--t2);text-align:center;line-height:1.5}
     .price-badge strong{color:var(--gold);font-size:15.5px;font-weight:700}
     .su-note{font-size:13px;color:var(--t3);margin-top:32px;text-align:center;grid-column:1/-1}
@@ -155,8 +162,8 @@
         .hero-metrics{margin-top:32px;gap:16px}
         
         /* Mobile Specific Brief Styling - Thicker Borders & Increased Separation */
-        .bc { border: 3px solid rgba(34, 211, 238, 0.45); box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-bottom: 32px; }
-        .bc-grid { gap: 32px; } /* Increased gap to prevent borders touching */
+        .bc, .bc:first-child { border: 3px solid rgba(34, 211, 238, 0.45) !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-bottom: 32px; }
+        .bc-grid { gap: 32px; } 
 
         .sec{padding:64px 14px}
         .bc-grid{grid-template-columns:1fr}
@@ -166,22 +173,6 @@
         .cta-inner{grid-template-columns:1fr;gap:32px}
         .cta-box{padding:40px 20px}
         .pip{padding:28px 20px}
-    }
-    @media(max-width:480px){
-        .hdr{height:60px}
-        .hdr-nav .cta-nav{padding:12px 0;font-size:14.5px}
-        .ann-mob-logo{height:68px}
-        
-        .hero{padding:24px 14px 48px}
-        .hero h1{font-size:clamp(26px,7vw,32px)}
-        .hero-metrics{margin-top:32px;gap:12px}
-        
-        .sec{padding:56px 14px}
-        .sec-lbl{font-size:15px}
-        .hm-v{font-size:24px}
-        .bc-img{height:160px}
-        .cta-box{padding:40px 16px}
-        .pip{padding:24px 20px}
     }
     </style>
     <script>
@@ -326,13 +317,18 @@ function esc(s){var d=document.createElement('div');d.textContent=s||'';return d
         var has=!!p.feature_image,ex=p.custom_excerpt||p.excerpt||'',url=p.url||(GH+'/'+p.slug+'/');
         var a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';
         a.className='bc'+(has?' bc-has-img':'');
-        var bo='<div class="bc-body">',bc='</div>';
+        
+        var imgHtml = has ? '<div class="bc-img"><img src="'+esc(p.feature_image)+'" alt="" loading="lazy"></div>' : '';
+        var bodyOpen = '<div class="bc-body">';
+        var bodyClose = '</div>';
+        
         if(ex.length < 50) { ex = ex + " Detailed signal tracking indicates active movement in the immediate area. Permit filings and entity associations suggest expanding scope beyond routine maintenance."; }
-        a.innerHTML=bo+
+        
+        a.innerHTML = imgHtml + bodyOpen +
             '<div class="bc-hd"><span class="bc-tag">'+esc(LBL[i]||'SIGNAL')+'</span><span class="acc acc-open">Open</span></div>'+
             '<h3 class="bc-title">'+esc(p.title)+'</h3>'+
             '<p class="bc-ex">'+esc(ex)+'</p>'+
-            '<div class="bc-ft"><span class="bc-link">Read brief →</span></div>'+bc;
+            '<div class="bc-ft"><span class="bc-link">Read brief →</span></div>' + bodyClose;
         return a;
     }
     try{
