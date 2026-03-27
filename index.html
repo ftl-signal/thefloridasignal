@@ -38,26 +38,22 @@
     body{font-family:var(--sans);background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
     a{color:inherit;text-decoration:none}
     
-    /* Announcement Bar */
     .ann{display:flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:14px 20px;background: #0b1424; border-bottom: 1px solid var(--bdr); position:relative;overflow:hidden;cursor:pointer;font-size:15.5px;text-align:center;line-height:1.4;color:#fff;font-weight:600;letter-spacing:0.3px}
-    .ann-mob-logo{display:none}
-    .ann-text{color:#fff}
     .ann-text strong{color:var(--gold-b);font-weight:800}
     .ann-arr{color:var(--gold);font-size:16px;flex-shrink:0;transition:transform .2s}
     .ann:hover .ann-arr{transform:translateX(4px)}
     
-    /* Header */
     .hdr{position:sticky;top:0;z-index:1000;height:84px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(14,24,41,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
     .hdr.scrolled{background:rgba(14,24,41,.96);border-bottom-color:var(--bdr)}
     .hdr-logo{display:flex;align-items:center;height:100%}
     .hdr-logo img{height:110px;width:auto;display:block;object-fit:contain;opacity:.97;margin-top:8px}
     
-    /* Desktop Intelligence Tag - DOUBLED SIZE + LIVE PULSE */
+    /* Softened Desktop Intelligence Tag */
     .hdr-tag{display:flex;align-items:center;margin-left:24px;padding-left:24px;border-left:1px solid var(--bdr);height:60px;gap:14px}
-    .tag-live-dot{width:10px;height:10px;background:var(--green);border-radius:50%;animation:pulse 1.8s ease-in-out infinite;box-shadow: 0 0 12px var(--green);flex-shrink:0}
+    .tag-live-dot{width:10px;height:10px;background:var(--green);border-radius:50%;animation:pulse 1.8s ease-in-out infinite;opacity:0.8;flex-shrink:0}
     .hdr-tag-inner{display:flex;flex-direction:column;justify-content:center}
-    .tag-line-1{font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px;text-transform:uppercase;line-height:1.1}
-    .tag-line-2{font-size:20px;font-family:var(--mono);color:var(--cyan);letter-spacing:1px;text-transform:uppercase;line-height:1.1;margin-top:2px;opacity:0.9}
+    .tag-line-1{font-size:22px;font-weight:800;color:#e2e8f0;letter-spacing:-0.5px;text-transform:uppercase;line-height:1.1}
+    .tag-line-2{font-size:20px;font-family:var(--mono);color:var(--cyan);letter-spacing:1px;text-transform:uppercase;line-height:1.1;margin-top:2px;opacity:0.7}
 
     .hdr-nav{display:flex;align-items:center;gap:32px}
     .hdr-nav a{font-size:14px;font-weight:500;color:var(--t2);transition:color .2s}
@@ -65,7 +61,6 @@
     .hdr-nav .cta-nav{background:var(--gold);color:#000;padding:12px 26px;border-radius:var(--r-s);font-weight:700;font-size:14px;transition:all .2s;box-shadow:0 0 14px rgba(201,162,39,.1)}
     .hdr-nav .cta-nav:hover{background:var(--gold-b);transform:translateY(-1px)}
     
-    /* Section Shell */
     .hero{max-width:920px;margin:0 auto;padding:56px 24px 64px}
     .hero h1{font-size:clamp(32px,5vw,52px);font-weight:800;line-height:1.05;letter-spacing:-1.2px;margin-bottom:16px;max-width:720px}
     .hero h1 .hl{color:var(--gold)}
@@ -87,14 +82,13 @@
     .sec-lbl{font-family:var(--mono);font-size:22px;color:var(--cyan-b);letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:16px}
     .sec-t{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.8px;margin-bottom:12px;line-height:1.1}
     .sec-sub{font-size:16.5px;color:var(--t2);max-width:680px;line-height:1.6;margin-bottom:48px}
-    .sec-div{border:0;border-top:1px solid var(--bdr);margin:0;max-width:920px;margin-left:auto;margin-right:auto}
+    .sec-div{border:0;border-top:1px solid rgba(255,255,255,0.05);margin:0;max-width:920px;margin-left:auto;margin-right:auto}
 
     .btn-gold, .btn-cyan, .btn-out { white-space: nowrap; font-family: var(--sans); }
     .btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#000;font-weight:700;font-size:14.5px;padding:14px 28px;border-radius:var(--r-m);border:none;cursor:pointer;transition:all .25s}
     .btn-gold:hover{background:var(--gold-b);transform:translateY(-1px);box-shadow:0 0 30px rgba(201,162,39,.20)}
     .btn-gold svg{width:18px;height:18px;flex-shrink:0}
     .btn-cyan{display:inline-flex;align-items:center;gap:6px;background:rgba(34,211,238,.08);color:var(--cyan);font-weight:600;font-size:14.5px;padding:14px 28px;border-radius:var(--r-m);border:1px solid rgba(34,211,238,.32);cursor:pointer;transition:all .25s}
-    .btn-out{display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--t1);font-weight:500;font-size:14px;padding:14px 26px;border-radius:var(--r-m);border:1px solid var(--bdr-m);cursor:pointer;transition:all .25s}
 
     .pip-container{margin-bottom:40px}
     .pip-date-lbl{color:var(--cyan);font-family:var(--mono);font-size:15px;letter-spacing:2px;margin-bottom:12px;font-weight:700}
@@ -111,7 +105,7 @@
     .bc-link{font-size:14px;color:var(--gold);font-weight:700;display:inline-flex;align-items:center;gap:4px}
     .bc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
     
-    .me-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .me-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
     .me{background:var(--bg-card);border:1px solid var(--bdr);border-left:3px solid var(--cyan);border-radius:3px var(--r-m) var(--r-m) 3px;padding:28px 32px}
     .me-t{font-size:18px;font-weight:700;margin-bottom:8px}
     .me-p{font-size:15.5px;color:var(--t2);line-height:1.65}
@@ -124,14 +118,13 @@
     
     .ftr{text-align:center;padding:48px 24px;border-top:1px solid var(--bdr)}
     .ftr p{font-size:13px;color:var(--t3);line-height:1.8}
-    .ftr a{color:var(--t2);transition:color .2s;font-weight:500}
     
     .fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
     .fade-in.vis{opacity:1;transform:translateY(0)}
     
     @keyframes pulse {
-        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(52,211,153, 0.7); }
-        70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(52,211,153, 0); }
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(52,211,153, 0.4); }
+        70% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(52,211,153, 0); }
         100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(52,211,153, 0); }
     }
     
@@ -143,8 +136,6 @@
         
         .hdr{position:relative; padding:0 14px; height:68px; justify-content: flex-end; border-bottom: none; background: transparent; backdrop-filter: none;}
         .hdr-logo, .hdr-tag{display:none}
-        .hdr-nav{width:auto; gap:0}
-        .hdr-nav a:not(.cta-nav){display:none}
         .hdr-nav .cta-nav{width:auto; text-align:center; padding:12px 16px; font-size:12.5px; font-weight:800; letter-spacing: 0.5px; background: var(--gold); border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); display: inline-block;}
         
         .hero{padding:12px 14px 56px}
@@ -155,9 +146,11 @@
         .map-block{min-height:260px}
         .hero-metrics{margin-top:32px;gap:16px}
         
-        .bc { border: 3px solid rgba(34, 211, 238, 0.45); box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-bottom: 32px; }
+        .bc { border: 1.5px solid rgba(34, 211, 238, 0.4) !important; box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-bottom: 32px; }
         .bc-grid { gap: 32px; }
         .sec{padding:64px 14px}
+        .sec-div { border-top-color: rgba(255,255,255, 0.05); }
+
         .bc-grid{grid-template-columns:1fr}
         .me-grid{grid-template-columns:1fr}
         .bc-img{height:180px}
@@ -166,10 +159,6 @@
         .pip{padding:28px 20px}
     }
     </style>
-    <script>
-        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
-        window.scrollTo(0, 0);
-    </script>
 </head>
 <body>
 <div class="ann" id="annBar" role="link" tabindex="0" aria-label="Founding member signup">
@@ -251,6 +240,15 @@
             <p class="pip-p" style="margin-top: 12px">Oceanfront and luxury corridor topics frequently appear, along with residential and maintenance proposals.</p>
         </div>
     </div>
+    <div class="pip-container">
+        <div class="pip-date-lbl">TUESDAY, APRIL 21</div>
+        <div class="pip">
+            <div class="pip-t">City Commission Conference / Joint Workshop</div>
+            <p style="font-size: 11px; margin-top: 4px; color: var(--t3); letter-spacing: 1px; font-family: var(--mono)">FORT LAUDERDALE CITY COMMISSION</p>
+            <p class="pip-p" style="margin-top: 12px">Budget and planning sessions often preview larger downtown and waterfront development activity.</p>
+        </div>
+    </div>
+
     <p style="font-size:14px;color:var(--t3);text-align:center;margin-top:32px">Updated weekly from public calendars • Agendas typically posted 5–7 days in advance</p>
 </section>
 <hr class="sec-div">
@@ -264,8 +262,16 @@
             <p class="me-p">Multiple filings on a single property often indicate activity beyond routine maintenance, especially when scope and value increase.</p>
         </div>
         <div class="me">
+            <h3 class="me-t">Declared Value</h3>
+            <p class="me-p">Construction value thresholds help separate minor repairs from meaningful capital deployment.</p>
+        </div>
+        <div class="me">
             <h3 class="me-t">Entity Movement</h3>
             <p class="me-p">Recurring developer, owner, and contractor names can reveal early patterns, particularly when entities converge on one corridor.</p>
+        </div>
+        <div class="me">
+            <h3 class="me-t">Execution Shift</h3>
+            <p class="me-p">The decisive filter: whether records show concrete movement from planning toward delivery.</p>
         </div>
     </div>
 </section>
@@ -315,14 +321,13 @@ function esc(s){var d=document.createElement('div');d.textContent=s||'';return d
         var has=!!p.feature_image,ex=p.custom_excerpt||p.excerpt||'',url=p.url||(GH+'/'+p.slug+'/');
         var a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';
         a.className='bc'+(has?' bc-has-img':'');
-        var bodyOpen = '<div class="bc-body">';
-        var bodyClose = '</div>';
+        var bo='<div class="bc-body">',bc='</div>';
         if(ex.length < 50) { ex = ex + " Detailed signal tracking indicates active movement in the immediate area. Permit filings and entity associations suggest expanding scope beyond routine maintenance."; }
-        a.innerHTML = bodyOpen +
+        a.innerHTML=bo+
             '<div class="bc-hd"><span class="bc-tag">'+esc(LBL[i]||'SIGNAL')+'</span><span class="acc acc-open">Open</span></div>'+
             '<h3 class="bc-title">'+esc(p.title)+'</h3>'+
             '<p class="bc-ex">'+esc(ex)+'</p>'+
-            '<div class="bc-ft"><span class="bc-link">Read brief →</span></div>' + bodyClose;
+            '<div class="bc-ft"><span class="bc-link">Read brief →</span></div>'+bc;
         return a;
     }
     try{
