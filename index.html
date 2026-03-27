@@ -38,16 +38,15 @@
     body{font-family:var(--sans);background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
     a{color:inherit;text-decoration:none}
     
-    .ann{display:flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:14px 44px 14px 20px;background: #0b1424; border-bottom: 1px solid var(--bdr); position:relative;overflow:hidden;cursor:pointer;font-size:14px;text-align:center;line-height:1.4;color:var(--t1);font-weight:500}
-    .ann.hidden{display:none}
+    /* Permanent Announcement Bar */
+    .ann{display:flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:14px 20px;background: #0b1424; border-bottom: 1px solid var(--bdr); position:relative;overflow:hidden;cursor:pointer;font-size:14px;text-align:center;line-height:1.4;color:var(--t1);font-weight:500}
     .ann-mob-logo{display:none}
     .ann-text{color:var(--t2);font-size:14.5px}
     .ann-text strong{color:#fff;font-weight:700}
     .ann-arr{color:var(--gold);font-size:16px;flex-shrink:0;transition:transform .2s}
     .ann:hover .ann-arr{transform:translateX(4px)}
-    .ann-x{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--t3);font-size:21px;cursor:pointer;padding:4px 8px;line-height:1;transition:color .2s;z-index:2}
-    .ann-x:hover{color:var(--t2)}
     
+    /* Header */
     .hdr{position:sticky;top:0;z-index:1000;height:84px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(14,24,41,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
     .hdr.scrolled{background:rgba(14,24,41,.96);border-bottom-color:var(--bdr)}
     .hdr-logo{display:flex;align-items:center;height:100%}
@@ -67,8 +66,6 @@
     .btn-cyan:hover{color:#fff;border-color:rgba(34,211,238,.48);background:rgba(34,211,238,.20)}
     
     .hero{max-width:1000px;margin:0 auto;padding:56px 24px 64px}
-    .hero-badge{display:inline-flex;align-items:center;gap:12px;background:rgba(34,211,238,.09);border:1px solid rgba(34,211,238,.25);border-radius:100px;padding:10px 22px;margin-bottom:20px;font-family:var(--mono);font-size:22px;font-weight:700;color:var(--cyan);letter-spacing:2.5px;text-transform:uppercase}
-    .live-dot{width:11px;height:11px;background:var(--green);border-radius:50%;animation:pulse 1.8s ease-in-out infinite;flex-shrink:0}
     .hero h1{font-size:clamp(32px,5vw,52px);font-weight:800;line-height:1.05;letter-spacing:-1.2px;margin-bottom:16px;max-width:720px}
     .hero h1 .hl{color:var(--gold)}
     .hero-sub{font-size:clamp(16px,1.8vw,18px);color:var(--t2);max-width:600px;line-height:1.6;margin-bottom:32px}
@@ -111,7 +108,6 @@
     .bc-ex{font-size:15.5px;color:var(--t2);line-height:1.6;flex:1;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
     .bc-ft{display:flex;align-items:center;justify-content:flex-end;margin-top:auto;padding-top:18px}
     .bc-link{font-size:14px;color:var(--gold);font-weight:700;display:inline-flex;align-items:center;gap:4px;transition:opacity .2s}
-    .bc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
     
     .me-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
     .me{background:var(--bg-card);border:1px solid var(--bdr);border-left:3px solid var(--cyan);border-radius:3px var(--r-m) var(--r-m) 3px;padding:28px 32px;transition:border-color .3s}
@@ -140,20 +136,30 @@
     
     /* Mobile App-Style Refinement */
     @media(max-width:767px){
-        .ann{padding:12px 36px 12px 16px;gap:20px;justify-content:flex-start;text-align:left;min-height:84px; background: #0b1424; border-top: 2px solid var(--gold); border-bottom: 1px solid var(--bdr)}
-        .ann-badge{display:none}
-        .ann-mob-logo{display:block;height:72px;width:auto;flex-shrink:0; padding-left: 8px}
+        .ann{padding:12px 14px;gap:20px;justify-content:flex-start;text-align:left;min-height:84px; background: #0b1424; border-top: 2px solid var(--gold); border-bottom: 1px solid var(--bdr)}
+        .ann-mob-logo{display:block;height:72px;width:auto;flex-shrink:0}
         .ann-text{font-size:12px;line-height:1.3;padding-left:4px}
         .ann-text strong{font-size:13px !important}
         
-        /* Removed sticky positioning on mobile - Bar now scrolls away */
-        .hdr{position:relative; padding:0 14px;height:68px;justify-content:center; border-bottom: 1px solid var(--bdr)}
+        /* Floating Square CTA Style */
+        .hdr{position:relative; padding:0 14px; height:68px; justify-content: flex-end; border-bottom: none; background: transparent; backdrop-filter: none;}
         .hdr-logo{display:none}
-        .hdr-nav{width:100%;gap:0}
+        .hdr-nav{width:auto; gap:0}
         .hdr-nav a:not(.cta-nav){display:none}
-        .hdr-nav .cta-nav{width:100%;text-align:center;padding:11px 0;font-size:14px; background: var(--gold); border-radius: 8px}
+        .hdr-nav .cta-nav{
+            width:auto; 
+            text-align:center; 
+            padding:12px 16px; 
+            font-size:12.5px; 
+            font-weight:800;
+            letter-spacing: 0.5px;
+            background: var(--gold); 
+            border-radius: 6px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            display: inline-block;
+        }
         
-        .hero{padding:24px 14px 56px}
+        .hero{padding:12px 14px 56px}
         .hero-badge{display:none}
         
         .hero h1{font-size:clamp(26px,7vw,32px);margin-bottom:20px}
@@ -162,7 +168,7 @@
         .map-block{min-height:260px}
         .hero-metrics{margin-top:32px;gap:16px}
         
-        .bc { border: 1px solid rgba(34, 211, 238, 0.4); box-shadow: inset 0 0 15px rgba(34, 211, 238, 0.05); }
+        .bc { border: 3px solid rgba(34, 211, 238, 0.45); box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 0 20px rgba(34, 211, 238, 0.08); }
         .bc-grid { gap: 24px; }
 
         .sec{padding:64px 14px}
@@ -174,25 +180,8 @@
         .cta-box{padding:40px 20px}
         .pip{padding:28px 20px}
     }
-    @media(max-width:480px){
-        .hdr{height:60px}
-        .hdr-nav .cta-nav{padding:12px 0;font-size:14.5px}
-        .ann-mob-logo{height:68px}
-        
-        .hero{padding:24px 14px 48px}
-        .hero h1{font-size:clamp(26px,7vw,32px)}
-        .hero-metrics{margin-top:32px;gap:12px}
-        
-        .sec{padding:56px 14px}
-        .sec-lbl{font-size:15px}
-        .hm-v{font-size:24px}
-        .bc-img{height:160px}
-        .cta-box{padding:32px 16px}
-        .pip{padding:24px 20px}
-    }
     </style>
     <script>
-        // Force scroll to top logic
         if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
     </script>
@@ -202,7 +191,6 @@
     <img src="logo.png" alt="The Florida Signal" class="ann-mob-logo">
     <span class="ann-text">Founding Member Rate: <strong style="font-size:16.5px">$49/month</strong> for the first 100 subscribers</span>
     <span class="ann-arr">→</span>
-    <button class="ann-x" id="annClose" aria-label="Dismiss announcement">&times;</button>
 </div>
 <header class="hdr" id="hdr">
     <a href="/" class="hdr-logo"><img src="logo.png" alt="The Florida Signal"></a>
@@ -340,11 +328,9 @@
 </footer>
 <script>
 (function(){
-    var bar=document.getElementById('annBar'),btn=document.getElementById('annClose');
+    var bar=document.getElementById('annBar');
     var URL='https://thefloridasignalbrief.ghost.io/#/portal/signup';
-    try{if(localStorage.getItem('tfs-ann-hide'))bar.classList.add('hidden')}catch(e){}
-    bar.addEventListener('click',function(e){if(e.target===btn||btn.contains(e.target))return;window.open(URL,'_blank','noopener')});
-    btn.addEventListener('click',function(e){e.stopPropagation();bar.classList.add('hidden');try{localStorage.setItem('tfs-ann-hide','1')}catch(e){}});
+    bar.addEventListener('click',function(){window.open(URL,'_blank','noopener')});
 })();
 (function(){
     var h=document.getElementById('hdr');
