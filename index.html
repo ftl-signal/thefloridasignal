@@ -1,4 +1,4 @@
-—<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -267,6 +267,75 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+<!-- PIPELINE WATCH TICKER -->
+<style>
+#pipeline-watch{position:relative;background:linear-gradient(180deg,rgba(7,11,20,0.92),rgba(7,11,20,0.55));border-top:1px solid rgba(34,211,238,0.18);border-bottom:1px solid rgba(34,211,238,0.18);padding:14px 0;z-index:5;}
+.pw-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:24px;}
+.pw-label{display:flex;align-items:center;gap:10px;font-family:Archivo,sans-serif;font-weight:700;font-size:11px;letter-spacing:0.18em;color:#22D3EE;white-space:nowrap;}
+.pw-pulse{width:8px;height:8px;border-radius:50%;background:#22D3EE;box-shadow:0 0 12px rgba(34,211,238,0.85);animation:pwpulse 1.6s ease-in-out infinite;}
+@keyframes pwpulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.55;transform:scale(0.85);}}
+.pw-rail{flex:1;height:30px;position:relative;overflow:hidden;}
+.pw-item{position:absolute;inset:0;display:flex;align-items:center;gap:14px;opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s ease;pointer-events:none;}
+.pw-item.is-active{opacity:1;transform:translateY(0);pointer-events:auto;}
+.pw-item a{display:flex;align-items:center;gap:14px;color:#E7EEF7;text-decoration:none;width:100%;}
+.pw-item a:hover .pw-name{color:#22D3EE;}
+.pw-date{font-family:Archivo,sans-serif;font-weight:700;font-size:11px;letter-spacing:0.14em;color:#22D3EE;white-space:nowrap;}
+.pw-name{font-family:Archivo,sans-serif;font-weight:600;font-size:14px;color:#E7EEF7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .2s ease;}
+.pw-tag{font-family:Archivo,sans-serif;font-weight:400;font-size:12px;color:rgba(231,238,247,0.55);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pw-dots{display:flex;gap:6px;}
+.pw-dot{width:5px;height:5px;border-radius:50%;background:rgba(34,211,238,0.25);transition:background .3s,transform .3s;cursor:pointer;border:0;padding:0;}
+.pw-dot.is-active{background:#22D3EE;transform:scale(1.3);}
+@media (max-width:900px){.pw-tag{display:none;}.pw-dots{display:none;}.pw-inner{gap:14px;padding:0 16px;}}
+@media (max-width:560px){.pw-date{font-size:10px;}.pw-name{font-size:13px;}.pw-label .pw-title{display:none;}}
+</style>
+<section id="pipeline-watch" aria-label="Upcoming development meetings">
+  <div class="pw-inner">
+    <div class="pw-label"><span class="pw-pulse" aria-hidden="true"></span><span class="pw-title">PIPELINE WATCH</span></div>
+    <div class="pw-rail" id="pw-rail"><div id="pw-track"></div></div>
+    <div class="pw-dots" id="pw-dots"></div>
+  </div>
+</section>
+<script>
+(function(){
+  var PIPELINE=[
+    {iso:"2026-04-20T10:30:00-04:00",date:"APR 20 · MON · 10:30 AM",name:"SFRPC Council Meeting",tag:"demographics · FPL transmission · comp plans",url:"https://sfregionalcouncil.org/"},
+    {iso:"2026-04-23T10:00:00-04:00",date:"APR 23 · THU · 10:00 AM",name:"Broward County Planning Council",tag:"plats · land use · recertifications",url:"https://www.broward.org/PlanningAndRedevelopment/Pages/PlanningCouncil.aspx"},
+    {iso:"2026-04-23T12:00:00-04:00",date:"APR 23 · THU",name:"FHBA Florida Building Code Webinar",tag:"code revisions · permitting · materials",url:"https://www.basfonline.org/"},
+    {iso:"2026-04-28T10:00:00-04:00",date:"APR 28 · TUE · 10:00 AM",name:"Broward County Commission",tag:"approvals · easements · port/aviation",url:"https://broward.legistar.com/"},
+    {iso:"2026-04-29T07:30:00-04:00",date:"APR 29 · WED · 7:30 AM",name:"CASF Breakfast — Stiles Construction",tag:"pipeline projects · networking",url:"https://casf.org/"}
+  ];
+  var track=document.getElementById("pw-track"),dots=document.getElementById("pw-dots"),rail=document.getElementById("pw-rail");
+  if(!track||!dots||!rail)return;
+  var items=[],idx=0,tmr=null;
+  function active(){return PIPELINE.filter(function(p){return new Date(p.iso).getTime()+12*3600*1000>Date.now();}).sort(function(a,b){return new Date(a.iso)-new Date(b.iso);});}
+  function render(){
+    var list=active();
+    if(list.length===0){document.getElementById("pipeline-watch").style.display="none";return;}
+    track.innerHTML="";dots.innerHTML="";items=[];
+    list.forEach(function(p,i){
+      var it=document.createElement("div");it.className="pw-item"+(i===0?" is-active":"");
+      it.innerHTML='<a href="'+p.url+'" target="_blank" rel="noopener"><span class="pw-date">'+p.date+'</span><span class="pw-name">'+p.name+'</span><span class="pw-tag">'+p.tag+'</span></a>';
+      track.appendChild(it);items.push(it);
+      var d=document.createElement("button");d.className="pw-dot"+(i===0?" is-active":"");d.setAttribute("aria-label","Show "+p.name);d.addEventListener("click",function(){go(i);});dots.appendChild(d);
+    });
+    idx=0;start();
+  }
+  function go(n){
+    items.forEach(function(x,i){x.classList.toggle("is-active",i===n);});
+    dots.querySelectorAll(".pw-dot").forEach(function(x,i){x.classList.toggle("is-active",i===n);});
+    idx=n;
+  }
+  function tick(){if(items.length<2)return;go((idx+1)%items.length);}
+  function start(){stop();if(items.length>1)tmr=setInterval(tick,6500);}
+  function stop(){if(tmr){clearInterval(tmr);tmr=null;}}
+  rail.addEventListener("mouseenter",stop);
+  rail.addEventListener("mouseleave",start);
+  render();
+  setInterval(render,30*60*1000);
+})();
+</script>
+
 
 <!-- SIGNAL MAP -->
 <section class="relative py-24 lg:py-32 border-t border-slate-700/40">
