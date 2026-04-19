@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Florida Signal — Broward development intelligence, curated by a journalist</title>
+<title>Florida Signal — Broward development intelligence, curated by a veteran journalist</title>
 <meta name="description" content="Daily permit tracking and signal detection for Fort Lauderdale and Broward County. Assemblages, entitlements, and capital movement — surfaced before they become news. Curated by a 20+ year journalist." />
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -96,6 +96,30 @@ tailwind.config = {
   .modal-glow { position: relative; }
   .modal-glow::before { content: ''; position: absolute; inset: -1px; border-radius: inherit; background: linear-gradient(135deg, rgba(34,211,238,0.4) 0%, transparent 40%, transparent 60%, rgba(34,211,238,0.2) 100%); z-index: -1; filter: blur(24px); opacity: 0.6; }
 </style>
+
+<style>
+#signal-stat-strip { flex-wrap: wrap !important; row-gap: 10px; }
+#signal-stat-strip > * { min-width: 0; }
+#signal-stat-strip .stat-num, #signal-stat-strip #live-signal-count, #signal-stat-strip #live-signal-value { white-space: nowrap; font-variant-numeric: tabular-nums; }
+@media (max-width: 520px) {
+  #signal-stat-strip { font-size: 12px !important; padding: 10px 14px !important; gap: 10px !important; }
+  #signal-stat-strip .stat-num, #signal-stat-strip #live-signal-count, #signal-stat-strip #live-signal-value { font-size: 14px !important; }
+  #signal-stat-strip .divider, #signal-stat-strip [aria-hidden] { display: none !important; }
+}
+#live-signals-feed .feed-row { display:flex; align-items:center; gap:10px; padding:10px 12px; border:1px solid rgba(148,163,184,0.18); border-radius:10px; background:rgba(0,0,0,0.25); transition:border-color .2s; }
+#live-signals-feed .feed-row:hover { border-color: rgba(34,211,238,0.5); }
+#live-signals-feed .feed-row .pulse { width:6px; height:6px; border-radius:50%; background:#22D3EE; box-shadow:0 0 8px #22D3EE; flex-shrink:0; }
+#live-signals-feed .feed-row .meta { font-size:11px; color:#94a3b8; letter-spacing:0.08em; text-transform:uppercase; flex-shrink:0; }
+#live-signals-feed .feed-row .name { color:#fff; font-weight:500; font-size:14px; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+#live-signals-feed .feed-row .val { color:#22D3EE; font-weight:600; font-size:13px; font-variant-numeric:tabular-nums; flex-shrink:0; }
+@media (max-width: 520px) { #live-signals-feed .feed-row .meta { display:none; } #live-signals-feed .feed-row .name { font-size:13px; } }
+#proof-grid .proof-card { border:1px solid rgba(148,163,184,0.2); border-radius:14px; padding:18px 20px; background:rgba(0,0,0,0.22); transition:border-color .2s, transform .2s; }
+#proof-grid .proof-card:hover { border-color: rgba(34,211,238,0.45); transform:translateY(-1px); }
+#proof-grid .proof-card .tag { font-size:10px; letter-spacing:0.25em; color:#22D3EE; font-weight:600; text-transform:uppercase; margin-bottom:8px; }
+#proof-grid .proof-card .nm { color:#fff; font-weight:500; font-size:15px; line-height:1.35; margin-bottom:6px; }
+#proof-grid .proof-card .sub { color:#94a3b8; font-size:12px; letter-spacing:0.05em; }
+#proof-grid .proof-card .val { color:#22D3EE; font-weight:600; font-size:13px; margin-top:10px; font-variant-numeric:tabular-nums; }
+</style>
 </head>
 
 <body class="font-sans bg-ink-950 text-slate-200 min-h-screen overflow-x-hidden">
@@ -167,7 +191,7 @@ tailwind.config = {
           </div>
           <div class="flex items-center gap-2">
             <svg class="w-4 h-4 text-signal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-            <span class="font-mono text-[11px] tracking-[0.08em] uppercase text-slate-400">154,751 permits analyzed</span>
+            <span class="font-mono text-[11px] tracking-[0.08em] uppercase text-slate-400">Nearly 200,000 permits analyzed</span>
           </div>
         </div>
       </div>
@@ -269,11 +293,18 @@ tailwind.config = {
           loading="lazy"
           class="w-full h-[480px] lg:h-[580px] block border-0"
         ></iframe>
+      <div class="mt-5 lg:mt-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-signal"></span></span>
+          <span class="text-[11px] tracking-[0.3em] text-signal uppercase font-semibold">Live signals</span>
+        </div>
+        <div id="live-signals-feed" class="grid grid-cols-1 gap-2"></div>
+      </div>
       </div>
     </div>
 
     <div class="px-2 pt-4 pb-1 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-      <p class="font-mono text-xs text-slate-500 max-w-2xl">Interactive. Filter by category. Drill into any permit. 154,751 records · 31 Broward municipalities.</p>
+      <p class="font-mono text-xs text-slate-500 max-w-2xl">Interactive. Filter by category. Drill into any permit. Nearly 200,000 records · 31 Broward municipalities.</p>
       <a href="https://ftl-signal.github.io/broward-intelligence-map/?ref=brief.thefloridasignal.com" target="_blank" rel="noopener" class="btn-signal font-mono text-[12px] tracking-[0.14em] uppercase font-semibold px-6 py-4 rounded-sm inline-flex items-center gap-2 whitespace-nowrap">
         Open Interactive Signal Map
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -373,50 +404,7 @@ tailwind.config = {
 </section>
 
 <!-- BY THE NUMBERS -->
-<section class="relative py-24 border-t border-slate-700/40 bg-ink-900/40 overflow-hidden">
-  <div class="absolute inset-0 bg-grid opacity-30 pointer-events-none"></div>
-  <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10">
-    <div class="max-w-3xl mb-12">
-      <div class="flex items-center gap-2 mb-4">
-        <span class="w-6 h-px bg-signal"></span>
-        <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-signal">The Broward Pipeline</span>
-      </div>
-      <h2 class="font-display font-black text-white text-4xl lg:text-5xl tracking-[-0.03em] leading-[0.95]">By the numbers.</h2>
-      <p class="mt-4 text-slate-400 max-w-2xl">Broward is one of the fastest-building counties in the Southeast — 2 million residents, 31 municipalities, and a pipeline that moves faster than the news cycle covering it.</p>
-    </div>
 
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-slate-700/40 border border-slate-700/40 rounded-sm overflow-hidden">
-      <div class="bg-ink-950 p-8 lg:p-10">
-        <div class="font-mono text-[10px] tracking-[0.14em] uppercase text-slate-500 mb-3">Permits analyzed</div>
-        <div class="font-display font-black text-white text-5xl lg:text-6xl tracking-[-0.04em] leading-none">154,751</div>
-        <div class="font-mono text-[11px] text-slate-500 mt-3">cleaned · indexed · searchable</div>
-      </div>
-      <div class="bg-ink-950 p-8 lg:p-10">
-        <div class="font-mono text-[10px] tracking-[0.14em] uppercase text-slate-500 mb-3">Broward municipalities</div>
-        <div class="font-display font-black text-white text-5xl lg:text-6xl tracking-[-0.04em] leading-none">31</div>
-        <div class="font-mono text-[11px] text-slate-500 mt-3">covered in expansion roadmap</div>
-      </div>
-      <div class="bg-ink-950 p-8 lg:p-10">
-        <div class="font-mono text-[10px] tracking-[0.14em] uppercase text-slate-500 mb-3">Active signals</div>
-        <div class="font-display font-black text-signal text-5xl lg:text-6xl tracking-[-0.04em] leading-none">47</div>
-        <div class="font-mono text-[11px] text-slate-500 mt-3">tracked this week</div>
-      </div>
-      <div class="bg-ink-950 p-8 lg:p-10">
-        <div class="font-mono text-[10px] tracking-[0.14em] uppercase text-slate-500 mb-3">Tracked value</div>
-        <div class="font-display font-black text-white text-5xl lg:text-6xl tracking-[-0.04em] leading-none">$361M</div>
-        <div class="font-mono text-[11px] text-slate-500 mt-3">across active development</div>
-      </div>
-    </div>
-
-    <div class="mt-8 p-6 lg:p-8 border border-slate-700/40 rounded-sm bg-ink-950 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
-      <svg class="w-8 h-8 text-signal flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      <p class="text-slate-300 text-base lg:text-lg leading-relaxed">
-        <span class="text-white font-semibold">Our average signal surfaces weeks before local news coverage.</span>
-        <span class="text-slate-400">&nbsp;Demolition permits, tenant build-outs, and quiet parcel acquisitions don't make headlines — until they do. We read them first.</span>
-      </p>
-    </div>
-  </div>
-</section>
 
 <!-- MEMBERSHIP CTA SECTION (NEW) -->
 <section class="relative py-28 border-t border-slate-700/40 overflow-hidden">
@@ -451,164 +439,15 @@ tailwind.config = {
 </section>
 
 <!-- WHAT WE'VE TRACKED -->
-<section class="relative py-24 lg:py-32 border-t border-slate-700/40">
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
-    <div class="grid lg:grid-cols-12 gap-12 lg:gap-20">
-
-      <div class="lg:col-span-4 lg:sticky lg:top-24 lg:self-start">
-        <div class="flex items-center gap-2 mb-4">
-          <span class="w-6 h-px bg-signal"></span>
-          <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-signal">Ledger</span>
-        </div>
-        <h2 class="font-display font-black text-white text-4xl lg:text-5xl tracking-[-0.03em] leading-[0.95] mb-6">What we've<br/>tracked so far.</h2>
-        <p class="text-slate-400 text-base leading-relaxed mb-6">Since launch, Florida Signal has identified early development activity across Fort Lauderdale using permit-level intelligence — revealing patterns before they become visible in traditional coverage.</p>
-        <p class="text-slate-500 text-sm leading-relaxed">Each entry was surfaced through public records analysis, cross-referenced across LauderBuild, BCPA filings, and municipal permit systems, then verified by a journalist before publication.</p>
-        <div class="mt-8 divider-dashed"></div>
-        <div class="mt-8 grid grid-cols-2 gap-4">
-          <div><div class="font-display font-black text-white text-3xl">12</div><div class="font-mono text-[10px] tracking-[0.14em] uppercase text-slate-500 mt-1">confirmed signals</div></div>
-          <div><div class="font-display font-black text-signal text-3xl">4</div><div class="font-mono text-[10px] tracking-[0.14em] uppercase text-slate-500 mt-1">signal categories</div></div>
-        </div>
-      </div>
-
-      <div class="lg:col-span-8">
-        <div class="space-y-px bg-slate-700/30 border border-slate-700/40 rounded-sm overflow-hidden">
-
-          <div class="bg-ink-950 p-6 lg:p-7 hover:bg-ink-900/60 transition-colors">
-            <div class="flex items-start justify-between gap-6 flex-wrap">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-3 mb-2 flex-wrap"><span class="pill pill-assemblage">Assemblage</span><span class="font-mono text-[10px] tracking-[0.1em] uppercase text-slate-500">Bay Colony · Fort Lauderdale</span></div>
-                <h3 class="font-display font-bold text-white text-lg lg:text-xl leading-tight">Waterfront assemblage — 3 parcels, coordinated acquisition</h3>
-                <p class="text-slate-400 text-sm mt-2 leading-relaxed">Quiet land acquisition pattern across contiguous waterfront parcels — likely institutional buyer with long-term hold strategy.</p>
-              </div>
-              <div class="font-mono text-[11px] text-slate-500 text-right">3 parcels</div>
-            </div>
-          </div>
-
-          <div class="bg-ink-950 p-6 lg:p-7 hover:bg-ink-900/60 transition-colors">
-            <div class="flex items-start justify-between gap-6 flex-wrap">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-3 mb-2 flex-wrap"><span class="pill pill-entitlement">Entitlement</span><span class="font-mono text-[10px] tracking-[0.1em] uppercase text-slate-500">Federal Hwy Corridor</span></div>
-                <h3 class="font-display font-bold text-white text-lg lg:text-xl leading-tight">348-unit multifamily enters approvals</h3>
-                <p class="text-slate-400 text-sm mt-2 leading-relaxed">Multifamily project moves into the formal approval pipeline — density, parking, and surrounding parcel activity all in motion.</p>
-              </div>
-              <div class="font-mono text-[11px] text-slate-500 text-right">348 units</div>
-            </div>
-          </div>
-
-          <div class="bg-ink-950 p-6 lg:p-7 hover:bg-ink-900/60 transition-colors">
-            <div class="flex items-start justify-between gap-6 flex-wrap">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-3 mb-2 flex-wrap"><span class="pill pill-execution">Execution</span><span class="font-mono text-[10px] tracking-[0.1em] uppercase text-slate-500">Pier 66 South Parcel</span></div>
-                <h3 class="font-display font-bold text-white text-lg lg:text-xl leading-tight">First infrastructure movement at Pier 66 south parcel</h3>
-                <p class="text-slate-400 text-sm mt-2 leading-relaxed">Marks the shift from long-term planning into execution after years of speculation — and signals movement in surrounding basin parcels.</p>
-              </div>
-              <div class="font-mono text-[11px] text-slate-500 text-right">Phase 1</div>
-            </div>
-          </div>
-
-          <div class="bg-ink-950 p-6 lg:p-7 hover:bg-ink-900/60 transition-colors">
-            <div class="flex items-start justify-between gap-6 flex-wrap">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-3 mb-2 flex-wrap"><span class="pill pill-execution">Execution</span><span class="font-mono text-[10px] tracking-[0.1em] uppercase text-slate-500">Downtown Fort Lauderdale</span></div>
-                <h3 class="font-display font-bold text-white text-lg lg:text-xl leading-tight">Early office leasing signals via tenant build-outs</h3>
-                <p class="text-slate-400 text-sm mt-2 leading-relaxed">Tenant build-out permits surface ahead of public leasing announcements — early read on occupancy momentum in downtown towers.</p>
-              </div>
-              <div class="font-mono text-[11px] text-slate-500 text-right">Multiple</div>
-            </div>
-          </div>
-
-          <div class="bg-ink-950 p-6 lg:p-7 hover:bg-ink-900/60 transition-colors">
-            <div class="flex items-start justify-between gap-6 flex-wrap">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-3 mb-2 flex-wrap"><span class="pill pill-execution">Execution</span><span class="font-mono text-[10px] tracking-[0.1em] uppercase text-slate-500">Southwest Fort Lauderdale</span></div>
-                <h3 class="font-display font-bold text-white text-lg lg:text-xl leading-tight">Infill construction cluster, adjacent parcels</h3>
-                <p class="text-slate-400 text-sm mt-2 leading-relaxed">Growing cluster of infill activity indicates coordinated development across adjacent parcels — a pattern worth watching.</p>
-              </div>
-              <div class="font-mono text-[11px] text-slate-500 text-right">Cluster</div>
-            </div>
-          </div>
-
-          <div class="bg-ink-950 p-6 lg:p-7 hover:bg-ink-900/60 transition-colors">
-            <div class="flex items-start justify-between gap-6 flex-wrap">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-3 mb-2 flex-wrap"><span class="pill pill-entitlement">Entitlement</span><span class="font-mono text-[10px] tracking-[0.1em] uppercase text-slate-500">Broward Health · multi-site</span></div>
-                <h3 class="font-display font-bold text-white text-lg lg:text-xl leading-tight">Coordinated activity across Broward Health properties</h3>
-                <p class="text-slate-400 text-sm mt-2 leading-relaxed">Multi-site permitting patterns point to phased institutional expansion — infrastructure first, announcements later.</p>
-              </div>
-              <div class="font-mono text-[11px] text-slate-500 text-right">Institutional</div>
-            </div>
-          </div>
-
-          <div class="bg-ink-950 p-6 lg:p-7 hover:bg-ink-900/60 transition-colors">
-            <div class="flex items-start justify-between gap-6 flex-wrap">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-3 mb-2 flex-wrap"><span class="pill pill-execution">Execution</span><span class="font-mono text-[10px] tracking-[0.1em] uppercase text-slate-500">Gore Building · Government Center</span></div>
-                <h3 class="font-display font-bold text-white text-lg lg:text-xl leading-tight">Demolition permitting at the Gore Building</h3>
-                <p class="text-slate-400 text-sm mt-2 leading-relaxed">A key step in the redevelopment of the government center — long discussed and now physically in motion.</p>
-              </div>
-              <div class="font-mono text-[11px] text-slate-500 text-right">Demo</div>
-            </div>
-          </div>
-
-          <div class="bg-ink-950 p-6 lg:p-7 hover:bg-ink-900/60 transition-colors">
-            <div class="flex items-start justify-between gap-6 flex-wrap">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-3 mb-2 flex-wrap"><span class="pill pill-execution">Execution</span><span class="font-mono text-[10px] tracking-[0.1em] uppercase text-slate-500">401 Las Olas</span></div>
-                <h3 class="font-display font-bold text-white text-lg lg:text-xl leading-tight">New tenant activity — Barry's build-out confirmed</h3>
-                <p class="text-slate-400 text-sm mt-2 leading-relaxed">Ground-floor tenant signals at a prestige Las Olas address, surfaced through build-out permits weeks ahead of leasing announcements.</p>
-              </div>
-              <div class="font-mono text-[11px] text-slate-500 text-right">$218K</div>
-            </div>
-          </div>
-
-          <div class="bg-ink-950 p-6 lg:p-7 hover:bg-ink-900/60 transition-colors">
-            <div class="flex items-start justify-between gap-6 flex-wrap">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-3 mb-2 flex-wrap"><span class="pill pill-execution">Execution</span><span class="font-mono text-[10px] tracking-[0.1em] uppercase text-slate-500">1400 Progresso</span></div>
-                <h3 class="font-display font-bold text-white text-lg lg:text-xl leading-tight">Multi-permit milestone at large-scale self-storage project</h3>
-                <p class="text-slate-400 text-sm mt-2 leading-relaxed">Full execution phase confirmed across a coordinated permit sequence — one of the larger storage footprints entering active build this cycle.</p>
-              </div>
-              <div class="font-mono text-[11px] text-slate-500 text-right">$6.5M</div>
-            </div>
-          </div>
-
-          <div class="bg-ink-950 p-6 lg:p-7 hover:bg-ink-900/60 transition-colors">
-            <div class="flex items-start justify-between gap-6 flex-wrap">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-3 mb-2 flex-wrap"><span class="pill pill-reinvestment">Reinvestment</span><span class="font-mono text-[10px] tracking-[0.1em] uppercase text-slate-500">Galt Ocean Mile</span></div>
-                <h3 class="font-display font-bold text-white text-lg lg:text-xl leading-tight">Capital reinvestment across aging beachfront assets</h3>
-                <p class="text-slate-400 text-sm mt-2 leading-relaxed">Maintenance and envelope-work cycles signal sustained capital commitment to older oceanfront buildings along the strip.</p>
-              </div>
-              <div class="font-mono text-[11px] text-slate-500 text-right">Ongoing</div>
-            </div>
-          </div>
-
-          <div class="bg-ink-950 p-6 lg:p-7 hover:bg-ink-900/60 transition-colors">
-            <div class="flex items-start justify-between gap-6 flex-wrap">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-3 mb-2 flex-wrap"><span class="pill pill-execution">Execution</span><span class="font-mono text-[10px] tracking-[0.1em] uppercase text-slate-500">Victoria Park</span></div>
-                <h3 class="font-display font-bold text-white text-lg lg:text-xl leading-tight">Townhouse development progression, unit-level permits</h3>
-                <p class="text-slate-400 text-sm mt-2 leading-relaxed">Movement from site-plan approvals to unit-level construction permits — a measurable step forward in a long-watched corridor.</p>
-              </div>
-              <div class="font-mono text-[11px] text-slate-500 text-right">$240K</div>
-            </div>
-          </div>
-
-          <div class="bg-ink-950 p-6 lg:p-7 hover:bg-ink-900/60 transition-colors">
-            <div class="flex items-start justify-between gap-6 flex-wrap">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-3 mb-2 flex-wrap"><span class="pill pill-execution">Execution</span><span class="font-mono text-[10px] tracking-[0.1em] uppercase text-slate-500">Coral Ridge</span></div>
-                <h3 class="font-display font-bold text-white text-lg lg:text-xl leading-tight">Full waterfront teardown-to-rebuild sequence</h3>
-                <p class="text-slate-400 text-sm mt-2 leading-relaxed">High-end residential redevelopment — demolition through new-construction permits filed against a single waterfront parcel.</p>
-              </div>
-              <div class="font-mono text-[11px] text-slate-500 text-right">$957K</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
+<section id="proof" class="relative py-20 lg:py-28 border-t border-slate-700/40 bg-ink-900/40">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="max-w-[760px] mb-10 lg:mb-14">
+      <div class="text-[11px] tracking-[0.3em] text-signal uppercase mb-3 font-semibold">Proof of performance</div>
+      <h2 class="font-display font-black text-white text-4xl lg:text-5xl tracking-[-0.03em] leading-[0.95] mb-5">Development intelligence,<br/>before it makes the news.</h2>
+      <p class="text-slate-300 text-base lg:text-lg leading-relaxed">Curated by a veteran journalist. Every signal is verified against permits, corporate filings, and source-level reporting — not scraped, not automated, not speculation.</p>
     </div>
+    <div id="proof-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4"></div>
+    <div class="mt-8 text-xs text-slate-500 tracking-wide">A rotating sample of signals from the live intelligence map. Reload for more.</div>
   </div>
 </section>
 
@@ -634,7 +473,7 @@ tailwind.config = {
         <h3 class="font-display font-bold text-white text-2xl lg:text-3xl mb-3 tracking-[-0.02em]">Permits</h3>
         <p class="text-slate-400 text-sm leading-relaxed mb-6">Building, demolition, tenant build-out, and infrastructure filings pulled daily from LauderBuild, BCPA, and municipal systems across Broward.</p>
         <div class="divider-dashed my-6"></div>
-        <div class="font-mono text-[10px] tracking-[0.14em] uppercase text-slate-500">154,751 records · daily refresh</div>
+        <div class="font-mono text-[10px] tracking-[0.14em] uppercase text-slate-500">Nearly 200,000 records · daily refresh</div>
       </div>
 
       <div class="bg-ink-950 p-8 lg:p-10 group hover:bg-ink-900 transition-colors">
@@ -845,5 +684,44 @@ tailwind.config = {
   if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",load);}else{load();}
 })();
 </script>
-</body>
+
+<script>
+(function(){
+  function renderFeeds(signals){
+    if (!Array.isArray(signals) || !signals.length) return;
+    var shuffled = signals.slice().sort(function(){return Math.random()-0.5;});
+    var feed = document.getElementById("live-signals-feed");
+    if (feed && !feed.__rendered) {
+      feed.__rendered = true;
+      var rows = shuffled.slice(0,5).map(function(s){
+        var val = s.value_label || "";
+        var city = s.city || "";
+        var nm = s.project_name || "";
+        return '<div class="feed-row"><span class="pulse"></span><span class="meta">' + city + '</span><span class="name">' + nm + '</span><span class="val">' + val + '</span></div>';
+      }).join("");
+      feed.innerHTML = rows;
+    }
+    var grid = document.getElementById("proof-grid");
+    if (grid && !grid.__rendered) {
+      grid.__rendered = true;
+      var cards = shuffled.slice(5,14).map(function(s){
+        var cat = (s.category||"").toUpperCase();
+        var nm = s.project_name || "";
+        var sub = [s.city, s.status_label].filter(Boolean).join(" • ");
+        var val = s.value_label || "";
+        return '<div class="proof-card"><div class="tag">' + cat + '</div><div class="nm">' + nm + '</div><div class="sub">' + sub + '</div><div class="val">' + val + '</div></div>';
+      }).join("");
+      grid.innerHTML = cards;
+    }
+  }
+  window.addEventListener("message", function(e){
+    var d = e && e.data; if (!d || d.source !== "ftl-signal-map" || d.type !== "stats") return;
+    if (Array.isArray(d.signals)) renderFeeds(d.signals);
+    var c = document.getElementById("live-signal-count");
+    var v = document.getElementById("live-signal-value");
+    if (c && typeof d.activeCount !== "undefined") c.textContent = Number(d.activeCount).toLocaleString();
+    if (v && d.totalValueFormatted) v.textContent = d.totalValueFormatted;
+  });
+})();
+</script></body>
 </html>
