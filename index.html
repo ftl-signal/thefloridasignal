@@ -109,7 +109,8 @@ tailwind.config = {
     </a>
     <div class="flex items-center gap-6">
       <a href="https://www.thefloridasignal.com" class="hidden md:inline-block font-mono text-[11px] tracking-[0.14em] uppercase text-slate-400 hover:text-signal transition-colors">View All Briefs</a>
-      <a href="https://floridasignal.memberful.com/join" class="btn-signal font-mono text-[11px] tracking-[0.14em] uppercase font-semibold px-4 py-2.5 rounded-sm">Subscribe</a>
+      <a href="https://floridasignal.memberful.com/sign_in" class="hidden md:inline-block font-mono text-[11px] tracking-[0.14em] uppercase text-slate-400 hover:text-signal transition-colors">Sign In</a>
+      <a href="https://floridasignal.memberful.com/register" class="btn-signal font-mono text-[11px] tracking-[0.14em] uppercase font-semibold px-4 py-2.5 rounded-sm">Subscribe</a>
     </div>
   </div>
 </nav>
@@ -144,9 +145,9 @@ tailwind.config = {
           Curated by a journalist with <span class="text-slate-300 font-medium">20+ years covering Florida</span>. Broward first. The rest of the state next.
         </p>
 
-        <form id="signup" data-members-form="signup" class="max-w-xl fade-up fade-up-delay-2">
+        <form id="signup" action="https://floridasignal.memberful.com/register" method="get" class="max-w-xl fade-up fade-up-delay-2">
           <div class="flex flex-col sm:flex-row gap-2 p-1.5 border border-slate-700/60 rounded-sm bg-ink-900/80 backdrop-blur">
-            <input data-members-email type="email" required placeholder="you@firm.com" aria-label="Email address" class="input-signal flex-1 px-4 py-3.5 rounded-sm font-mono text-sm bg-transparent" style="border: none; box-shadow: none;" />
+            <input name="email" type="email" required placeholder="you@firm.com" aria-label="Email address" class="input-signal flex-1 px-4 py-3.5 rounded-sm font-mono text-sm bg-transparent" style="border: none; box-shadow: none;" />
             <button type="submit" class="btn-signal font-mono text-[12px] tracking-[0.12em] uppercase font-semibold px-6 py-3.5 rounded-sm whitespace-nowrap">
               Get the Free Weekly Brief →
             </button>
@@ -421,7 +422,7 @@ tailwind.config = {
       Free tier: 1 Key Signal per week. Founding Member ($49/mo): Full weekly brief with 5+ signals, market snapshot, tables, maps, analysis & archive.
     </p>
 
-    <a href="https://floridasignal.memberful.com/join" class="btn-signal font-mono text-[13px] tracking-[0.14em] uppercase font-semibold px-8 py-5 rounded-sm inline-flex items-center gap-2 fade-up fade-up-delay-3 text-base md:text-lg">
+    <a href="https://floridasignal.memberful.com/register" class="btn-signal font-mono text-[13px] tracking-[0.14em] uppercase font-semibold px-8 py-5 rounded-sm inline-flex items-center gap-2 fade-up fade-up-delay-3 text-base md:text-lg">
       Choose Free or $49/mo Founding Member
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
     </a>
@@ -679,9 +680,9 @@ tailwind.config = {
 
     <p class="text-slate-400 text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto mb-12">Join builders, brokers, and capital allocators who rely on Florida Signal for permit-level intelligence the day it matters — not the day it breaks.</p>
 
-    <form data-members-form="signup" class="max-w-xl mx-auto">
+    <form action="https://floridasignal.memberful.com/register" method="get" class="max-w-xl mx-auto">
       <div class="flex flex-col sm:flex-row gap-2 p-1.5 border border-slate-700/60 rounded-sm bg-ink-900/80 backdrop-blur">
-        <input data-members-email type="email" required placeholder="you@firm.com" aria-label="Email address" class="input-signal flex-1 px-4 py-4 rounded-sm font-mono text-sm bg-transparent" style="border: none; box-shadow: none;" />
+        <input name="email" type="email" required placeholder="you@firm.com" aria-label="Email address" class="input-signal flex-1 px-4 py-4 rounded-sm font-mono text-sm bg-transparent" style="border: none; box-shadow: none;" />
         <button type="submit" class="btn-signal font-mono text-[12px] tracking-[0.14em] uppercase font-semibold px-8 py-4 rounded-sm whitespace-nowrap">Get the Free Weekly Brief →</button>
       </div>
       <p class="mt-4 font-mono text-[11px] tracking-[0.06em] text-slate-500">Free during founding period · No spam · Unsubscribe anytime</p>
@@ -715,7 +716,7 @@ tailwind.config = {
         <ul class="space-y-2.5">
           <li><a href="https://www.thefloridasignal.com" class="text-slate-300 hover:text-signal text-sm transition-colors">All Briefs</a></li>
           <li><a href="https://ftl-signal.github.io/broward-intelligence-map/?ref=brief.thefloridasignal.com" class="text-slate-300 hover:text-signal text-sm transition-colors">Signal Map</a></li>
-          <li><a href="https://floridasignal.memberful.com/join" class="text-slate-300 hover:text-signal text-sm transition-colors">Subscribe</a></li>
+          <li><a href="https://floridasignal.memberful.com/register" class="text-slate-300 hover:text-signal text-sm transition-colors">Subscribe</a></li>
         </ul>
       </div>
       <div class="md:col-span-2">
@@ -760,8 +761,8 @@ tailwind.config = {
         Get Florida Signal<br/>in your inbox.
       </h3>
       <p class="text-slate-400 text-sm leading-relaxed mb-6">Free weekly brief plus real-time development signals from Broward County permits. Curated by a veteran journalist.</p>
-      <form data-members-form="signup" id="signal-modal-form">
-        <input data-members-email type="email" required placeholder="you@firm.com" aria-label="Email address" class="input-signal w-full px-4 py-3.5 rounded-sm font-mono text-sm mb-3" />
+      <form action="https://floridasignal.memberful.com/register" method="get" id="signal-modal-form">
+        <input name="email" type="email" required placeholder="you@firm.com" aria-label="Email address" class="input-signal w-full px-4 py-3.5 rounded-sm font-mono text-sm mb-3" />
         <button type="submit" class="btn-signal w-full font-mono text-[12px] tracking-[0.14em] uppercase font-semibold px-6 py-3.5 rounded-sm inline-flex items-center justify-center gap-2">
           Subscribe Free
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
