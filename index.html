@@ -111,14 +111,36 @@ tailwind.config = {
 #live-signals-feed .feed-row .pulse { width:6px; height:6px; border-radius:50%; background:#22D3EE; box-shadow:0 0 8px #22D3EE; flex-shrink:0; }
 #live-signals-feed .feed-row .meta { font-size:11px; color:#94a3b8; letter-spacing:0.08em; text-transform:uppercase; flex-shrink:0; }
 #live-signals-feed .feed-row .name { color:#fff; font-weight:500; font-size:14px; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-#live-signals-feed .feed-row .val { color:#22D3EE; font-weight:600; font-size:13px; font-variant-numeric:tabular-nums; flex-shrink:0; }
 @media (max-width: 520px) { #live-signals-feed .feed-row .meta { display:none; } #live-signals-feed .feed-row .name { font-size:13px; } }
 #proof-grid .proof-card { border:1px solid rgba(148,163,184,0.2); border-radius:14px; padding:18px 20px; background:rgba(0,0,0,0.22); transition:border-color .2s, transform .2s; }
 #proof-grid .proof-card:hover { border-color: rgba(34,211,238,0.45); transform:translateY(-1px); }
 #proof-grid .proof-card .tag { font-size:10px; letter-spacing:0.25em; color:#22D3EE; font-weight:600; text-transform:uppercase; margin-bottom:8px; }
 #proof-grid .proof-card .nm { color:#fff; font-weight:500; font-size:15px; line-height:1.35; margin-bottom:6px; }
 #proof-grid .proof-card .sub { color:#94a3b8; font-size:12px; letter-spacing:0.05em; }
-#proof-grid .proof-card .val { color:#22D3EE; font-weight:600; font-size:13px; margin-top:10px; font-variant-numeric:tabular-nums; }
+
+#sea-cam {
+  position: absolute; top: 14%; right: 2.5%; width: 36%; height: 56%;
+  max-width: 540px; max-height: 340px; border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(34,211,238,0.42);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(34,211,238,0.15), 0 0 50px rgba(34,211,238,0.18);
+  background: #000; z-index: 8; pointer-events: auto; transition: opacity .4s;
+}
+#sea-cam iframe { width: 100%; height: 100%; border: 0; display: block; }
+#sea-cam .cam-label {
+  position: absolute; top: 12px; left: 12px; z-index: 2;
+  display: flex; align-items: center; gap: 7px;
+  font-size: 10px; letter-spacing: 0.25em; font-weight: 600;
+  color: #22D3EE; text-transform: uppercase;
+  background: rgba(8, 15, 26, 0.78); padding: 7px 11px; border-radius: 999px;
+  border: 1px solid rgba(34,211,238,0.3); backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+#sea-cam .cam-label .pulse {
+  width: 6px; height: 6px; border-radius: 50%; background: #22D3EE;
+  box-shadow: 0 0 8px #22D3EE; animation: seacampulse 1.8s infinite;
+}
+@keyframes seacampulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+@media (max-width: 1023px) { #sea-cam { display: none !important; } }
 </style>
 </head>
 
@@ -555,10 +577,7 @@ tailwind.config = {
   <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-16">
     <div class="grid md:grid-cols-12 gap-12 mb-16">
       <div class="md:col-span-5">
-        <a href="https://www.thefloridasignal.com" class="flex items-center gap-2.5 mb-4">
-          <span class="font-display font-black text-white text-lg tracking-[-0.02em]">FLORIDA</span>
-          <span class="font-display font-black text-signal text-lg tracking-[-0.02em]">SIGNAL</span>
-        </a>
+        <a href="https://www.thefloridasignal.com" class="flex items-center gap-3" aria-label="The Florida Signal"><img src="/florida%20sig%20trans%20for%20black%20background.png" alt="The Florida Signal" class="h-10 lg:h-12 w-auto" /></a>
         <p class="text-slate-400 text-sm leading-relaxed max-w-md">Permit-level development intelligence for Fort Lauderdale and Broward County. Curated by a veteran journalist. Read before it's news.</p>
         <div class="mt-6 flex items-center gap-3">
           <span class="relative flex items-center justify-center w-2 h-2"><span class="absolute inset-0 bg-live rounded-full pulse-dot"></span></span>
@@ -697,7 +716,7 @@ tailwind.config = {
         var val = s.value_label || "";
         var city = s.city || "";
         var nm = s.project_name || "";
-        return '<div class="feed-row"><span class="pulse"></span><span class="meta">' + city + '</span><span class="name">' + nm + '</span><span class="val">' + val + '</span></div>';
+        return '<div class="feed-row"><span class="pulse"></span><span class="meta">' + city + '</span><span class="name">' + nm + '</span></div>';
       }).join("");
       feed.innerHTML = rows;
     }
@@ -709,7 +728,7 @@ tailwind.config = {
         var nm = s.project_name || "";
         var sub = [s.city, s.status_label].filter(Boolean).join(" • ");
         var val = s.value_label || "";
-        return '<div class="proof-card"><div class="tag">' + cat + '</div><div class="nm">' + nm + '</div><div class="sub">' + sub + '</div><div class="val">' + val + '</div></div>';
+        return '<div class="proof-card"><div class="tag">' + cat + '</div><div class="nm">' + nm + '</div><div class="sub">' + sub + '</div></div>';
       }).join("");
       grid.innerHTML = cards;
     }
@@ -722,6 +741,44 @@ tailwind.config = {
     if (c && typeof d.activeCount !== "undefined") c.textContent = Number(d.activeCount).toLocaleString();
     if (v && d.totalValueFormatted) v.textContent = d.totalValueFormatted;
   });
+})();
+</script>
+<script>
+(function(){
+  function pompanoDaylight(){
+    try {
+      var hh = parseInt(new Date().toLocaleString("en-US",{hour:"numeric",hour12:false,timeZone:"America/New_York"}),10);
+      return hh >= 7 && hh < 20;
+    } catch(e){ return true; }
+  }
+  function findMapIframe(){
+    var ifs = document.querySelectorAll("iframe");
+    for (var i=0;i<ifs.length;i++){ if ((ifs[i].src||"").indexOf("broward-intelligence-map") !== -1) return ifs[i]; }
+    return null;
+  }
+  function injectCam(){
+    if (window.innerWidth < 1024) return;
+    if (!pompanoDaylight()) return;
+    if (document.getElementById("sea-cam")) return;
+    var ifr = findMapIframe(); if (!ifr) return;
+    var container = ifr.parentElement; if (!container) return;
+    var cs = window.getComputedStyle(container);
+    if (cs.position === "static") container.style.position = "relative";
+    var cam = document.createElement("div");
+    cam.id = "sea-cam";
+    cam.innerHTML = '<div class="cam-label"><span class="pulse"></span>LIVE \u00b7 POMPANO BEACH</div><iframe src="https://www.youtube.com/embed/mV8zVsX_o_0?autoplay=1&mute=1&controls=0&modestbranding=1&playsinline=1&loop=1&playlist=mV8zVsX_o_0&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="Pompano Beach Sea Cam"></iframe>';
+    container.appendChild(cam);
+  }
+  function syncCam(){
+    var should = window.innerWidth >= 1024 && pompanoDaylight();
+    var have = !!document.getElementById("sea-cam");
+    if (should && !have) injectCam();
+    else if (!should && have) document.getElementById("sea-cam").remove();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ setTimeout(injectCam, 600); });
+  else setTimeout(injectCam, 600);
+  window.addEventListener("resize", syncCam);
+  setInterval(syncCam, 5 * 60 * 1000);
 })();
 </script></body>
 </html>
