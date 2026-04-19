@@ -234,23 +234,15 @@ tailwind.config = {
       <p class="text-slate-400 text-lg leading-relaxed">47 active signals · $361M in tracked development value</p>
     </div>
 
-    <div class="relative rounded-sm overflow-hidden">
-      <iframe src="https://ftl-signal.github.io/broward-intelligence-map/?ref=brief.thefloridasignal.com" title="Broward County Intelligence Map" loading="lazy" class="map-glow w-full h-[600px] lg:h-[720px] block border-0"></iframe>
-      <div class="absolute top-6 left-6 hidden md:flex flex-col gap-2 pointer-events-none">
-        <div class="bg-ink-900/90 backdrop-blur border border-slate-700/50 px-3 py-2 rounded-sm">
-          <div class="font-mono text-[9px] tracking-[0.14em] uppercase text-slate-400">Fort Lauderdale</div>
-          <div class="font-display font-bold text-white text-lg leading-none mt-0.5">23 <span class="text-slate-500 text-xs font-normal">signals</span></div>
-        </div>
-        <div class="bg-ink-900/90 backdrop-blur border border-slate-700/50 px-3 py-2 rounded-sm">
-          <div class="font-mono text-[9px] tracking-[0.14em] uppercase text-slate-400">Pompano Beach</div>
-          <div class="font-display font-bold text-white text-lg leading-none mt-0.5">11 <span class="text-slate-500 text-xs font-normal">signals</span></div>
-        </div>
-      </div>
-      <div class="absolute bottom-6 right-6 bg-ink-900/90 backdrop-blur border border-signal/30 px-4 py-3 rounded-sm pointer-events-none">
-        <div class="font-mono text-[9px] tracking-[0.14em] uppercase text-signal flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-live pulse-dot"></span>Updated hourly
-        </div>
-        <div class="font-mono text-[10px] text-slate-400 mt-0.5">Last sync · moments ago</div>
+    <div class="relative group">
+      <div class="absolute -top-px inset-x-16 h-px bg-gradient-to-r from-transparent via-signal/70 to-transparent"></div>
+      <div class="relative rounded-lg overflow-hidden ring-1 ring-slate-800/70 bg-ink-950 shadow-[0_40px_100px_-35px_rgba(0,0,0,0.95)] transition-shadow duration-500 group-hover:shadow-[0_50px_120px_-30px_rgba(0,0,0,1)]">
+        <iframe
+          src="https://ftl-signal.github.io/broward-intelligence-map/?preview=true&ref=brief.thefloridasignal.com"
+          title="Broward County Intelligence Map"
+          loading="lazy"
+          class="w-full h-[480px] lg:h-[580px] block border-0"
+        ></iframe>
       </div>
     </div>
 
