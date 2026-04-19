@@ -278,13 +278,13 @@ tailwind.config = {
         </div>
         <h2 class="font-display font-black text-white text-4xl lg:text-5xl tracking-[-0.03em] leading-[0.95]">Latest briefs</h2>
       </div>
-      <a href="https://www.thefloridasignal.com" class="btn-ghost font-mono text-[11px] tracking-[0.14em] uppercase font-semibold px-5 py-3 rounded-sm inline-flex items-center gap-2">
+      <a href="https://brief.thefloridasignal.com/archive/" class="btn-ghost font-mono text-[11px] tracking-[0.14em] uppercase font-semibold px-5 py-3 rounded-sm inline-flex items-center gap-2">
         All Briefs
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div id="briefs-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
       <a href="https://www.thefloridasignal.com" class="card-hover bg-ink-900/40 rounded-sm overflow-hidden group">
         <div class="aspect-[16/10] overflow-hidden bg-ink-850 relative">
@@ -814,5 +814,21 @@ tailwind.config = {
 })();
 </script>
 
+
+<!-- GHOST_LATEST_BRIEFS_V1: fetch latest posts from Ghost and render into #briefs-grid -->
+<script>
+(function(){
+  var K="535f4f2c2e3ee18574a67395b1";
+  var A="https://thefloridasignalbrief.ghost.io/ghost/api/content/posts/";
+  var LIM=6;
+  function esc(s){if(s==null)return "";return String(s).replace(/[&<>"\x27]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","\x27":"&#39;"}[c];});}
+  function pillCls(n){if(!n)return "pill-signal";var s=String(n).toLowerCase().replace(/[^a-z0-9]+/g,"-");var K=["assemblage","entitlement","execution","permit","zoning","signal","reinvestment"];return "pill-"+(K.indexOf(s)>=0?s:"signal");}
+  function fmt(iso){if(!iso)return "";var d=new Date(iso);return d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});}
+  function card(p){var img=p.feature_image||"";var tag=p.primary_tag?p.primary_tag.name:"";var ex=(p.custom_excerpt||p.excerpt||"").replace(/\s+/g," ").trim();if(ex.length>170)ex=ex.slice(0,170)+"\u2026";var date=fmt(p.published_at);var href=p.url||"#";return '<a href="'+esc(href)+'" class="card-hover bg-ink-900/40 rounded-sm overflow-hidden group">'+'<div class="aspect-[16/10] overflow-hidden bg-ink-850 relative">'+(img?'<img src="'+esc(img)+'" alt="" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">':'')+(tag?'<div class="absolute top-3 left-3"><span class="pill '+pillCls(tag)+'">'+esc(tag)+'</span></div>':'')+'<div class="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-ink-950 to-transparent"></div></div>'+'<div class="p-6">'+'<div class="font-mono text-[10px] tracking-[0.14em] uppercase text-slate-500 mb-3 flex items-center gap-3">'+(date?'<span>'+esc(date)+'</span>':'')+'</div>'+'<h3 class="font-display font-bold text-white text-xl leading-tight mb-3 group-hover:text-signal transition-colors">'+esc(p.title||"")+'</h3>'+(ex?'<p class="text-slate-400 text-sm leading-relaxed mb-5">'+esc(ex)+'</p>':'')+'<span class="font-mono text-[11px] tracking-[0.1em] uppercase text-signal inline-flex items-center gap-1.5">Read Brief<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></span>'+'</div></a>';}
+  function render(posts){var g=document.getElementById("briefs-grid");if(!g)return;g.innerHTML=posts.map(card).join("");}
+  function load(){var q="key="+K+"&limit="+LIM+"&fields=title,slug,url,feature_image,custom_excerpt,excerpt,published_at&include=tags";fetch(A+"?"+q).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json();}).then(function(d){if(d.posts&&d.posts.length)render(d.posts);}).catch(function(e){console.warn("Ghost fetch failed, keeping fallback:",e);});}
+  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",load);}else{load();}
+})();
+</script>
 </body>
 </html>
