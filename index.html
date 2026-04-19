@@ -231,7 +231,33 @@ tailwind.config = {
         <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-signal">Intelligence Map</span>
       </div>
       <h2 class="font-display font-black text-white text-4xl lg:text-5xl tracking-[-0.03em] leading-[0.95] mb-3">Signals mapped across Broward County</h2>
-      <p class="text-slate-400 text-lg leading-relaxed">47 active signals · $361M in tracked development value</p>
+      <div id="signal-stat-strip" class="flex flex-wrap items-center gap-3 mt-2">
+      <div class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-gradient-to-r from-signal/15 via-signal/10 to-signal/5 ring-1 ring-signal/30 backdrop-blur-sm shadow-[0_8px_30px_-8px_rgba(34,211,238,0.35)]">
+        <span class="relative flex h-2 w-2 flex-shrink-0">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-signal"></span>
+        </span>
+        <span class="text-[10px] font-mono tracking-[0.22em] uppercase text-signal font-bold">Live</span>
+        <span id="live-signal-count" class="font-display text-white text-lg font-black tabular-nums leading-none">47</span>
+        <span class="text-slate-400 text-xs font-medium">active signals</span>
+      </div>
+      <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-slate-900/60 ring-1 ring-slate-700/60 backdrop-blur-sm">
+        <span id="live-signal-value" class="font-display text-white text-lg font-black tabular-nums leading-none">$361M</span>
+        <span class="text-slate-400 text-xs font-medium">tracked development value</span>
+      </div>
+    </div>
+    <script>
+      (function(){
+        window.addEventListener("message", function(e){
+          var d = e.data;
+          if (!d || d.source !== "ftl-signal-map" || d.type !== "stats") return;
+          var c = document.getElementById("live-signal-count");
+          var v = document.getElementById("live-signal-value");
+          if (c && typeof d.activeCount === "number") c.textContent = d.activeCount;
+          if (v && d.totalValueFormatted) v.textContent = d.totalValueFormatted;
+        });
+      })();
+    </script>
     </div>
 
     <div class="relative group">
