@@ -201,7 +201,7 @@
       </p>
 
       <!-- CTA: email signup (points to your brief subscribe page) -->
-      <form action="https://brief.thefloridasignal.com/subscribe" method="get" class="mt-8 flex flex-col sm:flex-row gap-2 max-w-lg">
+      <form action="https://floridasignal.memberful.com/register" method="get" class="mt-8 flex flex-col sm:flex-row gap-2 max-w-lg">
         <input type="email" name="email" required placeholder="you@firm.com"
                class="flex-1 px-4 py-3 rounded bg-ink-900 border border-slate-700 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-signal-500" />
         <button type="submit"
@@ -379,27 +379,39 @@
 <section class="relative py-20 lg:py-28 border-t border-slate-800/60">
   <div class="max-w-[1400px] mx-auto px-5 lg:px-10">
 
-    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10">
+    <div class="mb-6">
       <div>
         <p class="font-mono text-[11px] tracking-[0.2em] text-signal-400 mb-3">● INTELLIGENCE MAP</p>
         <h2 class="font-display font-black text-white text-3xl lg:text-5xl leading-tight">Signals mapped across Broward County.</h2>
       </div>
 
-      <!-- WEEKLY UPDATE: COUNTS -->
-      <div class="flex gap-6 lg:gap-10 font-mono text-xs text-slate-400">
-        <div>
-          <div class="text-2xl lg:text-3xl text-white font-black"><span id="active-signals">47</span></div>
-          <div class="tracking-widest">ACTIVE SIGNALS</div>
-        </div>
-        <div>
-          <div class="text-2xl lg:text-3xl text-signal-400 font-black">$361.0M</div>
-          <div class="tracking-widest">TRACKED VALUE</div>
-        </div>
-      </div>
-      <!-- / END WEEKLY UPDATE: COUNTS -->
+      
     </div>
 
-    <div class="grid lg:grid-cols-3 gap-6">
+    <!-- WEEKLY UPDATE: COUNTS (banner above map) -->
+    <div class="mb-6 rounded-xl border border-slate-800 bg-ink-900/60 overflow-hidden">
+      <div class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-slate-800">
+        <div class="px-5 py-4">
+          <div class="font-mono text-[10px] tracking-widest text-signal-400 mb-1">● ACTIVE SIGNALS</div>
+          <div class="font-display text-2xl lg:text-3xl text-white font-black"><span id="active-signals">47</span></div>
+        </div>
+        <div class="px-5 py-4">
+          <div class="font-mono text-[10px] tracking-widest text-slate-400 mb-1">TRACKED VALUE</div>
+          <div class="font-display text-2xl lg:text-3xl text-signal-400 font-black">$361.0M</div>
+        </div>
+        <div class="px-5 py-4">
+          <div class="font-mono text-[10px] tracking-widest text-slate-400 mb-1">MUNICIPALITIES</div>
+          <div class="font-display text-2xl lg:text-3xl text-white font-black">31</div>
+        </div>
+        <div class="px-5 py-4">
+          <div class="font-mono text-[10px] tracking-widest text-slate-400 mb-1">LAST SYNC</div>
+          <div class="font-display text-2xl lg:text-3xl text-white font-black">LIVE</div>
+        </div>
+      </div>
+    </div>
+    <!-- / END WEEKLY UPDATE: COUNTS -->
+
+    <div class="grid lg:grid-cols-3 gap-6 items-start">
 
       <!-- MAP PREVIEW (live iframe of the intelligence map, non-interactive on homepage — paywall later) -->
       <a href="https://ftl-signal.github.io/broward-intelligence-map/"
@@ -419,19 +431,6 @@
       <!-- RIGHT RAIL: live signal list + live cam (cam is desktop-only) -->
       <div class="space-y-6">
 
-        <div class="rounded-xl border border-slate-800 bg-ink-900/60 overflow-hidden">
-          <div class="px-4 py-3 border-b border-slate-800 font-mono text-[11px] tracking-[0.18em] text-signal-400">● LIVE SIGNALS</div>
-
-          <!-- WEEKLY UPDATE: LIVE SIGNAL TILES (5 items) -->
-          <ul class="divide-y divide-slate-800 text-sm">
-            <li class="px-4 py-3"><div class="text-[10px] font-mono tracking-widest text-slate-500">FORT LAUDERDALE</div><div class="text-slate-100">New River Resiliency</div></li>
-            <li class="px-4 py-3"><div class="text-[10px] font-mono tracking-widest text-slate-500">POMPANO BEACH</div><div class="text-slate-100">NW 15th St Mobility</div></li>
-            <li class="px-4 py-3"><div class="text-[10px] font-mono tracking-widest text-slate-500">FORT LAUDERDALE</div><div class="text-slate-100">1400 Progresso Storage</div></li>
-            <li class="px-4 py-3"><div class="text-[10px] font-mono tracking-widest text-slate-500">FORT LAUDERDALE</div><div class="text-slate-100">Fort Lauderdale Terminal</div></li>
-            <li class="px-4 py-3"><div class="text-[10px] font-mono tracking-widest text-slate-500">POMPANO BEACH</div><div class="text-slate-100">Modera Pompano</div></li>
-          </ul>
-          <!-- / END WEEKLY UPDATE: LIVE SIGNAL TILES -->
-        </div>
 
         <!-- LIVE CAM — desktop only (hidden below lg breakpoint / mobile + tablet) -->
         <div id="sea-cam" class="hidden lg:block rounded-xl overflow-hidden ring-1 ring-slate-800 bg-ink-900/60">
@@ -586,7 +585,7 @@
     <h2 class="font-display font-black text-white text-4xl lg:text-6xl leading-[0.95]">Read Broward<br /><span class="text-signal-400">before it's news.</span></h2>
     <p class="mt-6 text-slate-300 text-lg">Join builders, brokers, and capital allocators who use Florida Signal for permit-level intelligence the day it matters.</p>
 
-    <form action="https://brief.thefloridasignal.com/subscribe" method="get" class="mt-8 flex flex-col sm:flex-row gap-2 max-w-lg mx-auto">
+    <form action="https://floridasignal.memberful.com/register" method="get" class="mt-8 flex flex-col sm:flex-row gap-2 max-w-lg mx-auto">
       <input type="email" name="email" required placeholder="you@firm.com"
              class="flex-1 px-4 py-3 rounded bg-ink-900 border border-slate-700 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-signal-500" />
       <button type="submit"
