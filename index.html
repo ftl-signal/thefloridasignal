@@ -235,25 +235,23 @@ tailwind.config = {
     </div>
 
     <div class="relative rounded-sm overflow-hidden">
-      <a href="https://ftl-signal.github.io/broward-intelligence-map/?ref=brief.thefloridasignal.com" target="_blank" rel="noopener" class="map-glow group block">
-        <img src="https://ftl-signal.github.io/broward-intelligence-map/" alt="Broward County Intelligence Map" class="w-full h-auto opacity-95 group-hover:opacity-100 transition-opacity duration-300" />
-        <div class="absolute top-6 left-6 hidden md:flex flex-col gap-2">
-          <div class="bg-ink-900/90 backdrop-blur border border-slate-700/50 px-3 py-2 rounded-sm">
-            <div class="font-mono text-[9px] tracking-[0.14em] uppercase text-slate-400">Fort Lauderdale</div>
-            <div class="font-display font-bold text-white text-lg leading-none mt-0.5">23 <span class="text-slate-500 text-xs font-normal">signals</span></div>
-          </div>
-          <div class="bg-ink-900/90 backdrop-blur border border-slate-700/50 px-3 py-2 rounded-sm">
-            <div class="font-mono text-[9px] tracking-[0.14em] uppercase text-slate-400">Pompano Beach</div>
-            <div class="font-display font-bold text-white text-lg leading-none mt-0.5">11 <span class="text-slate-500 text-xs font-normal">signals</span></div>
-          </div>
+      <iframe src="https://ftl-signal.github.io/broward-intelligence-map/?ref=brief.thefloridasignal.com" title="Broward County Intelligence Map" loading="lazy" class="map-glow w-full h-[600px] lg:h-[720px] block border-0"></iframe>
+      <div class="absolute top-6 left-6 hidden md:flex flex-col gap-2 pointer-events-none">
+        <div class="bg-ink-900/90 backdrop-blur border border-slate-700/50 px-3 py-2 rounded-sm">
+          <div class="font-mono text-[9px] tracking-[0.14em] uppercase text-slate-400">Fort Lauderdale</div>
+          <div class="font-display font-bold text-white text-lg leading-none mt-0.5">23 <span class="text-slate-500 text-xs font-normal">signals</span></div>
         </div>
-        <div class="absolute bottom-6 right-6 bg-ink-900/90 backdrop-blur border border-signal/30 px-4 py-3 rounded-sm">
-          <div class="font-mono text-[9px] tracking-[0.14em] uppercase text-signal flex items-center gap-1.5">
-            <span class="w-1.5 h-1.5 rounded-full bg-live pulse-dot"></span>Updated hourly
-          </div>
-          <div class="font-mono text-[10px] text-slate-400 mt-0.5">Last sync · moments ago</div>
+        <div class="bg-ink-900/90 backdrop-blur border border-slate-700/50 px-3 py-2 rounded-sm">
+          <div class="font-mono text-[9px] tracking-[0.14em] uppercase text-slate-400">Pompano Beach</div>
+          <div class="font-display font-bold text-white text-lg leading-none mt-0.5">11 <span class="text-slate-500 text-xs font-normal">signals</span></div>
         </div>
-      </a>
+      </div>
+      <div class="absolute bottom-6 right-6 bg-ink-900/90 backdrop-blur border border-signal/30 px-4 py-3 rounded-sm pointer-events-none">
+        <div class="font-mono text-[9px] tracking-[0.14em] uppercase text-signal flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-live pulse-dot"></span>Updated hourly
+        </div>
+        <div class="font-mono text-[10px] text-slate-400 mt-0.5">Last sync · moments ago</div>
+      </div>
     </div>
 
     <div class="px-2 pt-4 pb-1 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
