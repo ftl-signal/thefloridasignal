@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Florida Signal — Homepage Patch Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#05070c; --ink:#e8f0ff; --ink-dim:#8ea3c2; --ink-muted:#5f748f;
+    --cyan:#22d3ee; --cyan-soft:#0ea5b7;
+    --panel:#0d1320; --panel-2:#0a0f1a;
+    --line:rgba(255,255,255,0.08);
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif}
+  body{background:#05070c;color:var(--ink);padding:48px 24px;line-height:1.6}
+  .wrap{max-width:980px;margin:0 auto}
+  h1{font-size:32px;font-weight:900;letter-spacing:-0.8px;margin-bottom:8px}
+  h1 .brand{
+    background:linear-gradient(90deg,#22d3ee,#fff,#22d3ee);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    background-size:200% 100%;animation:shimmer 4s linear infinite;
+  }
+  @keyframes shimmer{0%{background-position:200% 50%}100%{background-position:-200% 50%}}
+  .sub{color:var(--ink-dim);font-size:15px;margin-bottom:36px}
+  h2{font-size:20px;font-weight:800;margin:36px 0 10px;color:#fff;display:flex;align-items:center;gap:10px}
+  h2::before{content:"";width:6px;height:20px;background:var(--cyan);border-radius:3px;box-shadow:0 0 10px var(--cyan)}
+  h3{font-size:14px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:2px;margin:20px 0 8px;font-family:var(--mono)}
+  p{color:var(--ink-dim);margin-bottom:12px;font-size:14px}
+  p strong{color:#fff;font-weight:700}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:20px 24px;margin:14px 0;
+  }
+  pre{
+    background:#050810;border:1px solid var(--line);border-left:3px solid var(--cyan);
+    border-radius:8px;padding:16px;overflow-x:auto;
+    font-family:var(--mono);font-size:12px;color:#e8f0ff;line-height:1.6;
+    margin:10px 0;
+  }
+  pre .c{color:#64748b}
+  pre .k{color:#f472b6}
+  pre .s{color:#a5f3fc}
+  pre .v{color:#fde047}
+  pre .n{color:#86efac}
+  .tag{display:inline-block;font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:4px;background:rgba(34,211,238,0.15);color:var(--cyan);border:1px solid rgba(34,211,238,0.3);text-transform:uppercase;letter-spacing:1px;margin-right:6px}
+  .tag.warn{background:rgba(251,146,60,0.15);color:#fb923c;border-color:rgba(251,146,60,0.3)}
+  .tag.fix{background:rgba(16,185,129,0.15);color:#10b981;border-color:rgba(16,185,129,0.3)}
+
+  /* ========= LIVE PREVIEWS ========= */
+  .preview{
+    background:var(--panel-2);border:1px solid var(--line);border-radius:12px;
+    padding:28px 32px;margin:14px 0;
+  }
+
+  /* Header preview */
+  .hdr-preview{display:flex;align-items:center;gap:28px;padding:18px 0}
+  .logo-lockup{display:flex;align-items:center;gap:18px}
+  .logo-mark{
+    font-family:'Inter';font-weight:900;font-size:24px;letter-spacing:-0.3px;
+    color:#fff;line-height:1;
+  }
+  .logo-mark .signal{color:var(--cyan);text-shadow:0 0 20px rgba(34,211,238,0.5)}
+  .divider{width:1px;height:28px;background:linear-gradient(180deg,transparent,rgba(255,255,255,0.15),transparent)}
+  .tagline{
+    position:relative;
+    font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:3px;
+    text-transform:uppercase;
+    background:linear-gradient(90deg, #22d3ee 0%, #ffffff 50%, #22d3ee 100%);
+    background-size:200% 100%;
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:tagShimmer 5s linear infinite;
+  }
+  @keyframes tagShimmer{
+    0%{background-position:200% 50%}
+    100%{background-position:-200% 50%}
+  }
+
+  /* Ticker preview */
+  .ticker{
+    position:relative;
+    display:flex;align-items:center;gap:0;
+    background:linear-gradient(180deg, #0f1524 0%, #0a0f1a 100%);
+    border:1px solid rgba(34,211,238,0.25);
+    border-radius:10px;
+    overflow:hidden;
+    height:54px;
+  }
+  .ticker-label{
+    flex-shrink:0;
+    display:flex;align-items:center;gap:8px;
+    padding:0 18px;height:100%;
+    background:linear-gradient(180deg, rgba(34,211,238,0.12), rgba(34,211,238,0.04));
+    border-right:1px solid rgba(34,211,238,0.25);
+    font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:2.5px;
+    text-transform:uppercase;color:var(--cyan);
+  }
+  .ticker-label .dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:blink 1.6s ease-in-out infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
+  .ticker-track{
+    flex:1;display:flex;align-items:center;justify-content:center;
+    gap:24px;padding:0 24px;height:100%;
+    font-size:14px;font-weight:500;color:#fff;letter-spacing:0.3px;
+  }
+  .ticker-date{
+    font-family:var(--mono);font-weight:700;font-size:12px;
+    color:var(--cyan);letter-spacing:2px;
+    padding:5px 10px;border:1px solid rgba(34,211,238,0.3);
+    border-radius:6px;background:rgba(34,211,238,0.06);
+    flex-shrink:0;
+  }
+  .ticker-title{font-weight:700;color:#fff;font-size:14px}
+  .ticker-tags{color:var(--ink-dim);font-size:12.5px;font-weight:500}
+  .ticker-tags span{margin:0 4px;color:var(--cyan-soft)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1><span class="brand">Florida Signal</span> — Homepage Patch Reference</h1>
+<div class="sub">Copy-paste CSS and HTML snippets to fix the six issues on the homepage. The map file is a separate deploy — this doc is only for the homepage repo.</div>
+
+<!-- ============================================================ -->
+<h2>1. "Broward Development Intelligence" — shimmer tagline</h2>
+<p>The current tagline next to the logo is static and small. Replace with a shimmering gradient treatment, bumped size and letter-spacing, and a vertical divider for visual anchor.</p>
+
+<div class="preview">
+  <div class="hdr-preview">
+    <div class="logo-lockup">
+      <div class="logo-mark">FLORIDA<span class="signal">SIGNAL</span></div>
+      <div class="divider"></div>
+      <div class="tagline">Broward Development Intelligence</div>
+    </div>
+  </div>
+</div>
+
+<h3>HTML</h3>
+<pre><span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"header-lockup"</span><span class="k">&gt;</span>
+  <span class="k">&lt;a</span> <span class="v">href</span>=<span class="s">"/"</span> <span class="v">class</span>=<span class="s">"logo-mark"</span><span class="k">&gt;</span>FLORIDA<span class="k">&lt;span</span> <span class="v">class</span>=<span class="s">"signal"</span><span class="k">&gt;</span>SIGNAL<span class="k">&lt;/span&gt;&lt;/a&gt;</span>
+  <span class="k">&lt;span</span> <span class="v">class</span>=<span class="s">"lockup-divider"</span><span class="k">&gt;&lt;/span&gt;</span>
+  <span class="k">&lt;span</span> <span class="v">class</span>=<span class="s">"tagline"</span><span class="k">&gt;</span>Broward Development Intelligence<span class="k">&lt;/span&gt;</span>
+<span class="k">&lt;/div&gt;</span></pre>
+
+<h3>CSS</h3>
+<pre><span class="c">/* Lockup container */</span>
+<span class="n">.header-lockup</span>{
+  <span class="v">display</span>:flex; <span class="v">align-items</span>:center; <span class="v">gap</span>:18px;
+}
+<span class="n">.lockup-divider</span>{
+  <span class="v">width</span>:1px; <span class="v">height</span>:28px;
+  <span class="v">background</span>:linear-gradient(180deg,transparent,rgba(255,255,255,0.18),transparent);
+}
+
+<span class="c">/* Shimmering tagline */</span>
+<span class="n">.tagline</span>{
+  <span class="v">font-family</span>:<span class="s">'JetBrains Mono'</span>, ui-monospace, monospace;
+  <span class="v">font-weight</span>:600;
+  <span class="v">font-size</span>:12px;              <span class="c">/* was ~9-10px — bumped for readability */</span>
+  <span class="v">letter-spacing</span>:3px;         <span class="c">/* opens up the word so it reads */</span>
+  <span class="v">text-transform</span>:uppercase;
+  <span class="v">background</span>:linear-gradient(90deg, <span class="s">#22d3ee</span> 0%, <span class="s">#ffffff</span> 50%, <span class="s">#22d3ee</span> 100%);
+  <span class="v">background-size</span>:200% 100%;
+  <span class="v">-webkit-background-clip</span>:text;
+  <span class="v">background-clip</span>:text;
+  <span class="v">-webkit-text-fill-color</span>:transparent;
+  <span class="v">animation</span>:tagShimmer 5s linear infinite;
+  <span class="v">white-space</span>:nowrap;
+}
+<span class="k">@keyframes</span> tagShimmer{
+  <span class="n">0%</span>  { <span class="v">background-position</span>:200% 50%; }
+  <span class="n">100%</span>{ <span class="v">background-position</span>:-200% 50%; }
+}
+
+<span class="c">/* Hide tagline on narrow mobile so header doesn't wrap */</span>
+<span class="k">@media</span> (<span class="v">max-width</span>: 640px){
+  <span class="n">.lockup-divider</span>, <span class="n">.tagline</span>{ <span class="v">display</span>:none; }
+}</pre>
+
+<!-- ============================================================ -->
+<h2>2. Pipeline Watch ticker — centered, larger, readable</h2>
+<p>The ticker text is undersized and the event info crowds to the right of the label. Fix with flexbox centering, a framed date chip, and bumped type.</p>
+
+<div class="preview">
+  <div class="ticker">
+    <div class="ticker-label">
+      <span class="dot"></span>
+      Pipeline Watch
+    </div>
+    <div class="ticker-track">
+      <span class="ticker-date">APR 23 · THU</span>
+      <span class="ticker-title">FHBA Florida Building Code Webinar</span>
+      <span class="ticker-tags">code revisions <span>·</span> permitting <span>·</span> materials</span>
+    </div>
+  </div>
+</div>
+
+<h3>HTML</h3>
+<pre><span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"ticker"</span><span class="k">&gt;</span>
+  <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"ticker-label"</span><span class="k">&gt;&lt;span</span> <span class="v">class</span>=<span class="s">"dot"</span><span class="k">&gt;&lt;/span&gt;</span>Pipeline Watch<span class="k">&lt;/div&gt;</span>
+  <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"ticker-track"</span><span class="k">&gt;</span>
+    <span class="k">&lt;span</span> <span class="v">class</span>=<span class="s">"ticker-date"</span><span class="k">&gt;</span>APR 23 · THU<span class="k">&lt;/span&gt;</span>
+    <span class="k">&lt;span</span> <span class="v">class</span>=<span class="s">"ticker-title"</span><span class="k">&gt;</span>FHBA Florida Building Code Webinar<span class="k">&lt;/span&gt;</span>
+    <span class="k">&lt;span</span> <span class="v">class</span>=<span class="s">"ticker-tags"</span><span class="k">&gt;</span>code revisions · permitting · materials<span class="k">&lt;/span&gt;</span>
+  <span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;/div&gt;</span></pre>
+
+<h3>CSS</h3>
+<pre><span class="n">.ticker</span>{
+  <span class="v">display</span>:flex; <span class="v">align-items</span>:center;
+  <span class="v">background</span>:linear-gradient(180deg, <span class="s">#0f1524</span> 0%, <span class="s">#0a0f1a</span> 100%);
+  <span class="v">border</span>:1px solid rgba(34,211,238,0.25);
+  <span class="v">border-radius</span>:10px;
+  <span class="v">overflow</span>:hidden;
+  <span class="v">height</span>:54px;                 <span class="c">/* was compressed — give it breathing room */</span>
+}
+<span class="n">.ticker-label</span>{
+  <span class="v">flex-shrink</span>:0;
+  <span class="v">display</span>:flex; <span class="v">align-items</span>:center; <span class="v">gap</span>:8px;
+  <span class="v">padding</span>:0 18px; <span class="v">height</span>:100%;
+  <span class="v">background</span>:linear-gradient(180deg, rgba(34,211,238,0.12), rgba(34,211,238,0.04));
+  <span class="v">border-right</span>:1px solid rgba(34,211,238,0.25);
+  <span class="v">font-family</span>:<span class="s">'JetBrains Mono'</span>, ui-monospace, monospace;
+  <span class="v">font-weight</span>:700; <span class="v">font-size</span>:11px; <span class="v">letter-spacing</span>:2.5px;
+  <span class="v">text-transform</span>:uppercase; <span class="v">color</span>:<span class="s">#22d3ee</span>;
+}
+<span class="n">.ticker-label .dot</span>{
+  <span class="v">width</span>:8px; <span class="v">height</span>:8px; <span class="v">border-radius</span>:50%;
+  <span class="v">background</span>:<span class="s">#22d3ee</span>;
+  <span class="v">box-shadow</span>:0 0 10px <span class="s">#22d3ee</span>;
+  <span class="v">animation</span>:tickerBlink 1.6s ease-in-out infinite;
+}
+<span class="k">@keyframes</span> tickerBlink{ <span class="n">0%,100%</span>{opacity:1} <span class="n">50%</span>{opacity:0.4} }
+
+<span class="c">/* Track is centered with flex — this is the readability fix */</span>
+<span class="n">.ticker-track</span>{
+  <span class="v">flex</span>:1;
+  <span class="v">display</span>:flex; <span class="v">align-items</span>:center; <span class="v">justify-content</span>:center;
+  <span class="v">gap</span>:24px; <span class="v">padding</span>:0 24px; <span class="v">height</span>:100%;
+  <span class="v">font-size</span>:14px;               <span class="c">/* was ~11px — bumped */</span>
+  <span class="v">font-weight</span>:500; <span class="v">color</span>:<span class="s">#fff</span>;
+}
+<span class="n">.ticker-date</span>{
+  <span class="v">font-family</span>:<span class="s">'JetBrains Mono'</span>, monospace;
+  <span class="v">font-weight</span>:700; <span class="v">font-size</span>:12px;
+  <span class="v">color</span>:<span class="s">#22d3ee</span>; <span class="v">letter-spacing</span>:2px;
+  <span class="v">padding</span>:5px 10px;
+  <span class="v">border</span>:1px solid rgba(34,211,238,0.3);
+  <span class="v">border-radius</span>:6px;
+  <span class="v">background</span>:rgba(34,211,238,0.06);
+}
+<span class="n">.ticker-title</span>{ <span class="v">font-weight</span>:700; <span class="v">color</span>:<span class="s">#fff</span>; <span class="v">font-size</span>:14px; }
+<span class="n">.ticker-tags</span>{ <span class="v">color</span>:<span class="s">#8ea3c2</span>; <span class="v">font-size</span>:12.5px; }
+
+<span class="c">/* Mobile — stack vertically instead of squeezing */</span>
+<span class="k">@media</span> (<span class="v">max-width</span>: 768px){
+  <span class="n">.ticker</span>{ <span class="v">height</span>:auto; <span class="v">flex-direction</span>:column; <span class="v">align-items</span>:stretch; }
+  <span class="n">.ticker-label</span>{ <span class="v">padding</span>:10px 14px; <span class="v">border-right</span>:none;
+    <span class="v">border-bottom</span>:1px solid rgba(34,211,238,0.25); }
+  <span class="n">.ticker-track</span>{ <span class="v">padding</span>:12px 14px; <span class="v">flex-wrap</span>:wrap;
+    <span class="v">justify-content</span>:flex-start; <span class="v">gap</span>:10px; }
+}</pre>
+
+<!-- ============================================================ -->
+<h2>3. Logo — top spacing fix</h2>
+<p>Logo sits too close to the top of the viewport. Add top padding to the header wrapper and a consistent horizontal gutter.</p>
+
+<h3>CSS</h3>
+<pre><span class="n">.site-header</span>{
+  <span class="v">padding</span>: <span class="v">28px</span> <span class="v">40px</span> <span class="v">22px</span>;   <span class="c">/* was ~8-12px top — bump to 28px */</span>
+  <span class="v">display</span>:flex; <span class="v">align-items</span>:center; <span class="v">justify-content</span>:space-between;
+  <span class="v">position</span>:relative; <span class="v">z-index</span>:50;
+}
+<span class="k">@media</span> (<span class="v">max-width</span>: 768px){
+  <span class="n">.site-header</span>{ <span class="v">padding</span>: 20px 20px 16px; }
+}</pre>
+
+<!-- ============================================================ -->
+<h2>4. Section spacing — kill the empty pockets</h2>
+<p>Use a single vertical rhythm variable so every section has consistent top/bottom breathing room. Replace ad-hoc margins with this system.</p>
+
+<h3>CSS</h3>
+<pre><span class="n">:root</span>{
+  <span class="v">--section-pad-y</span>: 96px;     <span class="c">/* desktop vertical section padding */</span>
+  <span class="v">--section-gap</span>: 64px;       <span class="c">/* gap between stacked blocks inside a section */</span>
+  <span class="v">--page-gutter</span>: 40px;      <span class="c">/* horizontal page gutter */</span>
+}
+<span class="n">section</span>, <span class="n">.section</span>{
+  <span class="v">padding</span>: var(--section-pad-y) var(--page-gutter);
+}
+<span class="n">.section + .section</span>{ <span class="v">padding-top</span>: 0; } <span class="c">/* avoid double-padding */</span>
+<span class="n">.section-inner</span>{ <span class="v">max-width</span>: 1280px; <span class="v">margin</span>: 0 auto; }
+<span class="n">.block-stack</span> > * + *{ <span class="v">margin-top</span>: var(--section-gap); }
+
+<span class="k">@media</span> (<span class="v">max-width</span>: 768px){
+  <span class="n">:root</span>{ <span class="v">--section-pad-y</span>: 56px; <span class="v">--section-gap</span>: 40px; <span class="v">--page-gutter</span>: 20px; }
+}</pre>
+
+<p><span class="tag warn">Check</span> Look for raw <span style="font-family:var(--mono);color:var(--cyan)">margin-top</span> / <span style="font-family:var(--mono);color:var(--cyan)">margin-bottom</span> on individual headings and remove them in favor of the section system. That's usually what creates the "empty pocket" feel.</p>
+
+<!-- ============================================================ -->
+<h2>5. Intelligence Map section — container & fit</h2>
+<p>Make sure the map iframe fills its frame and that the container has rounded corners, a subtle inner border, and matches the dark system. Remove any redundant "LIVE MAP BASE" label inside the iframe area — the new map has its own restrained HUD.</p>
+
+<h3>HTML</h3>
+<pre><span class="k">&lt;section</span> <span class="v">class</span>=<span class="s">"map-section"</span><span class="k">&gt;</span>
+  <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"section-inner"</span><span class="k">&gt;</span>
+    <span class="c">&lt;!-- stat row unchanged --&gt;</span>
+    <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"map-grid"</span><span class="k">&gt;</span>
+      <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"map-frame"</span><span class="k">&gt;</span>
+        <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"map-chip tl"</span><span class="k">&gt;&lt;span</span> <span class="v">class</span>=<span class="s">"dot"</span><span class="k">&gt;&lt;/span&gt;</span>Live Map Base<span class="k">&lt;/div&gt;</span>
+        <span class="k">&lt;iframe</span> <span class="v">class</span>=<span class="s">"map-iframe"</span>
+                <span class="v">src</span>=<span class="s">"https://ftl-signal.github.io/broward-intelligence-map/"</span>
+                <span class="v">loading</span>=<span class="s">"lazy"</span> <span class="v">title</span>=<span class="s">"Broward Intelligence Map"</span><span class="k">&gt;&lt;/iframe&gt;</span>
+
+        <span class="c">&lt;!-- Mobile-only floating cam: fills east-ocean space --&gt;</span>
+        <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"map-cam-mobile"</span><span class="k">&gt;</span>
+          <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"map-chip tl"</span><span class="k">&gt;&lt;span</span> <span class="v">class</span>=<span class="s">"dot red"</span><span class="k">&gt;&lt;/span&gt;</span>Live: Pompano Beach<span class="k">&lt;/div&gt;</span>
+          <span class="k">&lt;iframe</span> <span class="v">src</span>=<span class="s">"YOUR_CAM_EMBED_URL"</span> <span class="v">allow</span>=<span class="s">"autoplay"</span> <span class="v">title</span>=<span class="s">"Live Cam"</span><span class="k">&gt;&lt;/iframe&gt;</span>
+        <span class="k">&lt;/div&gt;</span>
+
+        <span class="k">&lt;a</span> <span class="v">href</span>=<span class="s">"/map"</span> <span class="v">class</span>=<span class="s">"map-cta"</span><span class="k">&gt;</span>Open Interactive Map →<span class="k">&lt;/a&gt;</span>
+      <span class="k">&lt;/div&gt;</span>
+      <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"cam-frame"</span><span class="k">&gt;</span>
+        <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"map-chip tl"</span><span class="k">&gt;&lt;span</span> <span class="v">class</span>=<span class="s">"dot red"</span><span class="k">&gt;&lt;/span&gt;</span>Live: Pompano Beach<span class="k">&lt;/div&gt;</span>
+        <span class="k">&lt;iframe</span> <span class="v">src</span>=<span class="s">"YOUR_CAM_EMBED_URL"</span> <span class="v">allow</span>=<span class="s">"autoplay"</span><span class="k">&gt;&lt;/iframe&gt;</span>
+      <span class="k">&lt;/div&gt;</span>
+    <span class="k">&lt;/div&gt;</span>
+  <span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;/section&gt;</span></pre>
+
+<h3>CSS</h3>
+<pre><span class="n">.map-grid</span>{
+  <span class="v">display</span>:grid;
+  <span class="v">grid-template-columns</span>: 1fr 320px;
+  <span class="v">gap</span>:16px;
+}
+
+<span class="c">/* Frames — both map and cam get the same treatment */</span>
+<span class="n">.map-frame</span>, <span class="n">.cam-frame</span>{
+  <span class="v">position</span>:relative;
+  <span class="v">aspect-ratio</span>: 16/11;
+  <span class="v">border-radius</span>:14px;
+  <span class="v">overflow</span>:hidden;
+  <span class="v">border</span>:1px solid rgba(255,255,255,0.08);
+  <span class="v">background</span>:<span class="s">#0a0f1a</span>;
+  <span class="v">box-shadow</span>:
+    0 30px 80px rgba(0,0,0,0.55),
+    inset 0 0 0 1px rgba(34,211,238,0.05);
+}
+<span class="n">.map-frame</span>{ <span class="v">aspect-ratio</span>: auto; <span class="v">height</span>: 520px; }
+
+<span class="n">.map-iframe</span>, <span class="n">.cam-frame iframe</span>{
+  <span class="v">width</span>:100%; <span class="v">height</span>:100%; <span class="v">border</span>:0; <span class="v">display</span>:block;
+  <span class="v">background</span>:<span class="s">#0a0f1a</span>;
+}
+
+<span class="c">/* Reusable chip for labels on media frames */</span>
+<span class="n">.map-chip</span>{
+  <span class="v">position</span>:absolute; <span class="v">z-index</span>:3;
+  <span class="v">display</span>:flex; <span class="v">align-items</span>:center; <span class="v">gap</span>:8px;
+  <span class="v">padding</span>:7px 12px;
+  <span class="v">background</span>:rgba(10,15,26,0.78);
+  <span class="v">border</span>:1px solid rgba(34,211,238,0.28);
+  <span class="v">border-radius</span>:8px;
+  <span class="v">backdrop-filter</span>:blur(8px) saturate(140%);
+  <span class="v">font-family</span>:<span class="s">'JetBrains Mono'</span>, monospace;
+  <span class="v">font-size</span>:10px; <span class="v">letter-spacing</span>:2px; <span class="v">text-transform</span>:uppercase;
+  <span class="v">color</span>:<span class="s">#22d3ee</span>; <span class="v">font-weight</span>:700;
+}
+<span class="n">.map-chip.tl</span>{ <span class="v">top</span>:14px; <span class="v">left</span>:14px; }
+<span class="n">.map-chip .dot</span>{
+  <span class="v">width</span>:7px; <span class="v">height</span>:7px; <span class="v">border-radius</span>:50%;
+  <span class="v">background</span>:<span class="s">#22d3ee</span>; <span class="v">box-shadow</span>:0 0 8px <span class="s">#22d3ee</span>;
+}
+<span class="n">.map-chip .dot.red</span>{ <span class="v">background</span>:<span class="s">#ef4444</span>; <span class="v">box-shadow</span>:0 0 8px <span class="s">#ef4444</span>;
+  <span class="v">animation</span>:tickerBlink 1.2s ease-in-out infinite; }
+
+<span class="c">/* CTA — floats in the bottom-right ocean area */</span>
+<span class="n">.map-cta</span>{
+  <span class="v">position</span>:absolute; <span class="v">bottom</span>:14px; <span class="v">right</span>:14px; <span class="v">z-index</span>:3;
+  <span class="v">padding</span>:10px 16px;
+  <span class="v">font-family</span>:<span class="s">'JetBrains Mono'</span>, monospace;
+  <span class="v">font-size</span>:11px; <span class="v">letter-spacing</span>:2px; <span class="v">text-transform</span>:uppercase;
+  <span class="v">color</span>:<span class="s">#22d3ee</span>; <span class="v">font-weight</span>:700;
+  <span class="v">background</span>:rgba(10,15,26,0.85);
+  <span class="v">border</span>:1px solid rgba(34,211,238,0.35);
+  <span class="v">border-radius</span>:8px;
+  <span class="v">backdrop-filter</span>:blur(8px);
+  <span class="v">text-decoration</span>:none;
+  <span class="v">transition</span>: all 0.2s;
+}
+<span class="n">.map-cta:hover</span>{ <span class="v">background</span>:rgba(34,211,238,0.12); <span class="v">color</span>:<span class="s">#fff</span>;
+  <span class="v">box-shadow</span>:0 0 20px rgba(34,211,238,0.3); }
+
+<span class="c">/* Mobile cam — floats inside map over the ocean area */</span>
+<span class="n">.map-cam-mobile</span>{ <span class="v">display</span>:none; }
+
+<span class="k">@media</span> (<span class="v">max-width</span>: 900px){
+  <span class="n">.map-grid</span>{ <span class="v">grid-template-columns</span>: 1fr; }
+  <span class="n">.cam-frame</span>{ <span class="v">display</span>:none; }           <span class="c">/* hide the standalone cam */</span>
+
+  <span class="n">.map-cam-mobile</span>{
+    <span class="v">display</span>:block;
+    <span class="v">position</span>:absolute; <span class="v">z-index</span>:4;
+    <span class="v">top</span>:14px; <span class="v">right</span>:14px;             <span class="c">/* top-right = ocean area */</span>
+    <span class="v">width</span>:38%; <span class="v">max-width</span>:180px;
+    <span class="v">aspect-ratio</span>: 16/11;
+    <span class="v">border-radius</span>:10px; <span class="v">overflow</span>:hidden;
+    <span class="v">border</span>:1px solid rgba(34,211,238,0.3);
+    <span class="v">box-shadow</span>:0 10px 30px rgba(0,0,0,0.6);
+  }
+  <span class="n">.map-cam-mobile iframe</span>{ <span class="v">width</span>:100%; <span class="v">height</span>:100%; <span class="v">border</span>:0; }
+  <span class="n">.map-cam-mobile .map-chip</span>{ <span class="v">font-size</span>:8px; <span class="v">padding</span>:4px 7px;
+    <span class="v">letter-spacing</span>:1.5px; <span class="v">top</span>:6px; <span class="v">left</span>:6px; }
+}</pre>
+
+<p><span class="tag fix">Key</span> The mobile cam uses <span style="font-family:var(--mono);color:var(--cyan)">position:absolute; top:14px; right:14px</span> so it lands in the upper-right ocean region of the map — that's the empty water east of Fort Lauderdale / Pompano. It fills dead space instead of pushing the map into a shorter box.</p>
+
+<!-- ============================================================ -->
+<h2>6. Map bleeding / visibility</h2>
+<p>The cause: my first map draft had a heavy tile filter (brightness 0.78, saturate 0.55) plus corner brackets that clashed with the homepage container's own frame. I've pushed a restrained v2 — lighter grade (brightness 1.05, saturate 0.85), removed the corner brackets, removed the duplicate HUD pills, kept only the category legend.</p>
+
+<p>Drop the updated <span style="font-family:var(--mono);color:var(--cyan)">florida-signal-map.html</span> into your <span style="font-family:var(--mono);color:var(--cyan)">ftl-signal/broward-intelligence-map</span> repo, commit, and the iframe on the homepage picks it up automatically.</p>
+
+<!-- ============================================================ -->
+<h2>7. Stats auto-wiring — update map, homepage syncs</h2>
+<p>The new map file broadcasts its aggregated stats (active signals, tracked value, municipalities, last sync) via <span style="font-family:var(--mono);color:var(--cyan)">postMessage</span> every load. The homepage listens and updates the stat cards. You only edit the map signals array — homepage totals update automatically.</p>
+
+<h3>HTML — two stat cards only (Municipalities and Last Sync dropped)</h3>
+<p>Delete the two right-hand cards (Municipalities <code>31</code> and Last Sync <code>LIVE</code>) entirely. Keep only Active Signals and Tracked Value. Let the grid stretch those two across the full row.</p>
+<pre><span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"stat-row"</span><span class="k">&gt;</span>
+  <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"stat-card"</span><span class="k">&gt;</span>
+    <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"stat-label"</span><span class="k">&gt;&lt;span</span> <span class="v">class</span>=<span class="s">"dot"</span><span class="k">&gt;&lt;/span&gt;</span>Active Signals<span class="k">&lt;/div&gt;</span>
+    <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"stat-value"</span> <span class="v">data-stat</span>=<span class="s">"active"</span><span class="k">&gt;</span>47<span class="k">&lt;/div&gt;</span>
+  <span class="k">&lt;/div&gt;</span>
+  <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"stat-card"</span><span class="k">&gt;</span>
+    <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"stat-label"</span><span class="k">&gt;</span>Tracked Value<span class="k">&lt;/div&gt;</span>
+    <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"stat-value accent"</span> <span class="v">data-stat</span>=<span class="s">"value"</span><span class="k">&gt;</span>$361.0M<span class="k">&lt;/div&gt;</span>
+  <span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;style&gt;</span>
+<span class="n">.stat-row</span>{ <span class="v">display</span>:grid; <span class="v">grid-template-columns</span>:1fr 1fr; <span class="v">gap</span>:0; }
+<span class="c">/* on mobile stack vertically */</span>
+<span class="k">@media</span> (<span class="v">max-width</span>: 640px){ <span class="n">.stat-row</span>{ <span class="v">grid-template-columns</span>:1fr; } }
+<span class="k">&lt;/style&gt;</span></pre>
+
+<h3>JS — paste once in your homepage (near end of body)</h3>
+<pre><span class="k">&lt;script&gt;</span>
+<span class="c">// Listen for stats broadcast from the map iframe</span>
+window.addEventListener(<span class="s">'message'</span>, (e) =&gt; {
+  <span class="c">// Only trust messages from the map origin</span>
+  <span class="k">if</span> (e.origin !== <span class="s">'https://ftl-signal.github.io'</span>) <span class="k">return</span>;
+  <span class="k">if</span> (!e.data || e.data.type !== <span class="s">'signalStats'</span>) <span class="k">return</span>;
+  <span class="k">const</span> s = e.data;
+
+  <span class="k">const</span> set = (key, val) =&gt; {
+    <span class="k">const</span> el = document.querySelector(<span class="s">`[data-stat="${key}"]`</span>);
+    <span class="k">if</span> (el &amp;&amp; val != <span class="k">null</span>) el.textContent = val;
+  };
+  set(<span class="s">'active'</span>, s.activeSignals);
+  set(<span class="s">'value'</span>,  s.trackedValueLabel);
+});
+
+<span class="c">// Handshake — ask the map for stats once the iframe is loaded</span>
+window.addEventListener(<span class="s">'load'</span>, () =&gt; {
+  <span class="k">const</span> frame = document.querySelector(<span class="s">'.map-iframe'</span>);
+  <span class="k">if</span> (frame &amp;&amp; frame.contentWindow) {
+    <span class="k">try</span> { frame.contentWindow.postMessage({type:<span class="s">'requestSignalStats'</span>}, <span class="s">'*'</span>); }
+    <span class="k">catch</span>(err){}
+  }
+});
+<span class="k">&lt;/script&gt;</span></pre>
+
+<p><span class="tag fix">Flow</span> Edit signals in the map repo → push → iframe reloads with new data → map posts new totals → homepage cards update. You literally only maintain the map file.</p>
+
+<!-- ============================================================ -->
+<h2>8. Live cam — auto hide after dark, back up at sunrise</h2>
+<p>Underwater cam looks like a murky screen at night. Use local-time sunrise/sunset for Pompano Beach (lat 26.23, lon -80.09) and hide the cam frame + swap a placeholder panel that says "Live cam resumes at sunrise".</p>
+
+<h3>HTML — placeholder panel goes inside the cam frames</h3>
+<pre><span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"cam-frame"</span> <span class="v">data-cam</span><span class="k">&gt;</span>
+  <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"map-chip tl"</span><span class="k">&gt;&lt;span</span> <span class="v">class</span>=<span class="s">"dot red"</span><span class="k">&gt;&lt;/span&gt;</span>Live: Pompano Beach<span class="k">&lt;/div&gt;</span>
+  <span class="k">&lt;iframe</span> <span class="v">class</span>=<span class="s">"cam-feed"</span> <span class="v">src</span>=<span class="s">"YOUR_CAM_URL"</span> <span class="v">allow</span>=<span class="s">"autoplay"</span><span class="k">&gt;&lt;/iframe&gt;</span>
+  <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"cam-night"</span><span class="k">&gt;</span>
+    <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"moon"</span><span class="k">&gt;&lt;/div&gt;</span>
+    <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"cam-night-title"</span><span class="k">&gt;</span>Cam Resumes at Sunrise<span class="k">&lt;/div&gt;</span>
+    <span class="k">&lt;div</span> <span class="v">class</span>=<span class="s">"cam-night-sub"</span> <span class="v">data-sunrise</span><span class="k">&gt;</span>Est. sunrise <span class="k">&lt;/span&gt;</span>
+  <span class="k">&lt;/div&gt;</span>
+<span class="k">&lt;/div&gt;</span></pre>
+
+<h3>CSS</h3>
+<pre><span class="n">.cam-night</span>{
+  <span class="v">position</span>:absolute; <span class="v">inset</span>:0; <span class="v">display</span>:none;
+  <span class="v">flex-direction</span>:column; <span class="v">align-items</span>:center; <span class="v">justify-content</span>:center;
+  <span class="v">gap</span>:12px; <span class="v">padding</span>:24px; <span class="v">text-align</span>:center;
+  <span class="v">background</span>:radial-gradient(ellipse at center, <span class="s">#0b1224</span> 0%, <span class="s">#05070c</span> 80%);
+}
+<span class="n">.cam-frame[data-cam-night]</span> <span class="n">.cam-night</span>{ <span class="v">display</span>:flex; }
+<span class="n">.cam-frame[data-cam-night]</span> <span class="n">.cam-feed</span>{ <span class="v">display</span>:none; }
+<span class="n">.cam-night .moon</span>{
+  <span class="v">width</span>:42px; <span class="v">height</span>:42px; <span class="v">border-radius</span>:50%;
+  <span class="v">background</span>:radial-gradient(circle at 35% 30%, <span class="s">#f8fafc</span> 0%, <span class="s">#cbd5e1</span> 60%, <span class="s">#64748b</span> 100%);
+  <span class="v">box-shadow</span>:0 0 36px rgba(248,250,252,0.35), inset -6px -4px 10px rgba(0,0,0,0.35);
+}
+<span class="n">.cam-night-title</span>{ <span class="v">font-weight</span>:700; <span class="v">font-size</span>:13px; <span class="v">color</span>:<span class="s">#e8f0ff</span>;
+  <span class="v">font-family</span>:<span class="s">'JetBrains Mono'</span>, monospace; <span class="v">letter-spacing</span>:2px; <span class="v">text-transform</span>:uppercase; }
+<span class="n">.cam-night-sub</span>{ <span class="v">font-size</span>:11px; <span class="v">color</span>:<span class="s">#8ea3c2</span>;
+  <span class="v">font-family</span>:<span class="s">'JetBrains Mono'</span>, monospace; <span class="v">letter-spacing</span>:1px; }</pre>
+
+<h3>JS — sunrise/sunset by local FL month (accurate to ~15 min)</h3>
+<pre><span class="k">&lt;script&gt;</span>
+(<span class="k">function</span>(){
+  <span class="c">// Pompano Beach FL — hour of day (0-24, local time)</span>
+  <span class="c">// DST-aware because getHours() returns local wall clock</span>
+  <span class="k">const</span> MONTHLY_SUN = [
+    {rise:7.12, set:17.77, m:<span class="s">'Jan'</span>},
+    {rise:6.87, set:18.10, m:<span class="s">'Feb'</span>},
+    {rise:7.48, set:19.35, m:<span class="s">'Mar'</span>}, <span class="c">// DST begins mid-month</span>
+    {rise:6.92, set:19.60, m:<span class="s">'Apr'</span>},
+    {rise:6.50, set:19.87, m:<span class="s">'May'</span>},
+    {rise:6.40, set:20.17, m:<span class="s">'Jun'</span>},
+    {rise:6.57, set:20.20, m:<span class="s">'Jul'</span>},
+    {rise:6.82, set:19.92, m:<span class="s">'Aug'</span>},
+    {rise:7.07, set:19.37, m:<span class="s">'Sep'</span>},
+    {rise:7.30, set:18.78, m:<span class="s">'Oct'</span>},
+    {rise:6.62, set:17.43, m:<span class="s">'Nov'</span>}, <span class="c">// DST ends early-month</span>
+    {rise:6.95, set:17.47, m:<span class="s">'Dec'</span>}
+  ];
+  <span class="k">function</span> check(){
+    <span class="k">const</span> now = <span class="k">new</span> Date();
+    <span class="k">const</span> hour = now.getHours() + now.getMinutes()/60;
+    <span class="k">const</span> {rise, set} = MONTHLY_SUN[now.getMonth()];
+    <span class="k">const</span> isDay = hour &gt;= rise &amp;&amp; hour &lt; set;
+    <span class="k">const</span> frames = document.querySelectorAll(<span class="s">'[data-cam]'</span>);
+    frames.forEach(f =&gt; {
+      <span class="k">if</span> (isDay) f.removeAttribute(<span class="s">'data-cam-night'</span>);
+      <span class="k">else</span>      f.setAttribute(<span class="s">'data-cam-night'</span>, <span class="s">''</span>);
+    });
+    <span class="c">// Show estimated sunrise under the moon</span>
+    <span class="k">const</span> riseDate = <span class="k">new</span> Date(now);
+    <span class="k">if</span> (hour &gt;= set) riseDate.setDate(riseDate.getDate()+1);
+    <span class="k">const</span> rh = Math.floor(rise), rm = Math.round((rise-rh)*60);
+    <span class="k">const</span> riseTxt = <span class="s">`Est. sunrise ${rh}:${String(rm).padStart(2,'0')} AM`</span>;
+    document.querySelectorAll(<span class="s">'[data-sunrise]'</span>).forEach(el =&gt; el.textContent = riseTxt);
+  }
+  check();
+  setInterval(check, 60*1000); <span class="c">// re-check every minute</span>
+})();
+<span class="k">&lt;/script&gt;</span></pre>
+
+<p><span class="tag fix">Bonus</span> If you ever move cameras or want minute-accurate times, swap the table for <span style="font-family:var(--mono);color:var(--cyan)">SunCalc.js</span> (3 KB, from npm). The rest of the logic is unchanged.</p>
+
+<!-- ============================================================ -->
+<h2>9. Link audit checklist</h2>
+<p>Walk through these on your live site. Each should go where it promises. I can't sign into your repo, so this is the manual sweep I'd do.</p>
+
+<div class="card">
+  <h3>Header</h3>
+  <p><span class="tag">check</span> <strong>FLORIDA SIGNAL logo</strong> → <span style="font-family:var(--mono);color:var(--cyan)">href="/"</span> (homepage). Watch for a stale <code>index.html</code> path.</p>
+  <p><span class="tag">check</span> <strong>VIEW ALL BRIEFS</strong> → briefs archive page, not <code>#</code>.</p>
+  <p><span class="tag">check</span> <strong>SIGN IN</strong> → member portal / auth route (or Ghost sign-in).</p>
+  <p><span class="tag">check</span> <strong>SUBSCRIBE</strong> → signup / checkout page.</p>
+
+  <h3>Hero</h3>
+  <p><span class="tag">check</span> <strong>"Get the free weekly brief →"</strong> button — posts to your email capture endpoint and returns to a thank-you page, not a 404.</p>
+  <p><span class="tag">check</span> Email input has correct <span style="font-family:var(--mono);color:var(--cyan)">name="email"</span> and form <span style="font-family:var(--mono);color:var(--cyan)">action</span>.</p>
+
+  <h3>Live Signal Feed panel</h3>
+  <p><span class="tag">check</span> Each feed item title links to that signal's detail page (or at least the Ghost post slug).</p>
+  <p><span class="tag">check</span> "REFRESHING" is visually alive — if it's not actually polling, replace with a static "LIVE" pill to avoid lying to users.</p>
+  <p><span class="tag">check</span> "showing 3 of 127" — confirm that's the real count; it should be driven from feed data.</p>
+
+  <h3>Intelligence Map section</h3>
+  <p><span class="tag">check</span> <strong>Stat cards</strong> (Active Signals / Tracked Value — two-card row) — once you add data-attrs + the listener (patch #7), both update from the map file itself. Verify by adding a signal to the map and confirming both cards flip.</p>
+  <p><span class="tag">check</span> <strong>OPEN INTERACTIVE MAP →</strong> → the full-width map page (not the embed URL). The embed is <span style="font-family:var(--mono);color:var(--cyan)">ftl-signal.github.io/broward-intelligence-map/</span> but the "interactive" CTA should land on a dedicated <code>/map</code> route with pan/zoom enabled.</p>
+  <p><span class="tag">check</span> <strong>Pin popups</strong> — if you later add a "view full brief" link inside a popup, confirm each <code>sig_XX</code> maps to its actual post.</p>
+
+  <h3>Pipeline Watch ticker</h3>
+  <p><span class="tag">check</span> Event link (FHBA webinar etc.) → external registration page, <code>target="_blank" rel="noopener"</code>.</p>
+
+  <h3>Footer / misc</h3>
+  <p><span class="tag">check</span> Social icons — not blank <code>#</code>.</p>
+  <p><span class="tag">check</span> Privacy / Terms pages exist (CASL/GDPR compliance even if US-only).</p>
+  <p><span class="tag">check</span> Favicon + OG image render in link previews (LinkedIn, iMessage).</p>
+</div>
+
+<div class="card">
+  <h3>Summary of files</h3>
+  <p><span class="tag">map repo</span> <strong>florida-signal-map.html</strong> — replace your current <code>index.html</code> with this file. Signals, visuals, and the stats broadcaster are all in this one file.</p>
+  <p><span class="tag">homepage repo</span> <strong>homepage-patches.html</strong> — this file. Contains tagline shimmer, ticker, header spacing, section rhythm, map/cam frames, mobile cam overlay, stat auto-wiring, day/night cam, and a link audit.</p>
+</div>
+
+</div>
+</body>
+</html>
